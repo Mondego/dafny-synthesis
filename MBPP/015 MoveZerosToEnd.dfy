@@ -18,7 +18,6 @@ method MoveZeroesToEnd(arr: array<int>)
 
     assert 0 <= i  <= arr.Length;
     assert forall k :: 0 <= k < arr.Length ==> arr[k] == old(arr[k]);
-    //assert(forall n, m :: 0 <= n < m < arr.Length  ==> arr[n] == old(arr[n]) && arr[m] == old(arr[m]));
     while j < arr.Length
         invariant 0 <= i <= j <= arr.Length
         // Elements to the right of j are unchanged
