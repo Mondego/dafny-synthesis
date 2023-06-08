@@ -30,15 +30,15 @@ method MoveZeroesToEnd(arr: array<int>)
             // Everything between i and j, but excluding j, is zero
             invariant forall k :: i <= k < j ==> arr[k] == 0
             // If there there are zeros, they are to the right of i
-            invariant forall k :: 0 <= k < arr.Length && arr[k] == 0 ==> k >= i
-            // No new numbers are added
-            invariant forall k :: 0 <= k < arr.Length && arr[k] != old(arr[k]) ==> exists l :: 0 <= l < arr.Length && arr[k] == old(arr[l])
-            // The new array is always a permutation of the original one
-            invariant multiset(arr[..]) == multiset(old(arr[..]))
-            // Relative order of elements is always preserved
+            invariant forall k :: 0 <= k < j && arr[k] == 0 ==> k >= i
+            // No new numbers are added, up to j
+            invariant forall k :: 0 <= k < j && arr[k] != old(arr[k]) ==> exists l :: 0 <= l < j && arr[k] == old(arr[l])
+            // The new array up to j is always a permutation of the original one
+            invariant multiset(arr[..j]) == multiset(old(arr[..j]))
+            // Relative order of non-zero elements is always preserved
             //invariant IsOrderPreserved(arr[..], old(arr[..]))
-            invariant forall n, m :: 0 <= n < m < arr.Length  ==> 
-                exists k, l :: 0 <= k <= n && k < l <= m && arr[k] == old(arr[n]) && arr[l] == old(arr[m])
+            invariant forall n, m /* on old */:: 0 <= n < m < j && old(arr[n]) != 0 && old(arr[m]) != 0 ==> 
+                exists k, l /* on new */:: 0 <= k < l < i && arr[k] == old(arr[n]) && arr[l] == old(arr[m])
         {
 
             if arr[j] != 0
@@ -48,7 +48,7 @@ method MoveZeroesToEnd(arr: array<int>)
                     assert(arr[j] != 0);
                     swap(arr, i, j);
                     //assert(arr[..] != old(arr[..]));
-                    assert(forall k :: 0 <= k < arr.Length ==> exists l :: 0 <= l < arr.Length && arr[k] == old(arr[l]));
+                    assert(forall k :: 0 <= k <= j ==> exists l :: 0 <= l <= j && arr[k] == old(arr[l]));
                 }
                 i := i + 1;
             }
