@@ -5,9 +5,9 @@ predicate IsEven(n: int)
 
 //method FindEvenNumbers(arr: array<int>) returns (evenNumbers: array<int>)
 method FindEvenNumbers(arr: array<int>) returns (evenList: seq<int>)
-    // All returned numbers are even and exist in the input array
+    // All numbers in the output are even and exist in the input 
     ensures forall i :: 0 <= i < |evenList| ==> IsEven(evenList[i]) && exists j :: 0 <= j < arr.Length && evenList[i] == arr[j]
-    // All even numbers in the input array are returned
+    // All even numbers in the input are in the output
     ensures forall i :: 0 <= i < arr.Length && IsEven(arr[i]) ==> exists j :: 0 <= j < |evenList| && arr[i] == evenList[j]
 {
 //    var evenList: seq<int> := [];
