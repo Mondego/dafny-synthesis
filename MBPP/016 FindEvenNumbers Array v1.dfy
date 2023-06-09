@@ -1,3 +1,7 @@
+/**
+ * Find even numbers from an array of numbers
+ **/
+
 predicate IsEven(n: int)
 {
     n % 2 == 0
@@ -29,8 +33,3 @@ method FindEvenNumbers(arr: array<int>) returns (evenNumbers: array<int>)
     assert evenList == evenNumbers[..];
 }
 
-function CountEven(s: seq<int>) : nat
-{
-    if |s| == 0 then 0
-    else (if IsEven(s[0]) then 1 else 0) + CountEven(s[1..])
-}
