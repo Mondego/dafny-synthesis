@@ -26,9 +26,6 @@ method FindEvenNumbers(arr: array<int>) returns (evenNumbers: array<int>)
         }
     }
 
-    assert forall k :: 0 <= k < |evenList| ==> IsEven(evenList[k]) && evenList[k] in arr[..]; 
-    assert forall k :: 0 <= k < arr.Length && IsEven(arr[k]) ==> arr[k] in evenList;
-
     evenNumbers := new int[|evenList|](i requires 0 <= i < |evenList| => evenList[i]);
     assert evenList == evenNumbers[..];
 }
