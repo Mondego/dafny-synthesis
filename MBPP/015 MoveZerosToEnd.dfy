@@ -32,7 +32,7 @@ method MoveZeroesToEnd(arr: array<int>)
         // No new numbers are added, up to j
         invariant forall k :: 0 <= k < j && arr[k] != old(arr[k]) ==> exists l :: 0 <= l < j && arr[k] == old(arr[l])
         // The new array up to j is always a permutation of the original one
-        invariant multiset(arr[..j]) == multiset(old(arr[..j]))
+        invariant multiset(arr[..]) == multiset(old(arr[..]))
         // Relative order of non-zero elements is always preserved
         //invariant IsOrderPreserved(arr[..], old(arr[..]))
         invariant forall n, m /* on old */:: 0 <= n < m < j && old(arr[n]) != 0 && old(arr[m]) != 0 ==> 
@@ -60,6 +60,7 @@ method swap(arr: array<int>, i: int, j: int)
     modifies arr
     ensures arr[i] == old(arr[j]) && arr[j] == old(arr[i])
     ensures forall k :: 0 <= k < arr.Length && k != i && k != j ==> arr[k] == old(arr[k])
+    ensures multiset(arr[..]) == multiset(old(arr[..]))
 {
         var tmp := arr[i];
         arr[i] := arr[j];
