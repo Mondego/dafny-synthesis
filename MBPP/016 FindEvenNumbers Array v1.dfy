@@ -12,7 +12,7 @@ method FindEvenNumbers(arr: array<int>) returns (evenNumbers: array<int>)
     ensures forall x :: x in arr[..] && IsEven(x) ==> x in evenNumbers[..];
     // If a number is not in the input, it's also not in the output 
     ensures forall x :: x !in arr[..] ==> x !in evenNumbers[..]
-    // Relative order of even numbers is preserved
+    // Relative order of even numbers is preserved? 
     ensures evenNumbers[..] == filter(arr[..], IsEven)
 {
     var evenList: seq<int> := filter(arr[..], IsEven);
