@@ -23,8 +23,6 @@ method FindFirstRepeatedChar(s: string) returns (found: bool, c: char)
             if s[i] == s[j] {
                 inner_found := true;
                 c := s[i];
-                assert exists k :: i < k < |s| && s[i] == s[k];
-                assert i != j;
             }
             j := j + 1;
         }
