@@ -18,7 +18,6 @@ method UniqueProduct (arr: array<int>) returns (product: int)
     product := p;
 }
 
-// The multiplication here follows the same order as the multiplicaiton in the method
 ghost function SetProduct(s : set<int>) : int
 {
     if s == {} then 1
@@ -27,9 +26,6 @@ ghost function SetProduct(s : set<int>) : int
 }
 
 /* 
- * Prove that the product of elements up to, but excluding, the last one
- * multiplied by the last element is the same as the product of all
- * the elements.
  * This is necessary because, when we add one element, we need to make sure
  * that the product of the new set, as a whole, is the same as the product
  * of the old set times the new element.
