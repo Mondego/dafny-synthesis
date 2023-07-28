@@ -98,8 +98,8 @@ ENV/
 [Ll]ib
 [Ll]ib64
 [Ll]ocal
-[Ss]cripts
-pyvenv.cfg
+#[Ss]cripts  --whoops kjx
+pyvenv.cfg 
 .venv
 pip-selfcheck.json
 ### JetBrains template
