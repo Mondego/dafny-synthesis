@@ -1,0 +1,59 @@
+#!/usr/bin/perl
+
+while (<>) {
+  # copy everything until you get to a method header
+      if ($_ =~ /^[[:space:]]*method/ ) {
+       print;
+       last;
+      }
+   print;
+}
+
+
+# while (<>) {
+#   # copy any method spec clauses (assumes all oneliners)
+#       if ($_ =~ /^[[:space:]]*(requires|modifies|ensures|increases|reads|\/\/)/ ) {
+#        print;
+#        last;
+#       }
+#    print;
+# }
+
+
+while (<>) {
+  # copy everything until you get to a line starting with an open {
+  # this assumes specifications are written on one line...
+  # and a method body begins with a { as the first thing on a line
+     if ($_ =~ /^[[:space:]]*\{/ ) {
+       print;
+       last;
+      }
+   print;
+}
+
+my $printedclose = "no";
+
+while (<>) {
+  # ignore everything until you get to a line starting with method function predicate lemma etc
+  # this is horrible but will do the job for now
+      if ($_ =~ /^[[:space:]]*(method|function|predicate|lemma|ghost method|ghost predicate|ghost function|\/\/)/ ) {
+       print "}\n";
+       my $printedclose = "yes";
+       print;
+       last;
+      }
+}
+
+
+if ($printedclose == "no") {
+ #must have got to the end???
+ print "}\n";
+ #if so, next loop won't run
+}
+
+while (<>) {
+   #copy everything thats left
+   print;
+}
+
+

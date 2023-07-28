@@ -1,0 +1,50 @@
+#/bin/sh
+
+
+if [ "$2" = "" ] 
+then
+echo usage: $0 output_directory filter... uogg+
+exit
+fi
+
+DIR_NAME=`dirname $0`
+OUTPUT_DIR=$1; shift
+
+# echo "output_dir" $OUTPUT_DIR
+# echo "dirname"  $DIR_NAME
+
+COMMAND=""
+
+while [ "$1" != "" ] 
+do
+
+if [ -f $1 ]
+then
+NXMCMD="$1"
+elif [ -f $DIR_NAME/$1 ]
+then
+NXMCMD="$DIR_NAME/$1"
+else
+echo "can't find filter $1"
+exit 
+fi
+
+
+COMMAND="$COMMAND | $NXMCMD"; shift 
+done
+
+rm -rf $OUTPUT_DIR
+
+mkdir $OUTPUT_DIR
+
+IFS=$'\n'
+
+for INFILE in 00_import/*
+do 
+OUTFILE=`basename $INFILE`
+eval cat \"$INFILE\" $COMMAND > "$OUTPUT_DIR/$OUTFILE"
+done
+
+
+
+

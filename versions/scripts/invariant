@@ -1,0 +1,1 @@
+egrep -vw '^[[:space:]]*invariant'

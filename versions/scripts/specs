@@ -1,0 +1,1 @@
+egrep -vw '^[[:space:]]*(requires|modifies|ensures|increases|reads|\/\/)'
