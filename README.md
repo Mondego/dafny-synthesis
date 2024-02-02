@@ -18,10 +18,10 @@ method signature, and three test cases translated to suit Dafny.
   - A collection of 50 problems selected from MBPP-san-DFY-228, containing problem description NLP specifications, Dafny implementation, and test.
   
 - 📂 MBPP-DFY-153:
-  -  A a collection of 153 MBPP problems that are implemented and formally verified in Dafny, 50 of which were written by the author (i.e, MBPP-DFY-50) and 103 were synthesized by GPT-4 employing Dynamic Few-Shot Prompting.
+  -  A a collection of 153 MBPP problems that are implemented and formally verified in Dafny, 50 of which were written by the authors (i.e, MBPP-DFY-50) and 103 were synthesized by GPT-4 employing Dynamic Few-Shot Prompting.
 
 - 📂 RQs:
-  - The following directories contains, prompt, corrosponding LLMs'(GPT-4 and PaLM-2) responses, Dany method synthesis, verification status, bits and author conducted manual tagging results.
+  - The following directories contain, prompt, corrosponding LLMs'(GPT-4 and PaLM-2) responses, Dany method synthesis, verification status, bits and author conducted manual tagging results.
     - 📂 RQ1 [Contextless-Prompting]
     - 📂 RQ2-[Signature-Prompting]
     - 📂 RQ3-[Dynamic-Few-Shot-Prompting]
