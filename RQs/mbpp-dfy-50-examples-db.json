@@ -1,0 +1,502 @@
+{
+  "807": {
+    "code": "predicate IsOdd(x: int)\n{\n    x % 2 != 0\n}\n\nmethod FindFirstOdd(a: array<int>) returns (found: bool, index: int)\n    requires a != null\n    ensures !found ==> forall i :: 0 <= i < a.Length ==> !IsOdd(a[i])\n    ensures found ==> 0 <= index < a.Length && IsOdd(a[index]) && forall i :: 0 <= i < index ==> !IsOdd(a[i])\n{\n    found := false;\n    index := 0;\n    while (index < a.Length)\n        invariant 0 <= index <= a.Length\n        invariant !found ==> forall i :: 0 <= i < index ==> !IsOdd(a[i])\n        invariant found ==> IsOdd(a[index - 1]) && forall i :: 0 <= i < index - 1 ==> !IsOdd(a[i])\n    {\n        if IsOdd(a[index])\n        {\n            found := true;\n            return;\n        }\n        index := index + 1;\n    }\n}",
+    "specification": {
+      "method_signature": "method FindFirstOdd(a: array<int>) returns (found: bool, index: int)",
+      "preconditions": "- The input array should not be null",
+      "postconditions": "- If found is true, then the value at index is odd\n- If found is false, then there are no odd numbers in the array\n- If there are multiple odd numbers, the index should be the smallest index with an odd number"
+    },
+    "task_description": "Write a method in Dafny to find the first odd number in a given integer array.",
+    "task_id": "807"
+  },
+  "760": {
+    "code": "method HasOnlyOneDistinctElement(a: array<int>) returns (result: bool)\n    requires a != null\n    ensures result ==> forall i, j :: 0 <= i < a.Length && 0 <= j < a.Length ==> a[i] == a[j]\n    ensures !result ==> exists i, j :: 0 <= i < a.Length && 0 <= j < a.Length && a[i] != a[j]\n{\n    if a.Length == 0 {\n        return true;\n    }\n\n    var firstElement := a[0];\n    result := true;\n\n    for i := 1 to a.Length\n        invariant 1 <= i <= a.Length\n        invariant result ==> forall k :: 0 <= k < i ==> a[k] == firstElement\n    {\n        if a[i] != firstElement {\n            result := false;\n            break;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method HasOnlyOneDistinctElement(a: array<int>) returns (result: bool)",
+      "preconditions": "- The input array should not be null",
+      "postconditions": "- If the method returns true, all elements in the array are equal\n- If the method returns false, there are at least two distinct elements in the array"
+    },
+    "task_description": "Write a method in Dafny to check whether an array of numbers contains only one distinct element or not.",
+    "task_id": "760"
+  },
+  "755": {
+    "code": "function MinPair(s: seq<int>) : (r: int)\n    requires |s| == 2\n    ensures s[0] <= s[1] <==> r == s[0]\n    ensures s[0] > s[1] ==> r == s[1] \n{\n    if s[0] <= s[1] then s[0] else s[1]\n}\n\n\nfunction min(s: seq<int>) : (r: int)\n    requires |s| >= 2\n    ensures forall i :: 0 <= i < |s| ==> r <= s[i]\n{\n    if |s| == 2 then MinPair(s)\n    else MinPair([s[0], min(s[1..])])\n}\n\n\nmethod SecondSmallest(s: array<int>) returns (secondSmallest: int)\n    requires s.Length >= 2\n    // There must be at least 2 different values, a minimum and another one\n    requires exists i, j :: 0 <= i < s.Length && 0 <= j < s.Length && i != j && s[i] == min(s[..]) && s[j] != s[i]\n    ensures exists i, j :: 0 <= i < s.Length && 0 <= j < s.Length && i != j && s[i] == min(s[..]) && s[j] == secondSmallest \n    ensures forall k ::  0 <= k < s.Length && s[k] != min(s[..])  ==>  s[k] >= secondSmallest\n{\n    var minIndex := 0;\n    var secondMinIndex := 1;\n\n    if s[1] < s[0] {\n        minIndex := 1;\n        secondMinIndex := 0;\n    }\n\n    for i := 2 to s.Length\n    invariant 0 <= i <= s.Length\n    invariant 0 <= minIndex < i\n    invariant 0 <= secondMinIndex < i\n    invariant minIndex != secondMinIndex\n    invariant forall k :: 0 <= k < i ==> s[k] >= s[minIndex]\n    invariant forall k :: 0 <= k < i && k != minIndex ==> s[k] >= s[secondMinIndex]\n    {\n        if s[i] < s[minIndex] {\n            secondMinIndex := minIndex;\n            minIndex := i;\n        } else if s[i] < s[secondMinIndex] {\n            secondMinIndex := i;\n        }\n    }\n\n    secondSmallest := s[secondMinIndex];\n}\n",
+    "specification": {
+      "method_signature": "method SecondSmallest(s: array<int>) returns (secondSmallest: int)",
+      "preconditions": "- The input array should not be null\n- The input array should have at least two elements",
+      "postconditions": "- The returned value should be the second-smallest number in the input array\n- The input array remains unchanged"
+    },
+    "task_description": "Write a method in Dafny to find the second-smallest number in an integer array.",
+    "task_id": "755"
+  },
+  "743": {
+    "code": "method RotateRight(l: seq<int>, n: int) returns (r: seq<int>)\n    requires n >= 0\n    ensures |r| == |l|\n    ensures forall i :: 0 <= i < |l| ==> r[i] == l[(i - n + |l|) % |l|]\n{\n    var rotated: seq<int> := [];\n    for i := 0 to |l|\n        invariant 0 <= i <= |l|\n        invariant |rotated| == i\n        invariant forall k :: 0 <= k < i ==> rotated[k] == l[(k - n + |l|) % |l|]\n    {\n        rotated := rotated + [l[(i - n + |l|) % |l|]];\n    }\n    return rotated;\n}",
+    "specification": {
+      "method_signature": "method RotateRight(l: seq<int>, n: int) returns (r: seq<int>)",
+      "preconditions": "- n should be non-negative",
+      "postconditions": "- The length of the returning sequence must be the same as the length of the input sequence\n- The elements of the input sequence are rotated by n positions to the right in the output sequence"
+    },
+    "task_description": "Write a method in Dafny to rotate a given list by specified N number of items to the right direction.",
+    "task_id": "743"
+  },
+  "732": {
+    "code": "predicate IsSpaceCommaDot(c: char)\n{\n    c == ' ' || c == ',' || c == '.'\n}\n\nmethod ReplaceWithColon(s: string) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==> (IsSpaceCommaDot(s[i]) ==> v[i] == ':') && (!IsSpaceCommaDot(s[i]) ==> v[i] == s[i])\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i ==> (IsSpaceCommaDot(s[k]) ==> s'[k] == ':') && (!IsSpaceCommaDot(s[k]) ==> s'[k] == s[k])\n    {\n        if IsSpaceCommaDot(s[i])\n        {\n            s' := s' + [':'];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}",
+    "specification": {
+      "method_signature": "method ReplaceWithColon(s: string) returns (v: string)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- The length of the returning string must be the same as the length of the input string\n- All occurrences of spaces, commas, or dots in the input string are replaced with colons in the output string\n- All other characters are unchanged"
+    },
+    "task_description": "Write a method in Dafny to replace all occurrences of spaces, commas, or dots with a colon.",
+    "task_id": "732"
+  },
+  "616": {
+    "code": "method ElementWiseModulo(a: array<int>, b: array<int>) returns (result: array<int>)\n    requires a != null && b != null\n    requires a.Length == b.Length\n    requires forall i :: 0 <= i < b.Length ==> b[i] != 0\n    ensures result != null\n    ensures result.Length == a.Length\n    ensures forall i :: 0 <= i < result.Length ==> result[i] == a[i] % b[i]\n{\n    result := new int[a.Length];\n    var i := 0;\n    while i < a.Length\n        invariant 0 <= i <= a.Length\n        invariant result.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] % b[k]\n    {\n        result[i] := a[i] % b[i];\n        i := i + 1;\n    }\n}",
+    "specification": {
+      "method_signature": "method ElementWiseModulo(a: array<int>, b: array<int>) returns (result: array<int>)",
+      "preconditions": "- Both arrays should be non-null\n- Both arrays should have the same length\n- All elements in the second array (b) should be non-zero",
+      "postconditions": "- The length of the result array should be the same as the length of the input arrays\n- Each element in the result array should be the modulo of the corresponding elements in the input arrays"
+    },
+    "task_description": "Write a method in Dafny which takes two integer arrays of the same length and performs the element wise modulo.",
+    "task_id": "616"
+  },
+  "741": {
+    "code": "method AllCharactersSame(s: string) returns (result: bool)\n    ensures result ==> forall i, j :: 0 <= i < |s| && 0 <= j < |s| ==> s[i] == s[j]\n    ensures !result ==> (|s| > 1) && (exists i, j :: 0 <= i < |s| && 0 <= j < |s| && i != j && s[i] != s[j])\n{\n    if |s| <= 1 {\n        return true;\n    }\n\n    var firstChar := s[0];\n    result := true;\n\n    for i := 1 to |s|\n        invariant 0 <= i <= |s|\n        invariant result ==> forall k :: 0 <= k < i ==> s[k] == firstChar\n    {\n        if s[i] != firstChar {\n            result := false;\n            break;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method AllCharactersSame(s: string) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- If the result is true, all characters in the input string are the same\n- If the result is false, there is at least one character in the input string that is different from the others"
+    },
+    "task_description": "Write a method in Dafny to check whether all the characters are same or not.",
+    "task_id": "741"
+  },
+  "474": {
+    "code": "method ReplaceChars(s: string, oldChar: char, newChar: char) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==> (s[i] == oldChar ==> v[i] == newChar) && (s[i] != oldChar ==> v[i] == s[i])\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i ==> (s[k] == oldChar ==> s'[k] == newChar) && (s[k] != oldChar ==> s'[k] == s[k])\n    {\n        if s[i] == oldChar\n        {\n            s' := s' + [newChar];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}",
+    "specification": {
+      "method_signature": "method ReplaceChars(s: string, oldChar: char, newChar: char) returns (v: string)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- The length of the returning string must be the same as the length of the input string\n- All occurrences of oldChar in the input string are replaced with newChar in the output string\n- All other characters are unchanged"
+    },
+    "task_description": "Write a method in Dafny to replace characters in a string.",
+    "task_id": "474"
+  },
+  "733": {
+    "code": "method FindFirstOccurrence(arr: array<int>, target: int) returns (index: int)\n    requires arr != null\n    requires forall i, j :: 0 <= i < j < arr.Length ==> arr[i] <= arr[j]\n    ensures 0 <= index < arr.Length ==> arr[index] == target\n    ensures index == -1 ==> forall i :: 0 <= i < arr.Length ==> arr[i] != target\n    ensures forall i :: 0 <= i < arr.Length ==> arr[i] == old(arr[i])\n{\n    index := -1;\n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant index == -1 ==> forall k :: 0 <= k < i ==> arr[k] != target\n        invariant 0 <= index < i ==> arr[index] == target\n        invariant forall k :: 0 <= k < arr.Length ==> arr[k] == old(arr[k])\n    {\n        if arr[i] == target\n        {\n            index := i;\n            break;\n        }\n        if arr[i] > target\n        {\n            break;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method FindFirstOccurrence(arr: array<int>, target: int) returns (index: int)",
+      "preconditions": "- The input array is sorted in non-decreasing order",
+      "postconditions": "- If the target is found, the returned index should be the first occurrence of the target in the array\n- If the target is not found, the returned index should be -1\n- The input array remains unchanged"
+    },
+    "task_description": "Write a method in Dafny to find the index of the first occurrence of a given number in a sorted array.",
+    "task_id": "733"
+  },
+  "644": {
+    "code": "method Reverse(a: array<int>)\n\tmodifies a;\n\tensures forall k :: 0 <= k < a.Length ==> a[k] == old(a[(a.Length-1) - k]);\n{\n\tvar l := a.Length - 1;\n\tvar i := 0;\n\twhile (i < l-i)\n\t\tinvariant 0 <= i <= (l+1)/2;\n\t\tinvariant forall k :: 0 <= k < i || l-i < k <= l ==> a[k] == old(a[l-k]);\n\t\tinvariant forall k :: i <= k <= l-i ==> a[k] == old(a[k]);\n\t{\n\t\ta[i], a[l-i] := a[l-i], a[i];\n\t\ti := i + 1;\n\t}\n}\n\nmethod ReverseUptoK(s: array<int>, k: int)\n    modifies s\n    requires 2 <= k <= s.Length\n    ensures forall i :: 0 <= i < k ==> s[i] == old(s[k - 1 - i])\n    ensures forall i :: k <= i < s.Length ==> s[i] == old(s[i])\n{\n\tvar l := k - 1;\n\tvar i := 0;\n\twhile (i < l-i)\n\t\tinvariant 0 <= i <= (l+1)/2;\n\t\tinvariant forall p :: 0 <= p < i || l-i < p <= l ==> s[p] == old(s[l-p]);\n\t\tinvariant forall p :: i <= p <= l-i ==> s[p] == old(s[p]);\n        invariant forall p :: k <= p < s.Length ==> s[p] == old(s[p])\n\t{\n\t\ts[i], s[l-i] := s[l-i], s[i];\n\t\ti := i + 1;\n\t}\n\n}",
+    "specification": {
+      "method_signature": "method ReverseUptoK(s: array<int>, k: int)",
+      "preconditions": "- k should be between 0 and the length of the array",
+      "postconditions": "- The input array is modified\n- The values of the array up to k are reversed\n- The values of the array after k remain unchanged"
+    },
+    "task_description": "Write a method in Dafny to reverse an array upto a given k position.",
+    "task_id": "644"
+  },
+  "632": {
+    "code": "method MoveZeroesToEnd(arr: array<int>)\n    requires arr.Length >= 2\n    modifies arr\n    // Same size\n    ensures arr.Length == old(arr.Length)\n    // Zeros to the right of the first zero\n    ensures forall i, j :: 0 <= i < j < arr.Length && arr[i] == 0 ==> arr[j] == 0\n    // The final array is a permutation of the original one\n    ensures multiset(arr[..]) == multiset(old(arr[..]))\n    // Relative order of non-zero elements is preserved\n    ensures forall n, m /* on old array */:: 0 <= n < m < arr.Length && old(arr[n]) != 0 && old(arr[m]) != 0 ==> \n            exists k, l /* on new array */:: 0 <= k < l < arr.Length && arr[k] == old(arr[n]) && arr[l] == old(arr[m])\n    //ensures IsOrderPreserved(arr[..], old(arr[..]))\n    // Number of zeros is preserved\n{\n    var i := 0;\n    var j := 0;\n\n    assert 0 <= i  <= arr.Length;\n    assert forall k :: 0 <= k < arr.Length ==> arr[k] == old(arr[k]);\n    //assert(forall n, m :: 0 <= n < m < arr.Length  ==> arr[n] == old(arr[n]) && arr[m] == old(arr[m]));\n    while j < arr.Length\n        invariant 0 <= i <= j <= arr.Length\n        // Elements to the right of j are unchanged\n        invariant forall k :: j <= k < arr.Length ==> old(arr[k]) == arr[k]\n        // Everything to the left of i is non-zero\n        invariant forall k :: 0 <= k < i ==> arr[k] != 0\n        // Everything between i and j, but excluding j, is zero\n        invariant forall k :: i <= k < j ==> arr[k] == 0\n        // If there there are zeros, they are to the right of i\n        invariant forall k :: 0 <= k < j && arr[k] == 0 ==> k >= i\n        // No new numbers are added, up to j\n        invariant forall k :: 0 <= k < j && arr[k] != old(arr[k]) ==> exists l :: 0 <= l < j && arr[k] == old(arr[l])\n        // The new array up to j is always a permutation of the original one\n        invariant multiset(arr[..]) == multiset(old(arr[..]))\n        // Relative order of non-zero elements is always preserved\n        //invariant IsOrderPreserved(arr[..], old(arr[..]))\n        invariant forall n, m /* on old */:: 0 <= n < m < j && old(arr[n]) != 0 && old(arr[m]) != 0 ==> \n            exists k, l /* on new */:: 0 <= k < l < i && arr[k] == old(arr[n]) && arr[l] == old(arr[m])\n    {\n\n        if arr[j] != 0\n        {\n            if i != j\n            {\n                assert(arr[j] != 0);\n                swap(arr, i, j);\n                assert(forall k :: 0 <= k <= j ==> exists l :: 0 <= l <= j && arr[k] == old(arr[l]));\n            }\n            i := i + 1;\n        }\n        j := j + 1;\n    }\n    assert j == arr.Length;\n}\n\nmethod swap(arr: array<int>, i: int, j: int)\n    requires arr.Length > 0\n    requires 0 <= i < arr.Length && 0 <= j < arr.Length\n    modifies arr\n    ensures arr[i] == old(arr[j]) && arr[j] == old(arr[i])\n    ensures forall k :: 0 <= k < arr.Length && k != i && k != j ==> arr[k] == old(arr[k])\n    ensures multiset(arr[..]) == multiset(old(arr[..]))\n{\n        var tmp := arr[i];\n        arr[i] := arr[j];\n        arr[j] := tmp;\n}\n\nfunction count(arr: seq<int>, value: int) : (c: nat)\n    ensures c <= |arr|\n{\n    if |arr| == 0 then 0 else (if arr[0] == value then 1 else 0) + count(arr[1..], value)\n}\n\n",
+    "specification": {
+      "method_signature": "method MoveZeroesToEnd(arr: array<int>)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The length of the output array must be the same as the length of the input array\n- All zeroes in the input array are at the end of the output array\n- The relative order of the non-zero elements should be the same as in the input array\n- The number of zeroes in the input and output arrays should be the same"
+    },
+    "task_description": "Write a method in Dafny to move all zeroes to the end of the given array.",
+    "task_id": "632"
+  },
+  "629": {
+    "code": "/**\n * Find even numbers from an array of numbers\n **/\n\npredicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\nmethod FindEvenNumbers(arr: array<int>) returns (evenList: seq<int>)\n    // All numbers in the output are even and exist in the input \n    ensures forall i :: 0 <= i < |evenList| ==> IsEven(evenList[i]) && evenList[i] in arr[..]\n    // All even numbers in the input are in the output\n    ensures forall i :: 0 <= i < arr.Length && IsEven(arr[i]) ==> arr[i] in evenList\n{\n    evenList := [];\n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant 0 <= |evenList| <= i\n        invariant forall k :: 0 <= k < |evenList| ==> IsEven(evenList[k]) && evenList[k] in arr[..]\n        invariant forall k :: 0 <= k < i && IsEven(arr[k]) ==> arr[k] in evenList\n    {\n        if IsEven(arr[i])\n        {\n            evenList := evenList + [arr[i]];\n        }\n    }\n}\n",
+    "specification": {
+      "method_signature": "method FindEvenNumbers(arr: array<int>) returns (evenNumbers: array<int>)",
+      "preconditions": "- There are no preconditions, the method will always work. Arrays can be empty but not null.",
+      "postconditions": "- All elements in the output array are even\n- All even elements in the input array are present in the output array\n- The order of elements in the output array is the same as in the input array"
+    },
+    "task_description": "Write a method in Dafny to find even numbers from an array of numbers.",
+    "task_id": "629"
+  },
+  "627": {
+    "code": "/**\n * Find the smallest missing number from a sorted list of natural numbers.\n */\nmethod SmallestMissingNumber(s: seq<int>) returns (v: int)\n    requires forall i, j :: 0 <= i < j < |s| ==> s[i] <= s[j]\n    requires forall i :: 0 <= i < |s| ==> s[i] >= 0\n    ensures 0 <= v\n    ensures v !in s\n    ensures forall k :: 0 <= k < v ==> k in s\n{\n    v := 0;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant 0 <= v <= i\n        invariant v !in s[..i]\n        invariant forall k :: 0 <= k < v && s[k] != v ==> k in s[..i]\n    {\n        if s[i] > v\n        {\n            break;\n        }\n        else\n        {\n            if s[i] == v \n            {\n                v := v + 1;\n            }\n        }\n    }\n    assert forall k :: 0 <= k < v && s[k] != v ==> k in s;\n}",
+    "specification": {
+      "method_signature": "method SmallestMissingNumber(s: seq<int>) returns (v: int)",
+      "preconditions": "- The input sequence should be sorted in non-decreasing order\n- The input sequence should only contain natural numbers (including 0)",
+      "postconditions": "- The returned value should be the smallest natural number not present in the input sequence"
+    },
+    "task_description": "Write a method in Dafny to find the smallest missing number from a sorted list of natural numbers.",
+    "task_id": "627"
+  },
+  "625": {
+    "code": "method SwapFirstAndLast(a: array<int>)\n    requires a.Length > 0\n    modifies a\n    ensures a[0] == old(a[a.Length - 1])\n    ensures a[a.Length - 1] == old(a[0])\n    ensures forall k :: 1 <= k < a.Length - 1 ==> a[k] == old(a[k])\n{\n    var tmp := a[0];\n    a[0] := a[a.Length - 1];\n    a[a.Length - 1] := tmp;\n}",
+    "specification": {
+      "method_signature": "method SwapFirstAndLast(a: array<int>)",
+      "preconditions": "- The array should not be empty",
+      "postconditions": "- The first element of the input array should be the last element of the modified array\n- The last element of the input array should be the first element of the modified array\n- All other elements remain unchanged"
+    },
+    "task_description": "Write a method in Dafny to interchange the first and last element in a given integer array.",
+    "task_id": "625"
+  },
+  "624": {
+    "code": "predicate IsLowerCase(c : char)\n{\n    97 <= c as int <= 122\n}\n\npredicate IsLowerUpperPair(c : char, C : char)\n{\n    (c as int) == (C as int) + 32\n}\n\nfunction ShiftMinus32(c : char) :  char\n{\n    ((c as int - 32) % 128) as char\n}\n\nmethod ToUppercase(s: string) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==>  if IsLowerCase(s[i]) then IsLowerUpperPair(s[i], v[i]) else v[i] == s[i]\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i &&  IsLowerCase(s[k]) ==> IsLowerUpperPair(s[k], s'[k])\n    invariant forall k :: 0 <= k < i && !IsLowerCase(s[k]) ==> s[k] == s'[k]\n    {\n        if IsLowerCase(s[i])\n        {\n            s' := s' + [ShiftMinus32(s[i])];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}\n",
+    "specification": {
+      "method_signature": "method ToUppercase(s: string) returns (v: string)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- The length of the returning string must be the same as the length of the input string\n- All lowercase characters of the input string are uppercase in the output string\n- All other characters are unchanged"
+    },
+    "task_description": "Write a method in Dafny to convert a given string to uppercase.",
+    "task_id": "624"
+  },
+  "610": {
+    "code": "method RemoveElement(s: array<int>, k: int) returns (v: array<int>)\n    requires 0 <= k < s.Length\n    ensures v.Length == s.Length - 1\n    ensures forall i :: 0 <= i < k ==> v[i] == s[i]\n    ensures forall i :: k <= i < v.Length ==> v[i] == s[i + 1]\n{\n    v := new int[s.Length - 1];\n    var i := 0;\n    while i < k\n        invariant 0 <= i <= k\n        invariant forall j :: 0 <= j < i ==> v[j] == s[j]\n    {\n        v[i] := s[i];\n        i := i + 1;\n    }\n    assert forall i :: 0 <= i < k ==> v[i] == s[i];\n    while i < v.Length\n        invariant k <= i <= v.Length\n        invariant forall j :: k <= j < i ==> v[j] == s[j + 1]\n        invariant forall i :: 0 <= i < k ==> v[i] == s[i]\n    {\n        v[i] := s[i + 1];\n        i := i + 1;\n    }\n}",
+    "specification": {
+      "method_signature": "method RemoveElement(s: array<int>, k: int) returns (v: array<int>)",
+      "preconditions": "- k should be between 0 and the length of the array",
+      "postconditions": "- The length of the returning array must be one less than the length of the input array\n- All elements before the k'th element in the input array should be the same in the output array\n- All elements after the k'th element in the input array should be shifted by one position in the output array"
+    },
+    "task_description": "Write a method in Dafny which takes an integer array and returns an array with the same elements, but the k'th element removed.",
+    "task_id": "610"
+  },
+  "605": {
+    "code": "method IsPrime(n: int) returns (result: bool)\n    requires n >= 2\n    ensures result <==> (forall k :: 2 <= k < n ==> n % k != 0)\n{\n    result := true;\n    var i := 2;\n    while i <= n/2\n        invariant 2 <= i\n        invariant result <==> (forall k :: 2 <= k < i ==> n % k != 0)\n    {\n        if n % i == 0\n        {\n            result := false;\n            break;\n        }\n        i := i + 1;\n    }\n}",
+    "specification": {
+      "method_signature": "method IsPrime(n: int) returns (result: bool)",
+      "preconditions": "- n should be greater than or equal to 2",
+      "postconditions": "- If the result is true, then n is a prime number\n- If the result is false, then n is not a prime number"
+    },
+    "task_description": "Write a method in Dafny to check if the given integer is a prime number.",
+    "task_id": "605"
+  },
+  "602": {
+    "code": "method FindFirstRepeatedChar(s: string) returns (found: bool, c: char)\n    ensures found ==> exists i, j :: 0 <= i < j < |s| && s[i] == s[j] && s[i] == c && (forall k, l :: 0 <= k < l < j && s[k] == s[l] ==> k >= i)\n    ensures !found ==> (forall i, j :: 0 <= i < j < |s| ==> s[i] != s[j])\n{\n    c := ' ';\n    found := false;\n    var inner_found := false;\n    var i := 0;\n    while i < |s| && !found\n        invariant 0 <= i <= |s|\n        invariant found == inner_found\n        // Found: there exists number ii less or equal to i, that we looked above it and found it. And, btw, that didn't happen for any number less than ii\n        invariant found ==> exists ii, jj :: 0 <= ii < i && ii < jj < |s| && s[ii] == s[jj] && s[ii] == c && (forall k, l :: 0 <= k < l < jj && s[k] == s[l] ==> k >= ii)\n        // Not found: for every number up to i, we looked above it, and didn't find it\n        invariant !found <==> (forall ii, jj :: 0 <= ii < i && ii < jj < |s| ==> s[ii] != s[jj])\n    {\n        var j := i + 1;\n        while j < |s| && !inner_found\n            invariant i < j <= |s|\n            invariant inner_found ==> exists k :: i < k < |s| && s[i] == s[k] && s[i] == c\n            invariant !inner_found <==> (forall k :: i < k < j ==> s[i] != s[k])\n        {\n            if s[i] == s[j] {\n                inner_found := true;\n                c := s[i];\n            }\n            j := j + 1;\n        }\n        found := inner_found;\n        i := i + 1;\n    }\n}",
+    "specification": {
+      "method_signature": "method FindFirstRepeatedChar(s: string) returns (found: bool, c: char)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- If found is true, then c is the first repeated character in the input string\n- If found is false, then there are no repeated characters in the input string"
+    },
+    "task_description": "Write a method in Dafny to find the first repeated character in a given string.",
+    "task_id": "602"
+  },
+  "600": {
+    "code": "method IsEven(n: int) returns (result: bool)\n    ensures result <==> n % 2 == 0\n{\n    result := n % 2 == 0;\n}",
+    "specification": {
+      "method_signature": "method IsEven(n: int) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work for any integer.",
+      "postconditions": "- If the input number is even, the result is true\n- If the input number is odd, the result is false"
+    },
+    "task_description": "Write a method in Dafny to check whether the given number is even or not.",
+    "task_id": "600"
+  },
+  "599": {
+    "code": "method SumAndAverage(n: int) returns (sum: int, average: real)\n    requires n > 0\n    ensures sum == n * (n + 1) / 2\n    ensures average == sum as real / n as real\n{\n    sum := 0;\n    for i := 1 to n + 1\n    invariant 0 <= i <= n + 1\n    invariant sum == (i - 1) * i / 2\n    {\n        sum := sum + i;\n    }\n    average := sum as real / n as real;\n}",
+    "specification": {
+      "method_signature": "method SumAndAverage(n: int) returns (sum: int, average: real)",
+      "preconditions": "- n should be a positive integer",
+      "postconditions": "- sum should be the sum of the first n natural numbers\n- average should be the average of the first n natural numbers"
+    },
+    "task_description": "Write a method in Dafny to find sum and average of first n natural numbers.",
+    "task_id": "599"
+  },
+  "594": {
+    "code": "predicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\npredicate IsOdd(n: int)\n{\n    n % 2 != 0\n}\n\nmethod FirstEvenOddDifference(a: array<int>) returns (diff: int)\n    requires a.Length >= 2\n    requires exists i :: 0 <= i < a.Length && IsEven(a[i])\n    requires exists i :: 0 <= i < a.Length && IsOdd(a[i])\n    ensures exists i, j :: 0 <= i < a.Length && 0 <= j < a.Length && IsEven(a[i]) && IsOdd(a[j]) && diff == a[i] - a[j] && \n        (forall k :: 0 <= k < i ==> IsOdd(a[k])) && (forall k :: 0 <= k < j ==> IsEven(a[k]))\n{\n    var firstEven: int := -1;\n    var firstOdd: int := -1;\n\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant (firstEven == -1 || (0 <= firstEven < i && IsEven(a[firstEven])))\n        invariant (firstOdd == -1 || (0 <= firstOdd < i && IsOdd(a[firstOdd])))\n        invariant firstEven == -1 ==> (forall k :: 0 <= k < i ==> !IsEven(a[k]))\n        invariant firstOdd == -1 ==> (forall k :: 0 <= k < i ==> !IsOdd(a[k]))\n        invariant firstEven != -1 ==> (forall k :: 0 <= k < firstEven ==> IsOdd(a[k]))\n        invariant firstOdd != -1 ==> (forall k :: 0 <= k < firstOdd ==> IsEven(a[k]))\n    {\n        if firstEven == -1 && IsEven(a[i])\n        {\n            firstEven := i;\n        }\n        if firstOdd == -1 && IsOdd(a[i])\n        {\n            firstOdd := i;\n        }\n        if firstEven != -1 && firstOdd != -1\n        {\n            break;\n        }\n    }\n    diff := a[firstEven] - a[firstOdd];\n}",
+    "specification": {
+      "method_signature": "method FirstEvenOddDifference(a: array<int>) returns (diff: int)",
+      "preconditions": "- The array should not be empty\n- The array should contain at least one even and one odd number",
+      "postconditions": "- The difference is the first even number minus the first odd number in the array"
+    },
+    "task_description": "Write a method in Dafny to find the difference of the first even and first odd number of a given integer array.",
+    "task_id": "594"
+  },
+  "588": {
+    "code": "\nmethod DifferenceMinMax(a: array<int>) returns (diff: int)\n    requires a.Length > 0\n    ensures diff == Max(a[..]) - Min(a[..])\n{\n    var minVal := a[0];\n    var maxVal := a[0];\n\n    for i := 1 to a.Length\n        invariant 1 <= i <= a.Length\n        invariant minVal <= maxVal\n        invariant forall k :: 0 <= k < i ==> minVal <= a[k] && a[k] <= maxVal\n        invariant minVal == Min(a[..i])\n        invariant maxVal == Max(a[..i])\n    {\n        if a[i] < minVal {\n            minVal := a[i];\n        } else if a[i] > maxVal {\n            maxVal := a[i];\n        }\n        assert a[..i+1][..i] == a[..i];\n    }\n    assert a[..a.Length] == a[..];\n    diff := maxVal - minVal;\n}\n\n// The order of the recursion in these two functions\n// must match the order of the iteration in the algorithm above\nfunction Min(a: seq<int>) : int\n    requires |a| > 0\n{\n    if |a| == 1 then a[0]\n    else\n        var minPrefix := Min(a[..|a|-1]);\n        if a[|a|-1] <= minPrefix then a[|a|-1] else Min(a[..|a|-1])\n}\n\nfunction Max(a: seq<int>) : int\n    requires |a| > 0\n{\n    if |a| == 1 then a[0]\n    else\n        var maxPrefix := Max(a[..|a|-1]);\n        if a[|a|-1] >= maxPrefix then a[|a|-1] else Max(a[..|a|-1])\n}\n\n",
+    "specification": {
+      "method_signature": "method DifferenceMinMax(a: array<int>) returns (diff: int)",
+      "preconditions": "- The input array should not be empty",
+      "postconditions": "- The difference between the largest and smallest value in the input array is returned"
+    },
+    "task_description": "Write a method in Dafny to find the difference between largest and smallest value in a given integer array.",
+    "task_id": "588"
+  },
+  "579": {
+    "code": "predicate InArray(a: array<int>, x: int)\n    reads a\n{\n    exists i :: 0 <= i < a.Length && a[i] == x\n}\n\nmethod DissimilarElements(a: array<int>, b: array<int>) returns (result: seq<int>)\n    // All elements in the output are either in a or b, but not in both or neither\n    ensures forall x :: x in result ==> (InArray(a, x) != InArray(b, x))\n    // The elements in the output are all different\n    ensures forall i, j :: 0 <= i < j < |result| ==> result[i] != result[j]\n{\n    var res: seq<int> := [];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant forall x :: x in res ==> InArray(a, x)\n        invariant forall x :: x in res ==> InArray(a, x) != InArray(b, x) \n        invariant forall i, j :: 0 <= i < j < |res| ==> res[i] != res[j]\n    {\n        if !InArray(b, a[i]) && a[i] !in res\n        {\n            res := res + [a[i]];\n        }\n    }\n\n    ghost var partialSize := |res|;\n    for i := 0 to b.Length\n        invariant 0 <= i <= b.Length\n        invariant forall k :: partialSize <= k < |res| ==> InArray(b, res[k])\n        invariant forall k :: 0 <= k < |res| ==> InArray(a, res[k]) != InArray(b, res[k]) \n        invariant forall i, j :: 0 <= i < j < |res| ==> res[i] != res[j]\n    {\n        if !InArray(a, b[i]) && b[i] !in res\n        {\n            res := res + [b[i]];\n        }\n    }\n\n    result := res;\n}",
+    "specification": {
+      "method_signature": "method DissimilarElements(a: array<int>, b: array<int>) returns (result: array<int>)",
+      "preconditions": "- Both input arrays should be non-null",
+      "postconditions": "- The result array should contain all elements from both input arrays that are not present in the other array\n- The result array should not contain any duplicate elements\n- The order of elements in the result array does not matter"
+    },
+    "task_description": "Write a method in Dafny to find the dissimilar elements in the given two integer arrays.",
+    "task_id": "579"
+  },
+  "576": {
+    "code": "method IsSublist(sub: seq<int>, main: seq<int>) returns (result: bool)\n    ensures true <== (exists i :: 0 <= i <= |main| - |sub| && sub == main[i..i + |sub|])\n{\n    if |sub| > |main| {\n        return false;\n    }\n\n    for i := 0 to |main| - |sub| + 1\n        invariant 0 <= i <= |main| - |sub| + 1\n        invariant true <== (exists j :: 0 <= j < i && sub == main[j..j + |sub|])\n    {\n        if sub == main[i..i + |sub|] {\n            result := true;\n        }\n    }\n    result := false;\n}",
+    "specification": {
+      "method_signature": "method IsSublist(sub: seq<int>, main: seq<int>) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work. Sequences are always not null.",
+      "postconditions": "- If the result is true, then the subsequence exists in the main sequence\n- If the result is false, then the subsequence does not exist in the main sequence"
+    },
+    "task_description": "Write a method in Dafny to check whether a list is sublist of another or not.",
+    "task_id": "576"
+  },
+  "803": {
+    "code": "method IsPerfectSquare(n: int) returns (result: bool)\n    requires n >= 0\n    ensures result == true ==> (exists i: int :: 0 <= i <= n && i * i == n)\n    ensures result == false ==> (forall a: int :: 0 < a*a < n ==> a*a != n)\n{\n    var i := 0;\n    while (i * i < n)\n        invariant 0 <= i <= n\n        invariant forall k :: 0 <= k < i ==> k * k < n\n    {\n        i := i + 1;\n    }\n    return i * i == n;\n}",
+    "specification": {
+      "method_signature": "method IsPerfectSquare(n: int) returns (result: bool)",
+      "preconditions": "- n should be non-negative",
+      "postconditions": "- If the result is true, there exists an integer i such that i * i == n\n- If the result is false, there is no integer i such that i * i == n"
+    },
+    "task_description": "Write a method in Dafny to check whether the given number is a perfect square or not.",
+    "task_id": "803"
+  },
+  "573": {
+    "code": "method UniqueProduct (arr: array<int>) returns (product: int)\n   ensures product == SetProduct((set i | 0 <= i < arr.Length :: arr[i]))\n{\n    var p := 1;\n    var seen: set<int> := {};\n    \n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant seen == (set k | 0 <= k < i :: arr[k])\n        invariant p == SetProduct((set k | 0 <= k < i :: arr[k]))\n    {\n        if ! (arr[i] in seen) {\n            seen := seen + { arr[i] };\n            p := p * arr[i];\n            SetProductLemma(seen, arr[i]);\n        }\n    }\n    product := p;\n}\n\nghost function SetProduct(s : set<int>) : int\n{\n    if s == {} then 1\n    else var x :| x in s; \n         x * SetProduct(s - {x})\n}\n\n/* \n * This is necessary because, when we add one element, we need to make sure\n * that the product of the new set, as a whole, is the same as the product\n * of the old set times the new element.\n */\nlemma SetProductLemma(s: set <int>, x: int) \n requires x in s\n ensures SetProduct(s - {x}) * x == SetProduct(s)\n{\n   if s != {}\n   {\n      var y :| y in s && y * SetProduct(s - {y}) == SetProduct(s);\n      if y == x {}\n      else {\n         calc {\n            SetProduct(s);\n            y * SetProduct(s - {y});\n            { SetProductLemma(s - {y}, x); }\n            y * x * SetProduct(s - {y} - {x});\n            { assert s - {x} - {y} == s - {y} - {x};}\n            y * x * SetProduct(s - {x} - {y});\n            x * y * SetProduct(s - {x} - {y});\n            { SetProductLemma(s - {x}, y); }\n            x * SetProduct(s - {x});\n         }\n      }\n   }\n}",
+    "specification": {
+      "method_signature": "method UniqueProduct(a: array<int>) returns (product: int)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The product should be the multiplication of all unique elements in the array"
+    },
+    "task_description": "Write a method in Dafny to calculate the product of the unique numbers in a given integer array.",
+    "task_id": "573"
+  },
+  "567": {
+    "code": "method IsSorted(a: array<int>) returns (sorted: bool)\n    requires a.Length > 0\n    ensures sorted <== forall i, j :: 0 <= i < j < a.Length ==> a[i] <= a[j]\n    ensures !sorted ==> exists i, j :: 0 <= i < j < a.Length && a[i] > a[j]\n{\n    sorted := true;\n    for i := 0 to a.Length - 1\n        invariant 0 <= i < a.Length\n        invariant sorted <== forall k, l :: 0 <= k < l < i ==> a[k] <= a[l]\n        invariant !sorted ==> exists k :: 0 <= k < i && a[k] > a[k+1]\n    {\n        if a[i] > a[i + 1]\n        {\n            sorted := false;\n            break;\n        }\n    }\n    sorted := sorted;\n}",
+    "specification": {
+      "method_signature": "method IsSorted(a: array<int>) returns (sorted: bool)",
+      "preconditions": "- There are no preconditions, the method will always work. Arrays can be empty or have any length.",
+      "postconditions": "- If the method returns true, the array is sorted in non-decreasing order\n- If the method returns false, the array is not sorted in non-decreasing order"
+    },
+    "task_description": "Write a method in Dafny to check whether a specified array is sorted or not.",
+    "task_id": "567"
+  },
+  "566": {
+    "code": "method SumOfDigits(number: nat) returns (sum: nat)\n    requires number >= 0\n    ensures sum >= 0\n    ensures sum == SumDigits(number)\n{\n    sum := 0;\n    var n: nat := number;\n\n    // Let's find out the number of digits, which is the same as powers of ten for the given number\n    ghost var ndigits := NumberOfDigits(number);\n    X(number);\n    assert Power10(ndigits) > number;\n\n    ghost var PowersOfTen := seq(ndigits+1, i requires 0 <= i <= ndigits => Power10(i));\n    ghost var pmax := Power10(ndigits);\n    ghost var p := PowersOfTen[0];\n    assert pmax == PowersOfTen[|PowersOfTen|-1];\n    assert pmax > number;\n\n    // Let's compute the values of n\n    ghost var ValuesOfn := seq(ndigits+1, i requires 0 <= i <= ndigits => number / PowersOfTen[i]);\n    assert forall j :: 0 < j <= ndigits ==> ValuesOfn[j] == ValuesOfn[j-1]/10;\n    assert ValuesOfn[0] == number;\n    DivIsZero();\n    assert ValuesOfn[|ValuesOfn|-1] == number/pmax == 0;\n\n    assert ValuesOfn[0] == n;\n    assert PowersOfTen[0] == p;\n    ghost var i := 0;\n    while n > 0\n//        invariant 1 <= p <= pmax\n//        invariant n in ValuesOfn\n        invariant 0 <= i <= ndigits\n        invariant ValuesOfn[i] == n\n        invariant PowersOfTen[i] == p\n        invariant sum >= 0\n        invariant sum == SumDigits(number % p)\n    {\n        assert ValuesOfn[i] == n;\n        var digit := n % 10;\n        sum := sum + digit;\n        n := n / 10;\n        i := i + 1;\n//        assert ValuesOfn[i] == ValuesOfn[i-1]/10;\n//        assert ValuesOfn[i] == n;\n        p := PowersOfTen[i]; //p * 10;\n        assert n == 0 ==> p == pmax;\n    }\n    assert n == 0;\n//    assert i == ndigits;\n    assert p == pmax;\n    NumberIdentity(number, p);\n    assert number == number % p;\n}\n\nlemma DivIsZero()\n    ensures forall num, den : nat :: den >= 1 && num < den ==> num/den == 0\n\nlemma X(x: nat)\n    ensures Power10(NumberOfDigits(x)) > x\n{\n    if x <= 9\n    {\n        assert NumberOfDigits(x) == 1;\n        assert Power10(NumberOfDigits(x)) == 10;\n        assert Power10(NumberOfDigits(x)) > x;\n    }\n    else // >= 10\n    {\n        assert NumberOfDigits(x) >= 2;\n        X(x/10);\n        assert NumberOfDigits(x) == NumberOfDigits(x/10) + 1;\n        assert Power10(NumberOfDigits(x)) == Power10(NumberOfDigits(x/10)) * 10;\n        assert Power10(NumberOfDigits(x)) > x;\n    }\n}\n\nlemma NumberIdentity(number: nat, pmax: nat)\n    requires pmax == Power10(NumberOfDigits(number))\n    ensures number == number % pmax\n{\n    if NumberOfDigits(number) == 1\n    {\n        assert 0 <= number <= 9; \n        assert pmax == 10;\n        assert number == number % pmax;\n    }\n    else // > 1\n    {\n        assert pmax == Power10(NumberOfDigits(number)) ==> pmax/10 == Power10(NumberOfDigits(number/10));\n        NumberIdentity(number/10, pmax/10);\n        assert number >= 10;\n        assert pmax >= 100;\n        assert number < pmax;\n        assert forall n, m :: 0 < n < m <= pmax ==> n%m == n;\n        assert number == number % pmax;\n    }\n\n}\n\n\nlemma InIntValues(n: nat)\n ensures 0 in IntValues(n)\n ensures n in IntValues(n)\n ensures n/10 in IntValues(n)\n{}\n\nghost function ValuesOfn(number: nat, ndigits: nat) : (r: seq<nat>)\n{\n    seq(ndigits+1, i requires 0 <= i <= ndigits => number / PowersOfTen[i])\n}\n\nghost function IntValues(n: int) : (r: seq<int>)\n    requires n >= 0\n    ensures 0 in r\n    ensures n in r\n    ensures n/10 in r\n//    ensures forall p :: p in powersOfTen ==> n/p in r\n{\n    if n == 0 then [0]\n    else [n] + IntValues(n/10)\n}\n\nfunction Power10(n: nat): (r: nat)\n    ensures r >= 1\n    ensures n > 0 ==> r % 10 == 0\n{\n\tif (n == 0) then 1 else 10 * Power10(n-1)\n}\n\nfunction NumberToSeq(number: int) : seq<int>\n    requires number >= 0\n{\n    if number == 0 then []\n    else [number % 10] + NumberToSeq(number/10)\n}\n\nfunction Sum(digits: seq<int>) : int\n{\n    if |digits| == 0 then 0 else digits[0] + Sum(digits[1..])\n}\n\nfunction SumDigits(n: nat) : nat\n{\n    var ndigits := NumberOfDigits(n);\n    var p := Power10(ndigits-1);\n    SumDigitsRecursive(n, p)\n}\n\nfunction SumDigitsRecursive(n: nat, p: nat) : (r: nat)\n{\n    if n == 0 || p == 0 then 0\n    else\n        var leftMostDigit := n/p;\n        var rest := n%p; \n        leftMostDigit + SumDigitsRecursive(rest, p/10)\n\n}\n\nfunction NumberOfDigits(n: nat) : (r: nat)\n    ensures r >= 1\n    ensures r == 1 <==> 0 <= n <= 9\n{\n    if 0 <= n <= 9 then 1 else 1+NumberOfDigits(n/10)\n}\n\n",
+    "specification": {
+      "method_signature": "method SumOfDigits(n: int) returns (sum: int)",
+      "preconditions": "- n should be a non-negative integer",
+      "postconditions": "- The sum of the digits of the input integer is returned\n- The sum is non-negative"
+    },
+    "task_description": "Write a method in Dafny to get the sum of the digits of a non-negative integer.",
+    "task_id": "566"
+  },
+  "477": {
+    "code": "predicate IsUpperCase(c : char)\n{\n    65 <= c as int <= 90\n}\n\npredicate IsUpperLowerPair(C : char, c : char)\n{\n    (C as int) == (c as int) - 32\n}\n\nfunction Shift32(c : char) :  char\n{\n    ((c as int + 32) % 128) as char\n}\n\nmethod ToLowercase(s: string) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==>  if IsUpperCase(s[i]) then IsUpperLowerPair(s[i], v[i]) else v[i] == s[i]\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i &&  IsUpperCase(s[k]) ==> IsUpperLowerPair(s[k], s'[k])\n    invariant forall k :: 0 <= k < i && !IsUpperCase(s[k]) ==> s[k] == s'[k]\n    {\n        if IsUpperCase(s[i])\n        {\n            s' := s' + [Shift32(s[i])];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}",
+    "specification": {
+      "method_signature": "method ToLowercase(s: string) returns (v: string)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- The length of the returning string must be the same as the length of the input string\n- All uppercase characters of the input string are lowercase in the output string\n- All other characters are unchanged"
+    },
+    "task_description": "Write a method in Dafny to convert the given string to lowercase.",
+    "task_id": "477"
+  },
+  "472": {
+    "code": "method ContainsConsecutiveNumbers(a: array<int>) returns (result: bool)\n    requires a.Length>0\n    ensures result <==> (exists i :: 0 <= i < a.Length - 1 && a[i] + 1 == a[i + 1])\n{\n    result := false;\n    for i := 0 to a.Length - 1\n        invariant 0 <= i <= a.Length - 1\n        invariant result <==> (exists k :: 0 <= k < i && a[k] + 1 == a[k + 1])\n    {\n        if a[i] + 1 == a[i + 1] {\n            result := true;\n            break;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method ContainsConsecutiveNumbers(a: array<int>) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work. Arrays can be empty or non-empty.",
+      "postconditions": "- If the array contains consecutive numbers, the result is true\n- If the array does not contain consecutive numbers, the result is false"
+    },
+    "task_description": "Write a method in Dafny to check whether the given integer array contains consecutive numbers or not.",
+    "task_id": "472"
+  },
+  "798": {
+    "code": "function sumTo( a:array<int>, n:int ) : int\n  requires a != null;\n  requires 0 <= n && n <= a.Length;\n  decreases n;\n  reads a;\n{\n  if (n == 0) then 0 else sumTo(a, n-1) + a[n-1]\n}\n\nmethod ArraySum(a: array<int>) returns (result: int)\n    ensures result == sumTo(a, a.Length)\n{\n    result := 0;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result == sumTo(a, i)\n    {\n        result := result + a[i];\n    }\n}\n",
+    "specification": {
+      "method_signature": "method ArraySum(a: array<int>) returns (sum: int)",
+      "preconditions": "- The input array should not be null",
+      "postconditions": "- The sum of all elements in the input array is returned"
+    },
+    "task_description": "Write a method in Dafny to find the sum of an array.",
+    "task_id": "798"
+  },
+  "454": {
+    "code": "method ContainsZ(s: string) returns (result: bool)\n    ensures result <==> (exists i :: 0 <= i < |s| && (s[i] == 'z' || s[i] == 'Z'))\n{\n    result := false;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant result <==> (exists k :: 0 <= k < i && (s[k] == 'z' || s[k] == 'Z'))\n    {\n        if s[i] == 'z' || s[i] == 'Z' {\n            result := true;\n            break;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method ContainsZ(s: string) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- The result is true if the input string contains the character 'z' or 'Z'\n- The result is false if the input string does not contain the character 'z' or 'Z'"
+    },
+    "task_description": "Write a method in Dafny that matches a word containing 'z'.",
+    "task_id": "454"
+  },
+  "447": {
+    "code": "method CubeElements(a: array<int>) returns (cubed: array<int>)\n    ensures cubed.Length == a.Length\n    ensures forall i :: 0 <= i < a.Length ==> cubed[i] == a[i] * a[i] * a[i]\n{\n    var cubedArray := new int[a.Length];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant cubedArray.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> cubedArray[k] == a[k] * a[k] * a[k]\n    {\n        cubedArray[i] := a[i] * a[i] * a[i];\n    }\n    return cubedArray;\n}",
+    "specification": {
+      "method_signature": "method CubeElements(a: array<int>) returns (cubed: array<int>)",
+      "preconditions": "- There are no preconditions, the method will always work. Arrays can be empty or non-empty.",
+      "postconditions": "- The length of the output array must be the same as the length of the input array\n- Each element in the output array is the cube of the corresponding element in the input array"
+    },
+    "task_description": "Write a method in Dafny to find cubes of individual elements in an integer array.",
+    "task_id": "447"
+  },
+  "441": {
+    "code": "method CubeSurfaceArea(size: int) returns (area: int)\n    requires size > 0\n    ensures area == 6 * size * size\n{\n    area := 6 * size * size;\n}",
+    "specification": {
+      "method_signature": "method CubeSurfaceArea(size: int) returns (area: int)",
+      "preconditions": "- The size of the cube should be greater than 0",
+      "postconditions": "- The surface area of the cube is calculated correctly"
+    },
+    "task_description": "Write a method in Dafny to find the surface area of a cube of a given size.",
+    "task_id": "441"
+  },
+  "435": {
+    "code": "method LastDigit(n: int) returns (d: int)\n    requires n >= 0\n    ensures 0 <= d < 10\n    ensures n % 10 == d\n{\n    d := n % 10;\n}",
+    "specification": {
+      "method_signature": "method LastDigit(n: int) returns (d: int)",
+      "preconditions": "- n should be a non-negative integer",
+      "postconditions": "- The returned digit d should be between 0 and 9\n- d should be the last digit of the input number n"
+    },
+    "task_description": "Write a method in Dafny to find the last digit of a given number.",
+    "task_id": "435"
+  },
+  "433": {
+    "code": "method IsGreater(n: int, a: array<int>) returns (result: bool)\n    requires a != null\n    ensures result ==> forall i :: 0 <= i < a.Length ==> n > a[i]\n    ensures !result ==> exists i :: 0 <= i < a.Length && n <= a[i]\n{\n    result := true;\n    var i := 0;\n    while i < a.Length\n        invariant 0 <= i <= a.Length\n        invariant result ==> forall k :: 0 <= k < i ==> n > a[k]\n        invariant !result ==> exists k :: 0 <= k < i && n <= a[k]\n    {\n        if n <= a[i] {\n            result := false;\n            break;\n        }\n        i := i + 1;\n    }\n}",
+    "specification": {
+      "method_signature": "method IsGreater(n: int, a: array<int>) returns (result: bool)",
+      "preconditions": "- The array should not be null",
+      "postconditions": "- If the result is true, then n is greater than all elements in the array\n- If the result is false, then there exists at least one element in the array that is greater than or equal to n"
+    },
+    "task_description": "Write a method in Dafny to check whether the given integer is greater than the elements of the given integer array.",
+    "task_id": "433"
+  },
+  "793": {
+    "code": "method LastPosition(arr: array<int>, elem: int) returns (pos: int)\n    requires arr.Length > 0\n    requires forall i, j :: 0 <= i < j < arr.Length ==> arr[i] <= arr[j]\n    ensures pos == -1 || (0 <= pos < arr.Length && arr[pos] == elem && (pos <= arr.Length - 1 || arr[pos + 1] > elem))\n    ensures forall i :: 0 <= i < arr.Length ==> arr[i] == old(arr[i])\n{\n    pos := -1;\n    for i := 0 to arr.Length - 1\n        invariant 0 <= i <= arr.Length\n        invariant pos == -1 || (0 <= pos < i && arr[pos] == elem && (pos == i - 1 || arr[pos + 1] > elem))\n        invariant forall k :: 0 <= k < arr.Length ==> arr[k] == old(arr[k])\n    {\n        if arr[i] == elem\n        {\n            pos := i;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method LastPosition(arr: array<int>, elem: int) returns (pos: int)",
+      "preconditions": "- The input array should be sorted in non-decreasing order",
+      "postconditions": "- If the element is found, the returned position should be the last occurrence of the element in the array\n- If the element is not found, the returned position should be -1\n- The input array remains unchanged"
+    },
+    "task_description": "Write a method in Dafny to find the last position of an given element in a sorted array.",
+    "task_id": "793"
+  },
+  "431": {
+    "code": "method HasCommonElement(a: array<int>, b: array<int>) returns (result: bool)\n    requires a != null && b != null\n    ensures result ==> exists i, j :: 0 <= i < a.Length && 0 <= j < b.Length && a[i] == b[j]\n    ensures !result ==> forall i, j :: 0 <= i < a.Length && 0 <= j < b.Length ==> a[i] != b[j]\n{\n    result := false;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant !result ==> forall k, j :: 0 <= k < i && 0 <= j < b.Length ==> a[k] != b[j]\n    {\n        for j := 0 to b.Length\n            invariant 0 <= j <= b.Length\n            invariant !result ==> forall k :: 0 <= k < j ==> a[i] != b[k]\n        {\n            if a[i] == b[j] {\n                result := true;\n                return;\n            }\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method HasCommonElement(a: array<int>, b: array<int>) returns (result: bool)",
+      "preconditions": "- Both arrays should be non-null",
+      "postconditions": "- If the method returns true, there exists at least one common element between the two arrays\n- If the method returns false, there are no common elements between the two arrays"
+    },
+    "task_description": "Write a method in Dafny that takes two integer arrays and returns true if they have at least one common element.",
+    "task_id": "431"
+  },
+  "404": {
+    "code": "method Min(a: int, b: int) returns (minValue: int)\n    ensures minValue == a || minValue == b\n    ensures minValue <= a && minValue <= b\n{\n    if a <= b {\n        minValue := a;\n    } else {\n        minValue := b;\n    }\n}",
+    "specification": {
+      "method_signature": "method Min(a: int, b: int) returns (minValue: int)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The minValue is either a or b\n- The minValue is less than or equal to both a and b"
+    },
+    "task_description": "Write a method in Dafny to find the minimum of two numbers.",
+    "task_id": "404"
+  },
+  "784": {
+    "code": "predicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\npredicate IsOdd(n: int)\n{\n    n % 2 != 0\n}\n\npredicate IsFirstEven(evenIndex: int, lst: seq<int>)\n    requires 0 <= evenIndex < |lst|\n    requires IsEven(lst[evenIndex])\n{\n    forall i :: 0 <= i < evenIndex ==> IsOdd(lst[i])\n}\n\npredicate IsFirstOdd(oddIndex: int, lst: seq<int>)\n    requires 0 <= oddIndex < |lst|\n    requires IsOdd(lst[oddIndex])\n{\n    forall i :: 0 <= i < oddIndex ==> IsEven(lst[i])\n}\n\n\nmethod FirstEvenOddIndices(lst : seq<int>) returns (evenIndex: int, oddIndex : int)\n    requires |lst| >= 2\n    requires exists i :: 0 <= i < |lst| && IsEven(lst[i])\n    requires exists i :: 0 <= i < |lst| && IsOdd(lst[i])\n    ensures 0 <= evenIndex < |lst|\n    ensures 0 <= oddIndex < |lst|\n    // This is the postcondition that ensures that it's the first, not just any\n    ensures IsEven(lst[evenIndex]) && IsFirstEven(evenIndex, lst)\n    ensures IsOdd(lst[oddIndex]) && IsFirstOdd(oddIndex, lst)\n{\n    for i := 0 to |lst|\n        invariant 0 <= i <= |lst|\n        invariant forall j :: 0 <= j < i ==> IsOdd(lst[j])\n    {\n        if IsEven(lst[i])\n        {\n            evenIndex := i;\n            break;\n        }\n    }\n\n    for i := 0 to |lst|\n        invariant 0 <= i <= |lst|\n        invariant forall j :: 0 <= j < i ==> IsEven(lst[j])\n    {\n        if IsOdd(lst[i])\n        {\n            oddIndex := i;\n            break;\n        }\n    }\n}\n\nmethod ProductEvenOdd(lst: seq<int>) returns (product : int)\n    requires |lst| >= 2\n    requires exists i :: 0 <= i < |lst| && IsEven(lst[i])\n    requires exists i :: 0 <= i < |lst| && IsOdd(lst[i])\n    ensures exists i, j :: 0 <= i < |lst| && IsEven(lst[i]) && IsFirstEven(i, lst) && \n                           0 <= j < |lst| && IsOdd(lst[j])  && IsFirstOdd(j, lst) && product == lst[i] * lst[j]\n{\n    var evenIndex, oddIndex := FirstEvenOddIndices(lst);\n    product := lst[evenIndex] * lst[oddIndex];\n}",
+    "specification": {
+      "method_signature": "method FindProduct(lst: seq<int>) returns (product: int)",
+      "preconditions": "- The list must have at least one even and one odd number",
+      "postconditions": "- The product is the multiplication of the first even and first odd number found in the list"
+    },
+    "task_description": "Write a method in Dafny to find the product of first even and odd number of a given list.",
+    "task_id": "784"
+  },
+  "267": {
+    "code": "method SumOfSquaresOfFirstNOddNumbers(n: int) returns (sum: int)\n    requires n >= 0\n    ensures sum == (n * (2 * n - 1) * (2 * n + 1)) / 3\n{\n    sum := 0;\n    var i := 1;\n    for k:=0 to n\n        invariant 0 <= k <= n\n        invariant sum == k * (2 * k - 1) * (2 * k + 1) / 3\n        invariant i == 2 * k + 1\n    {\n        sum := sum + i * i;\n        i := i + 2;\n    }\n}",
+    "specification": {
+      "method_signature": "method SumOfSquaresOfFirstNOddNumbers(n: int) returns (sum: int)",
+      "preconditions": "- n should be non-negative",
+      "postconditions": "- The sum of the squares of the first n odd natural numbers is returned"
+    },
+    "task_description": "Write a method in Dafny that takes in an integer n and returns the sum of the squares of the first n odd natural numbers.",
+    "task_id": "267"
+  },
+  "775": {
+    "code": "predicate IsOdd(n: int)\n{\n    n % 2 == 1\n}\n\nmethod IsOddAtIndexOdd(a: array<int>) returns (result: bool)\n    ensures result <==> forall i :: 0 <= i < a.Length ==> (IsOdd(i) ==> IsOdd(a[i]))\n{\n    result := true;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result <==> forall k :: 0 <= k < i ==> (IsOdd(k) ==> IsOdd(a[k]))\n    {\n        if IsOdd(i) && !IsOdd(a[i])\n        {\n            result := false;\n            break;\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method IsOddAtIndexOdd(a: array<int>) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The result is true if every odd index contains an odd number\n- The result is false otherwise"
+    },
+    "task_description": "Write a method in Dafny to check whether every odd index contains odd numbers of a given integer array.",
+    "task_id": "775"
+  },
+  "227": {
+    "code": "method MinOfThree(a: int, b: int, c: int) returns (min: int)\n    ensures min <= a && min <= b && min <= c\n    ensures (min == a) || (min == b) || (min == c)\n{\n    if (a <= b && a <= c) {\n        min := a;\n    } else if (b <= a && b <= c) {\n        min := b;\n    } else {\n        min := c;\n    }\n}",
+    "specification": {
+      "method_signature": "method MinOfThree(a: int, b: int, c: int) returns (min: int)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The returned value is the minimum of the three input numbers\n- The returned value is less than or equal to all input numbers"
+    },
+    "task_description": "Write a method in Dafny to find minimum of three numbers.",
+    "task_id": "227"
+  },
+  "127": {
+    "code": "method Multiply(a: int, b: int) returns (result: int)\n    ensures result == a * b\n{\n    result := a * b;\n}",
+    "specification": {
+      "method_signature": "method Multiply(a: int, b: int) returns (result: int)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The result should be the product of the two input integers"
+    },
+    "task_description": "Write a method in Dafny to multiply two integers.",
+    "task_id": "127"
+  },
+  "770": {
+    "code": "method SumOfFourthPowerOfOddNumbers(n: int) returns (sum: int)\n    requires n > 0\n    ensures sum == n * (2 * n + 1) * (24 * n * n * n - 12 * n * n  - 14 * n + 7) / 15\n{\n    sum := 0;\n    var i := 1;\n    for k := 0 to n\n        invariant 0 <= k <= n\n        invariant i == 2 * k + 1\n        invariant sum == k * (2 * k + 1) * (24 * k * k * k - 12 * k * k  - 14 * k + 7) / 15\n    {\n        sum := sum + i * i * i * i;\n        i := i + 2;\n    }\n}",
+    "specification": {
+      "method_signature": "method SumOfFourthPowerOfOddNumbers(n: int) returns (sum: int)",
+      "preconditions": "- n should be a non-negative integer",
+      "postconditions": "- The sum should be the sum of the fourth power of the first n odd natural numbers"
+    },
+    "task_description": "Write a method in Dafny to find the sum of fourth power of first n odd natural numbers.",
+    "task_id": "770"
+  },
+  "101": {
+    "code": "method KthElement(arr: array<int>, k: int) returns (result: int)\n    requires 1 <= k <= arr.Length\n    ensures result == arr[k - 1]\n{\n    result := arr[k - 1];\n}",
+    "specification": {
+      "method_signature": "method KthElement(arr: array<int>, k: int) returns (result: int)",
+      "preconditions": "- k should be between 1 and the length of the array (inclusive)",
+      "postconditions": "- The result should be the kth element of the input array using 1-based indexing"
+    },
+    "task_description": "Write a method in Dafny to find the kth element in the given array using 1-based indexing.",
+    "task_id": "101"
+  },
+  "77": {
+    "code": "method IsDivisibleBy11(n: int) returns (result: bool)\n    ensures result <==> n % 11 == 0\n{\n    result := n % 11 == 0;\n}",
+    "specification": {
+      "method_signature": "method IsDivisibleBy11(n: int) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work for any integer input.",
+      "postconditions": "- The result is true if the input number is divisible by 11\n- The result is false if the input number is not divisible by 11"
+    },
+    "task_description": "Write a method in Dafny to find whether a number is divisible by 11.",
+    "task_id": "77"
+  },
+  "764": {
+    "code": "predicate IsDigit(c: char)\n{\n    48 <= c as int <= 57\n}\n\n\nmethod CountDigits(s: string) returns (count: int)\n    ensures count >= 0\n    ensures count == | set i: int | 0 <= i < |s| && IsDigit(s[i])|\n{\n    var digits := set i: int | 0 <= i < |s| && IsDigit(s[i]);\n    count := |digits|;\n}\n\n",
+    "specification": {
+      "method_signature": "method CountDigits(s: string) returns (count: int)",
+      "preconditions": "- There are no preconditions, the method will always work. Strings and sequences are always not null.",
+      "postconditions": "- The count should be non-negative\n- The count should be equal to the number of digits in the input string"
+    },
+    "task_description": "Write a method in Dafny to count number of digits in a given string.",
+    "task_id": "764"
+  },
+  "62": {
+    "code": "method FindSmallest(s: array<int>) returns (min: int)\n    requires s.Length > 0\n    ensures forall i :: 0 <= i < s.Length ==> min <= s[i]\n    ensures exists i :: 0 <= i < s.Length && min == s[i]\n{\n    min := s[0];\n    for i := 1 to s.Length\n        invariant 0 <= i <= s.Length\n        invariant forall k :: 0 <= k < i ==> min <= s[k]\n        invariant exists k :: 0 <= k < i && min == s[k]\n    {\n        if s[i] < min\n        {\n            min := s[i];\n        }\n    }\n}",
+    "specification": {
+      "method_signature": "method FindSmallest(s: array<int>) returns (min: int)",
+      "preconditions": "- The input array should not be empty",
+      "postconditions": "- The returned value should be the smallest number in the input array"
+    },
+    "task_description": "Write a method in Dafny to find the smallest number in an array.",
+    "task_id": "62"
+  },
+  "58": {
+    "code": "method HasOppositeSign(a: int, b: int) returns (result: bool)\n    ensures result <==> (a < 0 && b > 0) || (a > 0 && b < 0)\n{\n    result := (a < 0 && b > 0) || (a > 0 && b < 0);\n}",
+    "specification": {
+      "method_signature": "method HasOppositeSign(a: int, b: int) returns (result: bool)",
+      "preconditions": "- There are no preconditions, the method will always work.",
+      "postconditions": "- The result is true if a and b have opposite signs\n- The result is false if a and b have the same sign"
+    },
+    "task_description": "Write a method in Dafny to check whether the given two integers have opposite sign or not.",
+    "task_id": "58"
+  }
+}
