@@ -36,9 +36,8 @@
   volume  = {1},
   number  = {{FSE}},
   year = {2024},
-  doi = {10.1145/3643763}
+  doi = {10.1145/3643763},
   url = {https://doi.org/10.1145/3643763},
   preprint={https://doi.org/10.48550/arXiv.2402.00247}
-  
 }
 ```
