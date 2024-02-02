@@ -30,14 +30,14 @@
 ### Citation
 ```bibtex
 @article{MRHMisuDafnyFSE24,
- title = {Towards AI-Assisted Synthesis of Verified Dafny Methods},
- author = {Md Rakib Hossain Misu, Cristina V. Lopes, Iris Ma, James Noble},
-  journal = {Proc. {ACM} Softw. Eng.},
-  volume  = {1},
-  number  = {{FSE}},
-  year = {2024},
-  doi = {10.1145/3643763},
-  url = {https://doi.org/10.1145/3643763},
-  preprint={https://doi.org/10.48550/arXiv.2402.00247}
+title = {Towards AI-Assisted Synthesis of Verified Dafny Methods},
+author = {Md Rakib Hossain Misu, Cristina V. Lopes, Iris Ma, James Noble},
+journal = {Proc. {ACM} Softw. Eng.},
+volume  = {1},
+number  = {{FSE}},
+year = {2024},
+doi = {10.1145/3643763},
+url = {https://doi.org/10.1145/3643763},
+preprint={https://doi.org/10.48550/arXiv.2402.00247}
 }
 ```
