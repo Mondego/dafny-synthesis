@@ -1,7 +1,7 @@
 
 ## [Towards AI-Assisted Synthesis of Verified Dafny Methods](https://arxiv.org/abs/2402.00247)
 
-## Abastract
+## Abstract
 Large stochastic language models show great promise in many domains, including programming. A promise is easy to make but hard to keep, and language models often fail to keep their promises when applied to programming, generating erroneous code. One promising avenue to keep models honest is to have them generate code in a language that supports formal verification: if and when that is adopted, the model would provide a proof along with the code, and that proof would be automatically verified. Unfortunately, existing large language models show a severe lack of proficiency in verified programming languages. 
 
 In this paper we demonstrate how to improve two pretrained models’ proficiency of the Dafny verified programming language. Using 178 programming problems from the MBPP dataset, we prompt two contemporary models (GPT-4 and PaLM-2 ) to generate methods in Dafny. We use three different types of prompts: a direct contextless prompt, a second one that includes signature of the method and test cases, and a third one that decomposes the problem into steps and includes dynamically-chosen similar examples. Our results show that GPT-4 is better than PaLM-2 , but that, in both models, the third prompt greatly improves the success of the generation task with respect to the direct prompt. With the third prompt, GPT-4 was able generate verified (and human evaluated) Dafny methods in 58% of the cases, while the first prompt generated verified (and human evaluated) methods in only 19% of the cases. Surprisingly, the second prompt had the worst performance, with only 10%. 
@@ -15,7 +15,7 @@ Programming)](https://github.com/google-research/google-research/tree/master/mbp
 method signature, and three test cases translated to suit Dafny.
 
 - 📂  Human Written Dataset: MBPP-DFY-50
-  - A collection of 50 problems selected from MBPP-san-DFY-228, containing problem description NLP specifications, Dafny implementation, and test.
+  - A collection of 50 problems selected from MBPP-san-DFY-228, containing problem description, NLP specifications, Dafny implementation, and test.
   
 - 📂 MBPP-DFY-153:
   -  A a collection of 153 MBPP problems that are implemented and formally verified in Dafny, 50 of which were written by the authors (i.e, MBPP-DFY-50) and 103 were synthesized by GPT-4 employing Dynamic Few-Shot Prompting.
