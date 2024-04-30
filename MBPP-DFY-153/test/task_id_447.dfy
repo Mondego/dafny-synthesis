@@ -33,17 +33,17 @@ method CubeElementsTest(){
   var a1:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   var res1:=CubeElements(a1);
   PrintArray(res1);
-  //expected [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+  //expect res1==[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
 
   var a2:= new int[] [10,20,30];
   var res2:=CubeElements(a2);
   PrintArray(res2);
-  //expected [1000, 8000, 27000]
+  //expect res2==[1000, 8000, 27000]
 
   var a3:= new int[] [12,15];
   var res3:=CubeElements(a3);
   PrintArray(res3);
-  //expected [1728, 3375]
+  //expect res3==[1728, 3375]
 
 }
 

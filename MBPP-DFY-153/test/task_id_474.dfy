@@ -22,15 +22,12 @@ method ReplaceChars(s: string, oldChar: char, newChar: char) returns (v: string)
 
 method ReplaceCharsTest(){
   var out1:=ReplaceChars("polygon",'y','l');
-  print(out1);print("\n");
   assert out1=="pollgon";
 
   var out2:=ReplaceChars("character",'c','a');
-  print(out2);print("\n");
   assert out2=="aharaater";
 
   var out3:=ReplaceChars("python",'l','a');
-  print(out3);print("\n");
   assert out3=="python";
 
 }

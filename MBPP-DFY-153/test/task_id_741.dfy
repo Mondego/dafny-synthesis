@@ -23,17 +23,14 @@ method AllCharactersSame(s: string) returns (result: bool)
 
 method AllCharactersSameTest(){
   var out1:=AllCharactersSame("python");
-  print(out1);print("\n");
-              //assert out1==false;
+  expect out1==false;
 
   var out2:=AllCharactersSame("aaa");
-  print(out2);print("\n");
-              //assert out2==true;
+  expect out2==true;
 
   var out3:=AllCharactersSame("data");
-  print(out3);print("\n");
-              //assert out3==false;
-
+  expect out3==false;
+  
 }
 
 method Main(){

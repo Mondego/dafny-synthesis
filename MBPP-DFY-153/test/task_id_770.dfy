@@ -15,16 +15,14 @@ method SumOfFourthPowerOfOddNumbers(n: int) returns (sum: int)
 }
 
 method SumOfFourthPowerOfOddNumbersTest(){
+  
   var out1:=SumOfFourthPowerOfOddNumbers(2);
-  print(out1);print("\n");
   assert out1==82;
 
   var out2:=SumOfFourthPowerOfOddNumbers(3);
-  print(out2);print("\n");
   assert out2==707;
 
   var out3:=SumOfFourthPowerOfOddNumbers(4);
-  print(out3);print("\n");
   assert out3==3108;
 
 }

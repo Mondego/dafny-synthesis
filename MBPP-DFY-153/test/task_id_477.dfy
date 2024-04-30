@@ -38,17 +38,14 @@ method ToLowercase(s: string) returns (v: string)
 
 method ToLowercaseTest(){
   var out1:=ToLowercase("InValid");
-  print(out1);print("\n");
   assert out1=="invalid";
 
   var out2:=ToLowercase("TruE");
-  print(out2);print("\n");
   assert out2=="true";
 
   var out3:=ToLowercase("SenTenCE");
-  print(out3);print("\n");
   assert out3=="sentence";
-
+  
 }
 
 method Main(){

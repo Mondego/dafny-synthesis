@@ -20,19 +20,13 @@ method IsPrime(n: int) returns (result: bool)
 
 method IsPrimeTest(){
   var out1:=IsPrime(13);
-  print(out1);print("\n");
-              //assert out1==true;
-
+  expect out1==true;
 
   var out2:=IsPrime(7);
-  print(out2);print("\n");
-              //assert out2==true;
-
+  expect out2==true;
 
   var out3:=IsPrime(1010);
-  print(out3);print("\n");
-              //assert out3==false;
-
+  expect out3==false;
 
 }
 

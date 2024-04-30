@@ -24,19 +24,15 @@ method HasOnlyOneDistinctElement(a: array<int>) returns (result: bool)
 method HasOnlyOneDistinctElementTest(){
   var a1:= new int[] [1,1,1];
   var res1:=HasOnlyOneDistinctElement(a1);
-  print(res1);print("\n");
-              //assert res1==true;
+  expect res1==true;
 
   var a2:= new int[] [1,2,1,2];
   var res2:=HasOnlyOneDistinctElement(a2);
-  print(res2);print("\n");
-              //assert res2==false;
+  expect res2==false;
 
   var a3:= new int[] [1,2,3,4,5];
   var res3:=HasOnlyOneDistinctElement(a3);
-  print(res3);print("\n");
-              //assert res3==false;
-
+  expect res3==false;
 
 }
 

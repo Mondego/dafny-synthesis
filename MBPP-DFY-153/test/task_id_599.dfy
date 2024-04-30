@@ -15,17 +15,14 @@ method SumAndAverage(n: int) returns (sum: int, average: real)
 
 method SumAndAverageTest(){
   var sum1, avg1 :=SumAndAverage(10);
-  print(sum1);print(",");print(avg1);print("\n");
   assert sum1==55;
   assert avg1==5.5;
 
   var sum2, avg2 :=SumAndAverage(15);
-  print(sum2);print(",");print(avg2);print("\n");
   assert sum2==120;
   assert avg2==8.0;
 
   var sum3, avg3 :=SumAndAverage(20);
-  print(sum3);print(",");print(avg3);print("\n");
   assert sum3==210;
   assert avg3==10.5;
 

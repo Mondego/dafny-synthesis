@@ -1,6 +1,3 @@
-//"task_description": "Write a method in Dafny to find the smallest number in an array.",
-//"method_signature": "method smallestNum(list:array<int>) returns (res:int)",
-
 method FindSmallest(s: array<int>) returns (min: int)
   requires s.Length > 0
   ensures forall i :: 0 <= i < s.Length ==> min <= s[i]

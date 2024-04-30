@@ -168,13 +168,12 @@ function NumberOfDigits(n: nat) : (r: nat)
 
 method SumOfDigitsTest(){
   var out1:=SumOfDigits(345);
-  print(out1);print("\n");
   assert out1==12;
+
   var out2:=SumOfDigits(12);
-  print(out2);print("\n");
   assert out2==3;
+
   var out3:=SumOfDigits(97);
-  print(out3);print("\n");
   assert out3==16;
 
 }
