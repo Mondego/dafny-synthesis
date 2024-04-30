@@ -1,4 +1,3 @@
-
 method DifferenceMinMax(a: array<int>) returns (diff: int)
     requires a.Length > 0
     ensures diff == Max(a[..]) - Min(a[..])

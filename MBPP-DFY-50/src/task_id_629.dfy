@@ -1,7 +1,3 @@
-/**
- * Find even numbers from an array of numbers
- **/
-
 predicate IsEven(n: int)
 {
     n % 2 == 0

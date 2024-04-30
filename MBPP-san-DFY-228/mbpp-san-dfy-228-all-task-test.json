@@ -164,9 +164,9 @@
     "task_description": "Write a method in Dafny to find the smallest missing number from a sorted list of natural numbers.",
     "method_signature": "method findFirstMissing(arr:array<nat>) returns (res:nat)",
     "test_cases": {
-      "test_1": "var a1:= new nat[] [0,1,2,3];\nvar out1:=findFirstMissing(a1);\nassert out1==-2;",
-      "test_2": "var a2:= new nat[] [0,1,2,6,9];\nvar out2:=findFirstMissing(a2);\nassert out2==1;",
-      "test_3": "var a3:= new nat[] [2,3,5,8,9];\nvar out3:=findFirstMissing(a3);\nassert out3==-2;"
+      "test_1": "var a1:= new nat[] [0,1,2,3];\nvar out1:=findFirstMissing(a1);\nassert out1==4;",
+      "test_2": "var a2:= new nat[] [0,1,2,6,9];\nvar out2:=findFirstMissing(a2);\nassert out2==3;",
+      "test_3": "var a3:= new nat[] [2,3,5,8,9];\nvar out3:=findFirstMissing(a3);\nassert out3==-0;"
     }
   },
   "625": {
