@@ -14,17 +14,15 @@ method IsPerfectSquare(n: int) returns (result: bool)
 }
 
 method IsPerfectSquareTest(){
+
   var out1:=IsPerfectSquare(10);
-  print(out1);print("\n");
-              //assert out1==false;
+  expect out1==false;
 
   var out2:=IsPerfectSquare(36);
-  print(out2);print("\n");
-              //assert out2==true;
+  expect out2==true;
 
   var out3:=IsPerfectSquare(14);
-  print(out3);print("\n");
-              //assert out3==false;
+  expect out3==false;
 
 }
 

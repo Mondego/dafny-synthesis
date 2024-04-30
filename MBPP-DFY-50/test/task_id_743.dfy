@@ -16,23 +16,18 @@ method RotateRight(l: seq<int>, n: int) returns (r: seq<int>)
 
 
 method RotateRightTest(){
+
   var a1:seq<int>:= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   var res1:=RotateRight(a1,3);
-  print(res1);print("\n");
-              //expected [8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
-
+  expect res1==[8, 9, 10, 1, 2, 3, 4, 5, 6, 7];
 
   var a2:seq<int>:= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   var res2:=RotateRight(a2,2);
-  print(res2);print("\n");
-              //expected [9, 10, 1, 2, 3, 4, 5, 6, 7, 8]
-
+  expect res2==[9, 10, 1, 2, 3, 4, 5, 6, 7, 8];
 
   var a3:seq<int>:= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   var res3:=RotateRight(a3,5);
-  print(res3);print("\n");
-              //expected [6, 7, 8, 9, 10, 1, 2, 3, 4, 5]
-
+  expect res3==[6, 7, 8, 9, 10, 1, 2, 3, 4, 5];
 
 }
 

@@ -39,15 +39,12 @@ method ToUppercase(s: string) returns (v: string)
 
 method ToUppercaseTest(){
   var out1:=ToUppercase("person");
-  print(out1);print("\n");
   assert out1=="PERSON";
 
   var out2:=ToUppercase("final");
-  print(out2);print("\n");
   assert out2=="FINAL";
 
   var out3:=ToUppercase("Valid");
-  print(out3);print("\n");
   assert out3=="VALID";
 
 }

@@ -33,16 +33,13 @@ method FindFirstRepeatedChar(s: string) returns (found: bool, c: char)
 
 method FindFirstRepeatedCharTest(){
   var found1, out1 :=FindFirstRepeatedChar("abcabc");
-  print(out1);print("\n");
-              //assert out1=='a'
+  expect out1=='a';
 
   var found2, out2 :=FindFirstRepeatedChar("axbcx");
-  print(out2);print("\n");
-              //assert out2=='x'
+  expect out2=='x';
 
   var found3, out3 :=FindFirstRepeatedChar("123123");
-  print(out3);print("\n");
-              //assert out3=='1'
+  expect out3=='1';
 
 }
 

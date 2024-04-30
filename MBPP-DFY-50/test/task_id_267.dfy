@@ -17,18 +17,14 @@ method SumOfSquaresOfFirstNOddNumbers(n: int) returns (sum: int)
 
 method SumOfSquaresOfFirstNOddNumbersTest(){
   var out1:=SumOfSquaresOfFirstNOddNumbers(2);
-  print(out1);print("\n");
   assert out1==10;
 
   var out2:=SumOfSquaresOfFirstNOddNumbers(3);
-  print(out2);print("\n");
   assert out2==35;
 
   var out3:=SumOfSquaresOfFirstNOddNumbers(4);
-  print(out3);print("\n");
   assert out3==84;
-
-
+  
 }
 
 method Main(){
