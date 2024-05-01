@@ -21,7 +21,7 @@ method SumOfDigits(number: nat) returns (sum: nat)
   ghost var ValuesOfn := seq(ndigits+1, i requires 0 <= i <= ndigits => number / PowersOfTen[i]);
   assert forall j :: 0 < j <= ndigits ==> ValuesOfn[j] == ValuesOfn[j-1]/10;
   assert ValuesOfn[0] == number;
-  DivIsZero();
+  //DivIsZero();
   assert ValuesOfn[|ValuesOfn|-1] == number/pmax == 0;
 
   assert ValuesOfn[0] == n;
@@ -53,8 +53,8 @@ method SumOfDigits(number: nat) returns (sum: nat)
   assert number == number % p;
 }
 
-lemma DivIsZero()
-  ensures forall num, den : nat :: den >= 1 && num < den ==> num/den == 0
+//lemma DivIsZero()
+//  ensures forall num, den : nat :: den >= 1 && num < den ==> num/den == 0
 
 lemma X(x: nat)
   ensures Power10(NumberOfDigits(x)) > x
