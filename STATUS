@@ -9,8 +9,8 @@ Functional:
     consistent with our described work. To execute our prompts, scripts are available and
     executable. Reviewers/researchers need their own OpenAI and Google API keys to execute
     those scripts. Besides, all hand-written and synthesized Dafny methods are verified and
-    executed against test cases. Scripts are also available to run verify and run tests for
-    all Dafny methods.
+    executed against test cases. Scripts are also available to run verification and tests
+    for all Dafny methods.
 
 Reusable:
 
