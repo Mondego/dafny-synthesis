@@ -18,15 +18,15 @@ method SumOfCommonDivisors(a: int, b: int) returns (sum: int)
 }
 
 method SumOfCommonDivisorsTest(){
+
   var out1:=SumOfCommonDivisors(10,15);
-  print(out1); print("\n");
-               //assert out1==6;
+  expect out1==6;
+
   var out2:=SumOfCommonDivisors(100,150);
-  print(out2); print("\n");
-               //assert out2==93;
+  expect out2==93;
+
   var out3:=SumOfCommonDivisors(4,6);
-  print(out3); print("\n");
-               //assert out3==3;
+  expect out3==3;
 
 }
 

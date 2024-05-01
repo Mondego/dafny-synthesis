@@ -6,15 +6,15 @@ method PentagonPerimeter(side: int) returns (perimeter: int)
 }
 
 method PentagonPerimeterTest(){
+
   var res1:=PentagonPerimeter(5);
-  print(res1); print("\n");
-               //assert res1==25;
+  expect res1==25;
+
   var res2:=PentagonPerimeter(10);
-  print(res2); print("\n");
-               //assert res2==50;
+  expect res2==50;
+
   var res3:=PentagonPerimeter(15);
-  print(res3); print("\n");
-               //assert res3==75;
+  expect res3==75;
 
 }
 

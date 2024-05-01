@@ -23,12 +23,12 @@ method ReplaceBlanksWithChar(s: string, ch: char) returns (v: string)
 method ReplaceBlanksWithCharTest(){
   var res1:=ReplaceBlanksWithChar("hello people",'@');
   assert res1=="hello@people";
-  print(res1); print("\n");
+  
   var res2:=ReplaceBlanksWithChar("python program language",'$');
-  print(res2); print("\n");
+  
   assert res2=="python$program$language";
   var res3:=ReplaceBlanksWithChar("blank space",'-');
-  print(res3); print("\n");
+  
   assert res3=="blank-space";
 }
 

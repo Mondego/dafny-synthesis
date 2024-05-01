@@ -21,20 +21,18 @@ method IsEvenAtIndexEven(lst: seq<int>) returns (result: bool)
 
 
 method IsEvenAtIndexEvenTest(){
+
   var s1: seq<int> := [3,2,1];
   var res1:=IsEvenAtIndexEven(s1);
-  print(res1);print("\n");
-              //assert res1==false;
+  expect res1==false;
 
   var s2: seq<int> := [1,2,3];
   var res2:=IsEvenAtIndexEven(s2);
-  print(res2);print("\n");
-              //assert res2==false;
+  expect res2==false;
 
   var s3: seq<int> := [2,1,4];
   var res3:=IsEvenAtIndexEven(s3);
-  print(res3);print("\n");
-              //assert res3==true;
+  expect res3==true;
 
 }
 

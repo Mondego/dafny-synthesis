@@ -23,15 +23,15 @@ method IsInteger(s: string) returns (result: bool)
 }
 
 method IsIntegerTest(){
+
   var res1:=IsInteger("python");
-  print(res1); print("\n");
-               //assert res1==false;
+  expect res1==false;
+
   var res2:=IsInteger("1");
-  print(res2); print("\n");
-               //assert res2==true;
+  expect res2==true;
+
   var res3:=IsInteger("12345");
-  print(res3); print("\n");
-               //assert res3==true;
+  expect res3==true;
 
 }
 

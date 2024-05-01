@@ -7,15 +7,12 @@ method CountNonEmptySubstrings(s: string) returns (count: int)
 
 method CountNonEmptySubstringsTest(){
   var res1:=CountNonEmptySubstrings("abc");
-  print(res1);print("\n");
   assert res1==6;
 
   var res2:=CountNonEmptySubstrings("abcd");
-  print(res2);print("\n");
   assert res2==10;
 
   var res3:=CountNonEmptySubstrings("abcde");
-  print(res3);print("\n");
   assert res3==15;
 
 }

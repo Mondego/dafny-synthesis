@@ -22,18 +22,15 @@ method AllSequencesEqualLength(sequences: seq<seq<int>>) returns (result: bool)
 method AllSequencesEqualLengthTest(){
     var s1:seq<seq<int>> :=[[11, 22, 33], [44, 55, 66]];
     var res1:=AllSequencesEqualLength(s1);
-    print(res1);print("\n");
-    //assert res1==true;
+    expect res1==true;
     
     var s2:seq<seq<int>> :=[[1, 2, 3], [4, 5, 6, 7]];
     var res2:=AllSequencesEqualLength(s2);
-    print(res2);print("\n");
-    //assert res2==false;
+    expect res2==false;
     
     var s3:seq<seq<int>> :=[[1, 2], [3, 4]];
     var res3:=AllSequencesEqualLength(s3);
-    print(res3);print("\n");
-    //assert res3==true;
+    expect res3==true;
 }
 
 method Main(){

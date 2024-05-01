@@ -17,17 +17,15 @@ method CountEqualNumbers(a: int, b: int, c: int) returns (count: int)
 }
 
 method CountEqualNumbersTest(){
+  
   var res1:=CountEqualNumbers(1,1,1);
-  print(res1);print("\n");
-              //assert res1==3;
+  expect res1==3;
 
   var res2:=CountEqualNumbers(-1,-2,-3);
-  print(res2);print("\n");
-              //assert res2==1;
+  expect res2==1;
 
   var res3:=CountEqualNumbers(-1,-2,-3);
-  print(res3);print("\n");
-              //assert res3==1;
+  expect res3==1;
 
 }
 

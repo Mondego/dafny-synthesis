@@ -16,23 +16,21 @@ method AppendArrayToSeq(s: seq<int>, a: array<int>) returns (r: seq<int>)
 }
 
 method AppendArrayToSeqTest(){
+  
   var s1: seq<int> := [9, 10];
   var a1:= new int[] [5, 6, 7];
   var res1:=AppendArrayToSeq(s1,a1);
-  print(res1);print("\n");
-              //expected [9, 10, 5, 6, 7]
+  expect res1==[9, 10, 5, 6, 7];
 
   var s2: seq<int> := [10, 11];
   var a2:= new int[] [6, 7, 8];
   var res2:=AppendArrayToSeq(s2,a2);
-  print(res2);print("\n");
-              //expected [10, 11, 6, 7, 8]
+  expect res2==[10, 11, 6, 7, 8];
 
   var s3: seq<int> := [11, 12];
   var a3:= new int[] [7, 8, 9];
   var res3:=AppendArrayToSeq(s3,a3);
-  print(res3);print("\n");
-              //expected [11, 12, 7, 8, 9];
+  expect res3==[11, 12, 7, 8, 9];
 
 }
 

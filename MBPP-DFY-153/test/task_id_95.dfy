@@ -17,18 +17,18 @@ method SmallestListLength(s: seq<seq<int>>) returns (v: int)
 }
 
 method SmallestListLengthTest(){
+  
   var s1:seq<seq<int>> :=[[1],[1,2]];
   var res1:=SmallestListLength(s1);
-  print(res1);print("\n");
-              //assert res1==1;
+  expect res1==1;
+
   var s2:seq<seq<int>> :=[[1,2],[1,2,3],[1,2,3,4]];
   var res2:=SmallestListLength(s2);
-  print(res2);print("\n");
-              //assert res2==2;
+  expect res2==2;
+
   var s3:seq<seq<int>> :=[[3,3,3],[4,4,4,4]];
   var res3:=SmallestListLength(s3);
-  print(res3);print("\n");
-              //assert res3==3;
+  expect res3==3;
 
 
 }

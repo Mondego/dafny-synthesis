@@ -20,16 +20,14 @@ method RemoveChars(s1: string, s2: string) returns (v: string)
 
 method RemoveCharsTest(){
   var out1:=RemoveChars("probasscurve", "pros");
-  print(out1);print("\n");
-              //assert out1=="bacuve";
+  expect out1=="bacuve";
 
   var out2:=RemoveChars("digitalindia", "talent");
-  print(out2);print("\n");
-              //assert out2=="digiidi";
+  expect out2=="digiidi";
 
   var out3:=RemoveChars("exoticmiles", "toxic");
-  print(out3);print("\n");
-              //assert out3=="emles";
+  expect out3=="emles";
+
 }
 
 method Main(){
