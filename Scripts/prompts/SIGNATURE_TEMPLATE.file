@@ -1,0 +1,20 @@
+You are an expert Dafny programmer, and here is your task:
+{task_description}
+
+Method Signature: {method_signature}
+
+Your code should satisfy these tests:
+
+{test_1}
+
+{test_2}
+
+{test_3}
+
+You must return the method in the following form:
+
+```dafny
+
+   //Dafny Code
+
+```

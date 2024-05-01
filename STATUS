@@ -3,15 +3,6 @@ Available:
     Artifacts related to our paper are publically accessible in our GitHub repository at 
     https://github.com/Mondego/dafny-synthesis/releases/tag/fse24-artifacts
 
-Functional:
-
-    We are claiming Functional badge since , our artifacts are well-documented and it is
-    consistent with our described work. To execute our prompts, scripts are available and
-    executable. Reviewers/researchers need their own OpenAI and Google API keys to execute
-    those scripts. Besides, all hand-written and synthesized Dafny methods are verified and
-    executed against test cases. Scripts are also available to run verification and tests
-    for all Dafny methods.
-
 Reusable:
 
     We are claiming Reusable badges as our artifacts are carefully documented
@@ -19,3 +10,12 @@ Reusable:
     required license for further research work. We are glad that researchers, other than
     us, are already utilizing these artifacts as a benchmark dataset. 
 
+
+Functional:
+
+    We are claiming Functional badge since, our artifacts are well-documented and it is
+    consistent with our described work. To execute our prompts, scripts are available and
+    executable. Reviewers/researchers need their own OpenAI and Google API keys to execute
+    those scripts. Besides, all hand-written and synthesized Dafny methods are verified and
+    executed against test cases. Scripts are also available to run verification and tests
+    for all Dafny methods.

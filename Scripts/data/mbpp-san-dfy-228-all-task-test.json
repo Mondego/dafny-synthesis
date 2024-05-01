@@ -1,0 +1,2282 @@
+{
+  "807": {
+    "task_id": "807",
+    "task_description": "Write a method in Dafny to find the first odd number in a given integer array.",
+    "method_signature": "method firstOdd(nums:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,3,5];\nvar out1:=firstOdd(a1);\nassert out1==1;",
+      "test_2": "var a2:= new int[] [2,4,1,3];\nvar out2:=firstOdd(a2);\nassert out2==1;",
+      "test_3": "var a3:= new int[] [8,9,1];\nvar out1:=firstOdd(a3);\nassert out3==9;"
+    }
+  },
+  "804": {
+    "task_id": "804",
+    "task_description": "Write a method in Dafny to check whether the product of numbers in an array is even or not.",
+    "method_signature": "method isProductEven(arr:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3];\nvar out1:=isProductEven(a1);\nassert out1==true;",
+      "test_2": "var a2:= new int[] [1,2,1,4];\nvar out2:=isProductEven(a2);\nassert out2==true;",
+      "test_3": "var a3:= new int[] [1,1];\nvar out3:=isProductEven(a3);\nassert out3==false;"
+    }
+  },
+  "803": {
+    "task_id": "803",
+    "task_description": "Write a method in Dafny to check whether the given number is a perfect square or not.",
+    "method_signature": "method isPerfectSquare(n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=isPerfectSquare(10);\nassert out1==false;",
+      "test_2": "var out2:=isPerfectSquare(36);\nassert out2==true;",
+      "test_3": "var out3:=isPerfectSquare(14);\nassert out3==false;"
+    }
+  },
+  "798": {
+    "task_id": "798",
+    "task_description": "Write a method in Dafny to find the sum of an array.",
+    "method_signature": "method sumArray(arr:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3];\nvar out1:=sumArray(a1);\nassert out1==6;",
+      "test_2": "var a2:= new int[] [15, 12, 13, 10];\nvar out2:=sumArray(a2);\nassert out2==50;",
+      "test_3": "var a3:= new int[] [0, 1, 2];\nvar out3:=sumArray(a3);\nassert out3==3;"
+    }
+  },
+  "793": {
+    "task_id": "793",
+    "task_description": "Write a method in Dafny to find the last position of an given element in a sorted array.",
+    "method_signature": "method last(arr:array<int>,x:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3];\nvar out1:=last(a1,1);\nassert out1==0;",
+      "test_2": "var a2:= new int[] [1,1,1,2,3,4];\nvar out2:=last(a2,1);\nassert out2==2;",
+      "test_3": "var a3:= new int[] [2,3,2,3,6,8,9];\nvar out3:=last(a3,3);\nassert out3==3;"
+    }
+  },
+  "784": {
+    "task_id": "784",
+    "task_description": "Write a method in Dafny to find the product of first even and odd number of a given list.",
+    "method_signature": "method mulEvenOdd(list1: array<nat>) returns (res:nat)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,3,5,7,4,1,6,8];\nvar out1:=mulEvenOdd(a1);\nassert out1==4;",
+      "test_2": "var a2:= new nat[] [1,2,3,4,5,6,7,8,9,10];\nvar out2:=mulEvenOdd(a2);\nassert out2==2;",
+      "test_3": "var a3:= new nat[] [1,5,7,9,10];\nvar out3:=mulEvenOdd(a3);\nassert out3==10;"
+    }
+  },
+  "775": {
+    "task_id": "775",
+    "task_description": "Write a method in Dafny to check whether every odd index contains odd numbers of a given integer array.",
+    "method_signature": "method  oddPosition(nums:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [2,1,4,3,6,7,6,3];\nvar out1:=oddPosition(a1);\nassert out1==true;",
+      "test_2": "var a2:= new int[] [4,1,2];\nvar out2:=oddPosition(a2);\nassert out2==true;",
+      "test_3": "var a3:= new int[] [1,2,3];\nvar out3:=oddPosition(a3);\nassert out3==false;"
+    }
+  },
+  "770": {
+    "task_id": "770",
+    "task_description": "Write a method in Dafny to find the sum of fourth power of first n odd natural numbers.",
+    "method_signature": "method oddNumSum(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=oddNumSum(2);\nassert out1==82;",
+      "test_2": "var out2:=oddNumSum(3);\nassert out2==707;",
+      "test_3": "var out3:=oddNumSum(4);\nassert out3==3108;"
+    }
+  },
+  "764": {
+    "task_id": "764",
+    "task_description": "Write a method in Dafny to count number of digits in a given string.",
+    "method_signature": "method numberCount(str:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=numberCount(\"program2bedone\");\nassert out1==1;",
+      "test_2": "var out2:=numberCount(\"3wonders\");\nassert out2==1;",
+      "test_3": "var out3:=numberCount(\"3wond-1ers2\");\nassert out3==3;"
+    }
+  },
+  "762": {
+    "task_id": "762",
+    "task_description": "Write a method in Dafny to check whether the given month number contains 30 days or not. Months are given as number from 1 to 12.",
+    "method_signature": "method checkMonthnumberNumber(monthnum:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=checkMonthnumberNumber(6);\nassert out1==true;",
+      "test_2": "var out2:=checkMonthnumberNumber(2);\nassert out2==false;",
+      "test_3": "var out3:=checkMonthnumberNumber(12);\nassert out3==false;"
+    }
+  },
+  "755": {
+    "task_id": "755",
+    "task_description": "Write a method in Dafny to find the second-smallest number in an integer array.",
+    "method_signature": "method secondSmallest(numbers:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, -8, -2, 0, -2];\nvar out1:=secondSmallest(a1);\nassert out1==-2;",
+      "test_2": "var a2:= new int[] [1, 1, 5, 0, 2, -2, -2];\nvar out2:=secondSmallest(a2);\nassert out2==1;",
+      "test_3": "var a3:= new int[] [-2,-3,-1];\nvar out3:=secondSmallest(a3);\nassert out3==-2;"
+    }
+  },
+  "741": {
+    "task_id": "741",
+    "task_description": "Write a method in Dafny to check whether all the characters are same or not.",
+    "method_signature": "method allCharactersSame(str:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=allCharactersSame(\"python\");\nassert out1==false;",
+      "test_2": "var out2:=allCharactersSame(\"aaa\");\nassert out2==true;",
+      "test_3": "var out3:=allCharactersSame(\"data\");\nassert out3==false;"
+    }
+  },
+  "733": {
+    "task_id": "733",
+    "task_description": "Write a method in Dafny to find the index of the first occurrence of a given number in a sorted array.",
+    "method_signature": "method findFirstOccurrence(A:array<int>, x:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [2, 5, 5, 5, 6, 6, 8, 9, 9, 9];\nvar out1:=findFirstOccurrence(a1,5);\nassert out1==1;",
+      "test_2": "var a2:= new int[] [2, 3, 5, 5, 6, 6, 8, 9, 9, 9];\nvar out2:=findFirstOccurrence(a2,5);\nassert out2==2;",
+      "test_3": "var a3:= new int[] [2, 4, 1, 5, 6, 6, 8, 9, 9, 9];\nvar out3:=findFirstOccurrence(a3,6);\nassert out3==4;"
+    }
+  },
+  "644": {
+    "task_id": "644",
+    "task_description": "Write a method in Dafny to reverse an array upto a given k position.",
+    "method_signature": "method reverseArrayUptoK(input:array<int>, k:int) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6];\nvar e1:= new int[] [4, 3, 2, 1, 5, 6];\nvar res1:=reverseArrayUptoK(a1,4);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [4, 5, 6, 7];\nvar e2:= new int[] [5, 4, 6, 7];\nvar res2:=reverseArrayUptoK(a2,2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [9, 8, 7, 6, 5];\nvar e3:= new int[] [7, 8, 9, 6, 5];\nvar res3:=reverseArrayUptoK(a3,3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "632": {
+    "task_id": "632",
+    "task_description": "Write a method in Dafny to move all zeroes to the end of the given array.",
+    "method_signature": "method moveZero(num_list:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,0,2,0,3,4];\nvar e1:= new int[] [1,2,3,4,0,0];\nvar res1:=moveZero(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [2,3,2,0,0,4,0,5,0];\nvar e2:= new int[] [2,3,2,4,5,0,0,0,0];\nvar res2:=moveZero(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [0,1,0,1,1];\nvar e3:= new int[] [1,1,1,0,0];\nvar res3:=moveZero(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "629": {
+    "task_id": "629",
+    "task_description": "Write a method in Dafny to find even numbers from an array of numbers.",
+    "method_signature": "method evenSplit(list:array<nat>) returns (res:array<nat>)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,2,3,4,5];\nvar e1:= new nat[] [2,4];\nvar res1:=evenSplit(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new nat[] [4,5,6,7,8,0,1;\nvar e2:= new nat[] [4,6,8,0];\nvar res2:=evenSplit(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new nat[] [8,12,15,19];\nvar e3:= new nat[] [8,12];\nvar res3:=evenSplit(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "627": {
+    "task_id": "627",
+    "task_description": "Write a method in Dafny to find the smallest missing number from a sorted list of natural numbers.",
+    "method_signature": "method findFirstMissing(arr:array<nat>) returns (res:nat)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [0,1,2,3];\nvar out1:=findFirstMissing(a1);\nassert out1==4;",
+      "test_2": "var a2:= new nat[] [0,1,2,6,9];\nvar out2:=findFirstMissing(a2);\nassert out2==3;",
+      "test_3": "var a3:= new nat[] [2,3,5,8,9];\nvar out3:=findFirstMissing(a3);\nassert out3==-0;"
+    }
+  },
+  "625": {
+    "task_id": "625",
+    "task_description": "Write a method in Dafny to interchange the first and last element in a given integer array.",
+    "method_signature": "method swapArrayValue(arr:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3];\nvar e1:= new int[] [3,2,1];\nvar res1:=swapArrayValue(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [1,2,3,4,4];\nvar e2:= new int[] [4,2,3,4,1];\nvar res2:=swapArrayValue(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [4,5,6];\nvar e3:= new int[] [6,5,4];\nvar res3:=swapArrayValue(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "624": {
+    "task_id": "624",
+    "task_description": "Write a method in Dafny to convert a given string to uppercase.",
+    "method_signature": "method toUpper(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=toUpper(\"person\");\nassert out1==\"PERSON\";",
+      "test_2": "var out2:=toUpper(\"final\");\nassert out2==\"FINAL\";",
+      "test_3": "var out3:=toUpper(\"Valid\");\nassert out3==\"VALID\";"
+    }
+  },
+  "610": {
+    "task_id": "610",
+    "task_description": "Write a method in Dafny which takes an integer array and returns an array with the same elements, but the k'th element removed.",
+    "method_signature": "method removeKthElement(list1:array<int>, L:int) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,1,2,3,4,4,5,1];\nvar e1:= new int[] [1,1,2,4,4,5,1];\nvar res1:=removeKthElement(a1,3);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4];\nvar e2:= new int[] [0,0,1,2,4,4,5,6,6,6,7,8,9,4,4];\nvar res2:=removeKthElement(a2,4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10];\nvar e3:= new int[] [10,10,15,19,18,17,26,26,17,18,10];\nvar res3:=removeKthElement(a3,5);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "605": {
+    "task_id": "605",
+    "task_description": "Write a method in Dafny to check if the given integer is a prime number.",
+    "method_signature": "method primeNum(num:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=primeNum(13);\nassert out1==true;",
+      "test_2": "var out2:=primeNum(7);\nassert out2==true;",
+      "test_3": "var out3:=primeNum(1010);\nassert out3==false;"
+    }
+  },
+  "602": {
+    "task_id": "602",
+    "task_description": "Write a method in Dafny to find the first repeated character in a given string.",
+    "method_signature": "method firstRepeatedChar (str1:string) returns (res:char)",
+    "test_cases": {
+      "test_1": "var out1:=firstRepeatedChar(\"abcabc\");\nassert out1=='a';",
+      "test_2": "var out2:=firstRepeatedChar(\"axbcx\");\nassert out2=='x';",
+      "test_3": "var out3:=firstRepeatedChar(\"123123\");\nassert out3=='1';"
+    }
+  },
+  "600": {
+    "task_id": "600",
+    "task_description": "Write a method in Dafny to check whether the given number is even or not.",
+    "method_signature": "method isEven(n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=isEven(1);\nassert out1==false;",
+      "test_2": "var out2:=isEven(2);\nassert out2==true;",
+      "test_3": "var out3:=isEven(3);\nassert out3==false;"
+    }
+  },
+  "599": {
+    "task_id": "599",
+    "task_description": "Write a method in Dafny to find sum and average of first n natural numbers.",
+    "method_signature": "method sumAverage(number:nat) returns (sum:real, avg:real)",
+    "test_cases": {
+      "test_1": "var sum1, avg1 :=sumAverage(10);\nassert sum1==55;\nassert avg1==5.5;",
+      "test_2": "var sum2, avg2 :=sumAverage(15);\nassert sum2==120;\nassert avg2==8.0;",
+      "test_3": "var sum3, avg3 :=sumAverage(20);\nassert sum3==210;\nassert avg3==10.5;"
+    }
+  },
+  "594": {
+    "task_id": "594",
+    "task_description": "Write a method in Dafny to find the difference of the first even and first odd number of a given integer array.",
+    "method_signature": "method diffEvenOdd(list1:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,3,5,7,4,1,6,8];\nvar out1:=diffEvenOdd(a1);\nassert out1==3;",
+      "test_2": "var a2:= new nat[] [1,2,3,4,5,6,7,8,9,10];\nvar out2:=diffEvenOdd(a2);\nassert out2==1;",
+      "test_3": "var a3:= new nat[] [1,5,7,9,10];\nvar out3:=diffEvenOdd(a3);\nassert out3==9;"
+    }
+  },
+  "589": {
+    "task_id": "589",
+    "task_description": "Write a method in Dafny to find perfect squares between two given numbers.",
+    "method_signature": "method  perfectSquares(a:int, b:int) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var res1:=perfectSquares(1,30);\nvar e1:= new int[] [1, 4, 9, 16, 25];\nassert arrayEquals(res1,e1);",
+      "test_2": "var res2:=perfectSquares(50,100);\nvar e2:= new int[] [64, 81, 100];\nassert arrayEquals(res2,e2);",
+      "test_3": "var res3:=perfectSquares(100,200);\nvar e3:= new int[] [100, 121, 144, 169, 196];\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "588": {
+    "task_id": "588",
+    "task_description": "Write a method in Dafny to find the difference between largest and smallest value in a given integer array.",
+    "method_signature": "method bigDiff(nums:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3,4];\nvar out1:=bigDiff(a1);\nassert out1==3;",
+      "test_2": "var a2:= new int[] [4,5,12];\nvar out2:=bigDiff(a2);\nassert out2==8;",
+      "test_3": "var a3:= new int[] [9,2,3];\nvar out3:=bigDiff(a3);\nassert out3==7;"
+    }
+  },
+  "579": {
+    "task_id": "579",
+    "task_description": "Write a method in Dafny to find the dissimilar elements in the given two integer arrays.",
+    "method_signature": "method findDissimilar(arr1:array<int>,arr2:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [3, 4, 5, 6];\nvar a2:= new nat[] [5, 7, 4, 10];\nvar e1:= new nat[] [3, 6, 7, 10];\nvar res1:=findDissimilar(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new nat[] [1, 2, 3, 4];\nvar a4:= new nat[] [7, 2, 3, 9];\nvar e2:= new nat[] [1, 4, 7, 9];\nvar res2:=findDissimilar(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new nat[] [21, 11, 25, 26];\nvar a6:= new nat[] [26, 34, 21, 36];\nvar e3:= new nat[] [34, 36, 11, 25];\nvar res3:=findDissimilar(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "576": {
+    "task_id": "576",
+    "task_description": "Write a method in Dafny to check whether a list is sublist of another or not.",
+    "method_signature": "method isSubArray(A:array<int>,B:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,4,3,5];\nvar a2:= new int[] [1,2];\nvar out1:=isSubArray(a1,a2);\nassert out1==false;",
+      "test_2": "var a3:= new int[] [1,2,1];\nvar a4:= new int[] [1,2,1];\nvar out2:=isSubArray(a3,a4);\nassert out2==true;",
+      "test_3": "var a5:= new int[] [1,0,2,2];\nvar a6:= new int[] [2,2,0];\nvar out3:=isSubArray(a5,a6);\nassert out3==false;"
+    }
+  },
+  "573": {
+    "task_id": "573",
+    "task_description": "Write a method in Dafny to calculate the product of the unique numbers in a given integer arrray.",
+    "method_signature": "method uniqueProduct(list_data:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [10, 20, 30, 40, 20, 50, 60, 40];\nvar out1:=uniqueProduct(a1);\nassert out1==720000000;",
+      "test_2": "var a2:= new nat[] [1, 2, 3, 1];\nvar out2:=uniqueProduct(a2);\nassert out2==6;",
+      "test_3": "var a3:= new nat[] [7, 8, 9, 0, 1, 1];\nvar out3:=uniqueProduct(a3);\nassert out3==0;"
+    }
+  },
+  "572": {
+    "task_id": "572",
+    "task_description": "Write a method in Dafny to remove duplicate numbers from a given integer array.",
+    "method_signature": "method twoUniqueNums(nums:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3,2,3,4,5];\nvar e1:= new int[] [1, 4, 5];\nvar res1:=twoUniqueNums(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [1,2,3,2,4,5];\nvar e2:= new int[] [1, 3, 4, 5];\nvar res2:=twoUniqueNums(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [1,2,3,4,5];\nvar e3:= new int[] [1, 2, 3, 4, 5];\nvar res3:=twoUniqueNums(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "567": {
+    "task_id": "567",
+    "task_description": "Write a method in Dafny to check whether a specified array is sorted or not.",
+    "method_signature": "method issortList(list1:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,2,4,6,8,10,12,14,16,17];\nvar out1:=issortList(a1);\nassert out1==true;",
+      "test_2": "var a2:= new nat[] [1, 2, 4, 6, 8, 10, 12, 14, 20, 17];\nvar out2:=issortList(a2);\nassert out2==false;",
+      "test_3": "var a3:= new nat[] [1, 2, 4, 6, 8, 10,15,14,20];\nvar out3:=issortList(a3);\nassert out3==false;"
+    }
+  },
+  "566": {
+    "task_id": "566",
+    "task_description": "Write a method in Dafny to get the sum of the digits of a non-negative integer.",
+    "method_signature": "method sumDigits(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=sumDigits(345);\nassert out1==12;",
+      "test_2": "var out2:=sumDigits(12);\nassert out2==3;",
+      "test_3": "var out3:=sumDigits(97);\nassert out3==16;"
+    }
+  },
+  "557": {
+    "task_id": "557",
+    "task_description": "Write a method in Dafny to toggle the case of all characters in a string.",
+    "method_signature": "method toggleString(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=toggleString(\"Python\");\nassert out1==\"pYTHON\";",
+      "test_2": "var out2:=toggleString(\"Pangram\");\nassert out2==\"pANGRAM\";",
+      "test_3": "var out3:=toggleString(\"LIttLE\");\nassert out3==\"liTTle\";"
+    }
+  },
+  "554": {
+    "task_id": "554",
+    "task_description": "Write a method in Dafny which takes a list of integers and only returns the odd ones.",
+    "method_signature": "method  oddSplit(list:array<nat>) returns (res:array<nat>)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,2,3,4,5,6];\nvar e1:= new nat[] [1,3,5];\nvar res1:=oddSplit(a);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new nat[] [10,11,12,13];\nvar e2:= new nat[] [11,13];\nvar res2:=oddSplit(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new nat[] [7,8,9,1];\nvar e3:= new nat[] [7,9,1];\nvar res3:=oddSplit(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "479": {
+    "task_id": "479",
+    "task_description": "Write a method in Dafny to find the first digit of a given number.",
+    "method_signature": "method firstDigit(n:int)returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=firstDigit(123);\nassert out1==1;",
+      "test_2": "var out2:=firstDigit(456);\nassert out2==4;",
+      "test_3": "var out3:=firstDigit(12);\nassert out3==1;"
+    }
+  },
+  "477": {
+    "task_id": "477",
+    "task_description": "Write a method in Dafny to convert the given string to lower case.",
+    "method_signature": "method toLower(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=toLower(\"InValid\");\nassert out1==\"invalid\";",
+      "test_2": "var out2:=toLower(\"TruE\");\nassert out2==\"true\";",
+      "test_3": "var out3:=toLower(\"SenTenCE\");\nassert out3==\"sentence\";"
+    }
+  },
+  "476": {
+    "task_id": "476",
+    "task_description": "Write a method in Dafny to find the sum of the largest and smallest value in a given array.",
+    "method_signature": "method bigSum(nums:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,2,3];\nvar out1:=bigSum(a1);\nassert out1==4;",
+      "test_2": "var a2:= new nat[] [-1,2,3,4];\nvar out2:=bigSum(a2);\nassert out2==3;",
+      "test_3": "var a3:= new nat[] [2,3,6];\nvar out3:=bigSum(a3);\nassert out3==8;"
+    }
+  },
+  "472": {
+    "task_id": "472",
+    "task_description": "Write a method in Dafny to check whether the given integer array contains consecutive numbers or not.",
+    "method_signature": "method checkConsecutive(l:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,2,3,4,5];\nvar out1:=checkConsecutive(a1);\nassert out1==true;",
+      "test_2": "var a2:= new nat[] [1,2,3,5,6];\nvar out2:=checkConsecutive(a2);\nassert out2==true;",
+      "test_3": "var a3:= new nat[] [1,3,5];\nvar out3:=checkConsecutive(a3);\nassert out3==false;"
+    }
+  },
+  "461": {
+    "task_id": "461",
+    "task_description": "Write a method in Dafny to count the upper case characters in a given string.",
+    "method_signature": "method uppercaseCounter(str:string) returns (count:int)",
+    "test_cases": {
+      "test_1": "var out1:=uppercaseCounter(\"PYthon\");\nassert out1==2;",
+      "test_2": "var out2:=uppercaseCounter(\"BigData\");\nassert out2==2;",
+      "test_3": "var out3:=uppercaseCounter(\"program\");\nassert out3==0;"
+    }
+  },
+  "458": {
+    "task_id": "458",
+    "task_description": "Write a method in Dafny to find the area of a rectangle.",
+    "method_signature": "method rectangleArea(l:int,b:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=rectangleArea(10,20);\nassert out1==200;",
+      "test_2": "var out2:=rectangleArea(10,5);\nassert out2==50;",
+      "test_3": "var out3:=rectangleArea(4,2);\nassert out3==8;"
+    }
+  },
+  "454": {
+    "task_id": "454",
+    "task_description": "Write a method in Dafny that matches a word containing 'z'.",
+    "method_signature": "method textMatchWordz(text:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=textMatchWordz(\"pythonz\");\nassert out1==true;",
+      "test_2": "var out2:=textMatchWordz(\"\"xyz.\");\nassert out2==true;",
+      "test_3": "var out3:=textMatchWordz(\"  lang  .\");\nassert out3==false;"
+    }
+  },
+  "447": {
+    "task_id": "447",
+    "task_description": "Write a method in Dafny to find cubes of individual elements in an integer array.",
+    "method_signature": "method cubeNums(nums:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e1:= new int[] [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000];\nvar res1:=cubeNums(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [10,20,30];\nvar e2:= new int[] [1000, 8000, 27000];\nvar res2:=cubeNums(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [12,15];\nvar e3:= new int[] [1728, 3375];\nvar res3:=cubeNums(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "443": {
+    "task_id": "443",
+    "task_description": "Write a method in Dafny to find the largest negative number from the given integer array.",
+    "method_signature": "method largestNeg(list1:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1,2,3,-4,-6];\nvar out1:=largestNeg(a1);\nassert out1==-6;",
+      "test_2": "var a2:= new nat[] [1,2,3,-8,-9];\nvar out2:=largestNeg(a2);\nassert out2==-9;",
+      "test_3": "var a3:= new nat[] [1,2,3,4,-1];\nvar out3:=largestNeg(a3);\nassert out3==-1;"
+    }
+  },
+  "441": {
+    "task_id": "441",
+    "task_description": "Write a method in Dafny to find the surface area of a cube of a given size.",
+    "method_signature": "method surfaceareaCube(l:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=surfaceareaCube(5);\nassert out1==150;",
+      "test_2": "var out2:=surfaceareaCube(3);\nassert out2==54;",
+      "test_3": "var out3:=surfaceareaCube(10);\nassert out3==600;"
+    }
+  },
+  "439": {
+    "task_id": "439",
+    "task_description": "Write a method in Dafny to join an array of multiple integers into a single integer.",
+    "method_signature": "method multipleToSingle(L:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [11, 33, 50];\nvar out1:=multipleToSingle(a1);\nassert out1==113350;",
+      "test_2": "var a2:= new nat[] [-1,2,3,4,5,6];\nvar out2:=multipleToSingle(a2);\nassert out2==-123456;",
+      "test_3": "var a3:= new nat[] [10,15,20,25];\nvar out3:=multipleToSingle(a3);\nassert out3==10152025;"
+    }
+  },
+  "436": {
+    "task_id": "436",
+    "task_description": "Write a method in Dafny to return the negative numbers from an integer array.",
+    "method_signature": "method negNos(list1:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [-1,4,5,-6];\nvar e1:= new int[] [-1,-6];\nvar res1:=negNos(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [-1,-2,3,4];\nvar e2:= new int[] [-1,-2];\nvar res2:=negNos(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [-7,-6,8,9];\nvar e3:= new int[] [-7,-6];\nvar res3:=negNos(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "435": {
+    "task_id": "435",
+    "task_description": "Write a method in Dafny to find the last digit of a given number.",
+    "method_signature": "method lastDigit(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=lastDigit(123);\nassert out1==3;",
+      "test_2": "var out2:=lastDigit(25);\nassert out2==5;",
+      "test_3": "var out3:=lastDigit(30);\nassert out3==0;"
+    }
+  },
+  "433": {
+    "task_id": "433",
+    "task_description": "Write a method in Dafny to check whether the given integer is greater than the elements of the given integer array.",
+    "method_signature": "method checkGreater(arr:array<int>, number:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new nat[] [1, 2, 3, 4, 5];\nvar out1:=checkGreater(a1,4);\nassert out1==false;",
+      "test_2": "var a2:= new nat[] [2, 3, 4, 5, 6];\nvar out2:=checkGreater(a2,8);\nassert out2==true;",
+      "test_3": "var a3:= new nat[] [9, 7, 4, 8, 6, 1];\nvar out3:=checkGreater(a3,11);\nassert out3==true;"
+    }
+  },
+  "431": {
+    "task_id": "431",
+    "task_description": "Write a method in Dafny that takes two integer arrays and returns true if they have at least one common element.",
+    "method_signature": "method commonElement(list1:array<int>, list2:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3,4,5];\nvar a2:= new int[] [5,6,7,8,9];\nvar out1:=commonElement(a1,a2);\nassert out1==true;",
+      "test_2": "var a3:= new int[] [1,2,3,4,5];\nvar a4:= new int[] [6,7,8,9];\nvar out2:=commonElement(a3,a4);\nassert out2==false;",
+      "test_3": "var a5:= new int[] [1,0,1,0];\nvar a6:= new int[] [2,0,1];\nvar out3:=commonElement(a5,a6);\nassert out3==true;"
+    }
+  },
+  "428": {
+    "task_id": "428",
+    "task_description": "Write a method in Dafny to sort the given integer array by using shell sort.",
+    "method_signature": "method shellSort(my_list:array<int>) returns (sortedArray:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [12, 23, 4, 5, 3, 2, 12, 81, 56, 95];\nvar e1:= new int[] [2, 3, 4, 5, 12, 12, 23, 56, 81, 95];\nvar res1:=shellSort(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [24, 22, 39, 34, 87, 73, 68];\nvar e2:= new int[] [22, 24, 34, 39, 68, 73, 87];\nvar res2:=shellSort(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [32, 30, 16, 96, 82, 83, 74];\nvar e3:= new int[] [16, 30, 32, 74, 82, 83, 96];\nvar res3:=shellSort(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "420": {
+    "task_id": "420",
+    "task_description": "Write a method in Dafny to find the cube sum of first n even natural numbers.",
+    "method_signature": "method cubeSum(n:nat) returns (res:nat)",
+    "test_cases": {
+      "test_1": "var out1:=cubeSum(2);\nassert out1==72;",
+      "test_2": "var out2:=cubeSum(3);\nassert out2==288;",
+      "test_3": "var out3:=cubeSum(4);\nassert out3==800;"
+    }
+  },
+  "415": {
+    "task_id": "415",
+    "task_description": "Write a method in Dafny to find a pair with the highest product from a given array of integers.",
+    "method_signature": "method maxProduct(arr:array<int>) returns (x:int, y:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3,4,7,0,8,4];\nvar x1, y1 :=maxProduct(a1);\nassert x1==7;\nassert y1==8;",
+      "test_2": "var a2:= new int[] [0,-1,-2,-4,5,0,-6];\nvar x2, y2 :=maxProduct(a2);\nassert x2==-4;\nassert y2==-6;",
+      "test_3": "var a3:= new int[] [1,2,3];\nvar x3, y3 :=maxProduct(a3);\nassert x3==2;\nassert y3==3;"
+    }
+  },
+  "412": {
+    "task_id": "412",
+    "task_description": "Write a method in Dafny to remove odd numbers from a given integer array.",
+    "method_signature": "method removeOdd(l:array<int>) returns (evens:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3];\nvar e1:= new int[] [2];\nvar res1:=removeOdd(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [2,4,6];\nvar e2:= new int[] [2,4,6];\nvar res2:=removeOdd(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [10,20,3];\nvar e3:= new int[] [10,20];\nvar res3:=removeOdd(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "404": {
+    "task_id": "404",
+    "task_description": "Write a method in Dafny to find the minimum of two numbers.",
+    "method_signature": "method minimum(a:int,b:int) returns (min:int)",
+    "test_cases": {
+      "test_1": "var out1:=minimum(1,2);\nassert out1==1;",
+      "test_2": "var out2:=minimum(-5,-4);\nassert out2==-5;",
+      "test_3": "var out3:=minimum(0,0);\nassert out3==0;"
+    }
+  },
+  "397": {
+    "task_id": "397",
+    "task_description": "Write a method in Dafny to find the median of three numbers",
+    "method_signature": "method medianNumbers(a:int,b:int,c:int) returns (median:int)",
+    "test_cases": {
+      "test_1": "var out1:=medianNumbers(25,55,65);\nassert out1==55;",
+      "test_2": "var out2:=medianNumbers(20,10,30);\nassert out2==20;",
+      "test_3": "var out3:=medianNumbers(15,45,75);\nassert out3==45;"
+    }
+  },
+  "388": {
+    "task_id": "388",
+    "task_description": "Write a method in Dafny to find the highest power of 2 that is less than or equal to n.",
+    "method_signature": "method  highestPowerOf2(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=highestPowerOf2(10);\nassert out1==8;",
+      "test_2": "var out2:=highestPowerOf2(19);\nassert out2==16;",
+      "test_3": "var out3:=highestPowerOf2(32);\nassert out3==32;"
+    }
+  },
+  "308": {
+    "task_id": "308",
+    "task_description": "Write a method in Dafny to find the specified number of the largest products from two given arrays, selecting one factor from each array.",
+    "method_signature": "method largeProduct(nums1:array<int>, nums2:array<int>, N:int) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6];\nvar a2:= new int[] [3, 6, 8, 9, 10, 6];\nvar e1:= new int[] [60, 54, 50];\nvar res1:=largeProduct(a1,a2,3);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1, 2, 3, 4, 5, 6];\nvar a4:= new int[] [3, 6, 8, 9, 10, 6];\nvar e2:= new int[] [60, 54, 50, 48];\nvar res2:=largeProduct(a3,a4,4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [1, 2, 3, 4, 5, 6];\nvar a6:= new int[] [3, 6, 8, 9, 10, 6];\nvar e3:= new int[] [60, 54, 50, 48, 45];\nvar res3:=largeProduct(a5,a6,5);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "295": {
+    "task_id": "295",
+    "task_description": "Write a method in Dafny to return the sum of all divisors of a number.",
+    "method_signature": "method sumDiv(number:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=sumDiv(8);\nassert out1==7;",
+      "test_2": "var out2:=sumDiv(12);\nassert out2==16;",
+      "test_3": "var out3:=sumDiv(7);\nassert out3==1;"
+    }
+  },
+  "283": {
+    "task_id": "283",
+    "task_description": "Write a method in Dafny that takes in an integer and checks whether the frequency of each digit in the integer is less than or equal to the digit itself.",
+    "method_signature": "method validate(n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=validate(1234);\nassert out1==true;",
+      "test_2": "var out2:=validate(51241);\nassert out2==false;",
+      "test_3": "var out3:=validate(321);\nassert out3==true;"
+    }
+  },
+  "281": {
+    "task_id": "281",
+    "task_description": "Write a method in Dafny to check if the elements of a given integer array are unique or not.",
+    "method_signature": "method allUnique(test_list:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3];\nvar out1:=allUnique(a1);\nassert out1==true;",
+      "test_2": "var a2:= new int[] [1,2,1,2];\nvar out2:=allUnique(a2);\nassert out2==false;",
+      "test_3": "var a3:= new int[] [1,2,3,4,5];\nvar out3:=allUnique(a3);\nassert out3==true;"
+    }
+  },
+  "271": {
+    "task_id": "271",
+    "task_description": "Write a method in Dafny that takes in an integer n and finds the sum of the first n even natural numbers that are raised to the fifth power.",
+    "method_signature": "method evenPowerSum(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=evenPowerSum(2);\nassert out1==1056;",
+      "test_2": "var out2:=evenPowerSum(3);\nassert out2==8832;",
+      "test_3": "var out3:=evenPowerSum(1);\nassert out3==32;"
+    }
+  },
+  "270": {
+    "task_id": "270",
+    "task_description": "Write a method in Dafny to find the sum of even numbers at even positions of an integer array.",
+    "method_signature": "method sumEvenAndEvenIndex(arr:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [5, 6, 12, 1, 18, 8];\nvar out1:=sumEvenAndEvenIndex(a1);\nassert out1==30;",
+      "test_2": "var a2:= new int[] [3, 20, 17, 9, 2, 10, 18, 13, 6, 18];\nvar out2:=sumEvenAndEvenIndex(a2);\nassert out2==26;",
+      "test_3": "var a3:= new int[] [5, 6, 12, 1];\nvar out3:=sumEvenAndEvenIndex(a3);\nassert out3==12;"
+    }
+  },
+  "267": {
+    "task_id": "267",
+    "task_description": "Write a method in Dafny that takes in an integer n and returns the sum of the squares of the first n odd natural numbers.",
+    "method_signature": "method squareSumOddN(n:int) returns (res: int)",
+    "test_cases": {
+      "test_1": "var out1:=squareSumOddN(2);\nassert out1==10;",
+      "test_2": "var out2:=squareSumOddN(3);\nassert out2==35;",
+      "test_3": "var out3:=squareSumOddN(4);\nassert out3==84;"
+    }
+  },
+  "256": {
+    "task_id": "256",
+    "task_description": "Write a method in Dafny that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number.",
+    "method_signature": "method countPrimesNums(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=countPrimesNums(5);\nassert out1==2;",
+      "test_2": "var out2:=countPrimesNums(10);\nassert out2==4;",
+      "test_3": "var out3:=countPrimesNums(100);\nassert out3==25;"
+    }
+  },
+  "249": {
+    "task_id": "249",
+    "task_description": "Write a method in Dafny to find the intersection of two integers arrays.",
+    "method_signature": "method intersectionArray(array_nums1:array<int>,array_nums2:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 5, 7, 8, 9, 10];\nvar a2:= new int[] [1, 2, 4, 8, 9];\nvar e1:= new int[] [1, 2, 8, 9];\nvar res1:=intersectionArray(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1, 2, 3, 5, 7, 8, 9, 10];\nvar a4:= new int[] [3,5,7,9];\nvar e2:= new int[] [3,5,7,9];\nvar res2:=intersectionArray(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [1, 2, 3, 5, 7, 8, 9, 10];\nvar a6:= new int[] [10,20,30,40];\nvar e3:= new int[] [10];\nvar res3:=intersectionArray(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "239": {
+    "task_id": "239",
+    "task_description": "Write a method in Dafny that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m.",
+    "method_signature": "method getTotalNumberOfSequences(m:int,n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=getTotalNumberOfSequences(10, 4);\nassert out1==4;",
+      "test_2": "var out2:=getTotalNumberOfSequences(5, 2);\nassert out2==6;",
+      "test_3": "var out3:=getTotalNumberOfSequences(16, 3);\nassert out3==84;"
+    }
+  },
+  "235": {
+    "task_id": "235",
+    "task_description": "Write a method in Dafny to set all even bits of a given number.",
+    "method_signature": "method evenBitSetNumber(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=evenBitSetNumber(10);\nassert out1==10;",
+      "test_2": "var out2:=evenBitSetNumber(20);\nassert out2==30;",
+      "test_3": "var out3:=evenBitSetNumber(30);\nassert out3==30;"
+    }
+  },
+  "234": {
+    "task_id": "234",
+    "task_description": "Write a method in Dafny to find the volume of a cube given its side length.",
+    "method_signature": "method volumeCube(l:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=volumeCube(3);\nassert out1==27;",
+      "test_2": "var out2:=volumeCube(2);\nassert out2==8;",
+      "test_3": "var out3:=volumeCube(5);\nassert out3==25;"
+    }
+  },
+  "227": {
+    "task_id": "227",
+    "task_description": "Write a method in Dafny to find minimum of three numbers.",
+    "method_signature": "method minOfThree(a:int,b:int,c:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=minOfThree(10,20,0);\nassert out1==0;",
+      "test_2": "var out2:=minOfThree(19,15,18);\nassert out2==15;",
+      "test_3": "var out3:=minOfThree(10,-20,-30);\nassert out3==-30;"
+    }
+  },
+  "170": {
+    "task_id": "170",
+    "task_description": "Write a method in Dafny to find the sum of numbers in an array within a range specified by two indices.",
+    "method_signature": "method sumRangeList(list1:array<int>, m:int, n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [2,1,5,6,8,3,4,9,10,11,8,12];\nvar out1:=sumRangeList(a1,8,11);\nassert out1==29;",
+      "test_2": "var a2:= new int[] [2,1,5,6,8,3,4,9,10,11,8,12];\nvar out2:=sumRangeList(a2,5,8);\nassert out2==16;",
+      "test_3": "var a3:= new int[] [2,1,5,6,8,3,4,9,10,11,8,12];\nvar out3:=sumRangeList(a3,7,11);\nassert out3==38;"
+    }
+  },
+  "167": {
+    "task_id": "167",
+    "task_description": "Write a method in Dafny to find the smallest power of 2 greater than or equal to n.",
+    "method_signature": "method nextPowerOf2(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=nextPowerOf2(0);\nassert out1==1;",
+      "test_2": "var out2:=nextPowerOf2(5);\nassert out2==8;",
+      "test_3": "var out3:=nextPowerOf2(17);\nassert out3==32;"
+    }
+  },
+  "166": {
+    "task_id": "166",
+    "task_description": "Write a method in Dafny that counts the number of pairs of integers in an array that xor to an even number.",
+    "method_signature": "method findEvenPair(A:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [5, 4, 7, 2, 1];\nvar out1:=findEvenPair(a1);\nassert out1==4;",
+      "test_2": "var a2:= new int[] [7, 2, 8, 1, 0, 5, 11];\nvar out2:=findEvenPair(a2);\nassert out2==9;",
+      "test_3": "var a3:= new int[] [1, 2, 3];\nvar out3:=findEvenPair(a3);\nassert out3==1;"
+    }
+  },
+  "161": {
+    "task_id": "161",
+    "task_description": "Write a method in Dafny to remove all elements from a given integer array present in another integer array.",
+    "method_signature": "method removeElements(list1:array<int>, list2:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar a2:= new int[] [2, 4, 6, 8];\nvar e1:= new int[] [1, 3, 5, 7, 9, 10];\nvar res1:=removeElements(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar a4:= new int[] [1, 3, 5, 7];\nvar e2:= new int[] [2, 4, 6, 8, 9, 10];\nvar res2:=removeElements(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar a6:= new int[] [15, 7];\nvar e3:= new int[] [1, 2, 3, 4, 6, 8, 9, 10];\nvar res3:=removeElements(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "145": {
+    "task_id": "145",
+    "task_description": "Write a method in Dafny to find the maximum difference between any two elements in a given array.",
+    "method_signature": "method maxAbsDiff(arr:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [2,1,5,3];\nvar out1:=maxAbsDiff(a1);\nassert out1==4;",
+      "test_2": "var a2:= new int[] [9,3,2,5,1];\nvar out2:=maxAbsDiff(a2);\nassert out2==8;",
+      "test_3": "var a3:= new int[] [3,2,1];\nvar out3:=maxAbsDiff(a3);\nassert out3==2;"
+    }
+  },
+  "138": {
+    "task_id": "138",
+    "task_description": "Write a method in Dafny to check whether the given number can be represented as sum of non-zero powers of 2 or not.",
+    "method_signature": "method isSumOfPowersOfTwo (n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=isSumOfPowersOfTwo(10);\nassert out1==true;",
+      "test_2": "var out2:=isSumOfPowersOfTwo(7);\nassert out2==false;",
+      "test_3": "var out3:=isSumOfPowersOfTwo(14);\nassert out3==14;"
+    }
+  },
+  "133": {
+    "task_id": "133",
+    "task_description": "Write a method in Dafny to calculate the sum of the negative numbers of a given list of numbers.",
+    "method_signature": "method sumNegativeNums(nums:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [2, 4, -6, -9, 11, -12, 14, -5, 17];\nvar out1:=sumNegativeNums(a1);\nassert out1==-32;",
+      "test_2": "var a2:= new int[] [10,15,-14,13,-18,12,-20];\nvar out2:=sumNegativeNums(a2);\nassert out2==-52;",
+      "test_3": "var a3:= new int[] [19, -65, 57, 39, 152,-639, 121, 44, 90, -190];\nvar out3:=sumNegativeNums(a3);\nassert out3==-894;"
+    }
+  },
+  "127": {
+    "task_id": "127",
+    "task_description": "Write a method in Dafny to multiply two integers.",
+    "method_signature": "method multiplyInt (x:int, y:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=multiplyInt(10,20);\nassert out1==200;",
+      "test_2": "var out2:=multiplyInt(5,10);\nassert out2==50;",
+      "test_3": "var out3:=multiplyInt(4,8);\nassert out3==32;"
+    }
+  },
+  "126": {
+    "task_id": "126",
+    "task_description": "Write a method in Dafny to find the sum of common divisors of two given numbers.",
+    "method_signature": "method sumOfCommonDivisor(a:int,b:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=sumOfCommonDivisor(10,15);\nassert out1==6;",
+      "test_2": "var out2:=sumOfCommonDivisor(100,150);\nassert out2==93;",
+      "test_3": "var out3:=sumOfCommonDivisor(4,6);\nassert out3==3;"
+    }
+  },
+  "119": {
+    "task_id": "119",
+    "task_description": "Write a method in Dafny to find the element that appears only once in a sorted array.",
+    "method_signature": "method search(arr:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,1,2,2,3];\nvar out1:=search(a1);\nassert out1==3;",
+      "test_2": "var a2:= new int[] [1,1,3,3,4,4,5,5,7,7,8];\nvar out2:=search(a2);\nassert out2==8;",
+      "test_3": "var a3:= new int[] [1,2,2,3,3,4,4];\nvar out3:=search(a3);\nassert out3==1;"
+    }
+  },
+  "105": {
+    "task_id": "105",
+    "task_description": "Write a method in Dafny to count true booleans in the given boolean array.",
+    "method_signature": "method countBoolean(lst:array<bool>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new bool[] [true, false, true];\nvar out1:=countBoolean(a1);\nassert out1==2;",
+      "test_2": "var a2:= new bool[] [false, false];\nvar out2:=countBoolean(a2);\nassert out2==0;",
+      "test_3": "var a3:= new bool[] [true, true, true];\nvar out3:=countBoolean(a3);\nassert out3==3;"
+    }
+  },
+  "101": {
+    "task_id": "101",
+    "task_description": "Write a method in Dafny to find the kth element in the given array using 1-based indexing.",
+    "method_signature": "method kthElement(arr:array<int>, k:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [12,3,5,7,19];\nvar out1:=kthElement(a1,2);\nassert out1==3;",
+      "test_2": "var a2:= new int[] [17,24,8,23];\nvar out2:=kthElement(a2,3);\nassert out2==8;",
+      "test_3": "var a3:= new int[] [16,21,25,36,4];\nvar out3:=kthElement(a3,4);\nassert out3==36;"
+    }
+  },
+  "96": {
+    "task_id": "96",
+    "task_description": "Write a method in Dafny to find the number of divisors of a given integer.",
+    "method_signature": "method divisor(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=divisor(15);\nassert out1==4;",
+      "test_2": "var out2:=divisor(12);\nassert out2==6;",
+      "test_3": "var out3:=divisor(9);\nassert out3==3;"
+    }
+  },
+  "93": {
+    "task_id": "93",
+    "task_description": "Write a method in Dafny to calculate the value of 'a' to the power 'b'.",
+    "method_signature": "method power(a:int,b:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=power(3,4);\nassert out1==81;",
+      "test_2": "var out2:=power(2,3);\nassert out2==8;",
+      "test_3": "var out3:=power(5,5);\nassert out3==3125;"
+    }
+  },
+  "77": {
+    "task_id": "77",
+    "task_description": "Write a method in Dafny to find whether a number is divisible by 11.",
+    "method_signature": "method isDiff(n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=isDiff(12345);\nassert out1==false;",
+      "test_2": "var out2:=isDiff(1212112);\nassert out2==true;",
+      "test_3": "var out3:=isDiff(1212);\nassert out3==false;"
+    }
+  },
+  "72": {
+    "task_id": "72",
+    "task_description": "Write a method in Dafny to check whether the given number can be represented as the difference of two squares or not.",
+    "method_signature": "method difSquare(n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=difSquare(5);\nassert out1==true;",
+      "test_2": "var out2:=difSquare(10);\nassert out2==false;",
+      "test_3": "var out3:=difSquare(15);\nassert out3==true;"
+    }
+  },
+  "68": {
+    "task_id": "68",
+    "task_description": "Write a method in Dafny to check whether the given array is monotonic or not.",
+    "method_signature": "method isMonotonic(A:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [6, 5, 4, 4];\nvar out1:=isMonotonic(a1);\nassert out1==true;",
+      "test_2": "var a2:= new int[] [1, 2, 2, 3];\nvar out2:=isMonotonic(a2);\nassert out2==true;",
+      "test_3": "var a3:= new int[] [1, 3, 2];\nvar out3:=isMonotonic(a3);\nassert out3==false;"
+    }
+  },
+  "67": {
+    "task_id": "67",
+    "task_description": "Write a method in Dafny to find the number of ways to partition a set of Bell numbers.",
+    "method_signature": "method bellNumber(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=bellNumber(2);\nassert out1==2;",
+      "test_2": "var out2:=bellNumber(10);\nassert out2==115975;",
+      "test_3": "var out3:=bellNumber(19);\nassert out3==5832742205057;"
+    }
+  },
+  "66": {
+    "task_id": "66",
+    "task_description": "Write a method in Dafny to count the number of positive numbers in an array.",
+    "method_signature": "method posCount(list:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,-2,3,-4];\nvar out1:=posCount(a1);\nassert out1==2;",
+      "test_2": "var a2:= new int[] [3,4,5,-1];\nvar out2:=posCount(a2);\nassert out2==3;",
+      "test_3": "var a3:= new int[] [1,2,3,4];\nvar out3:=posCount(a3);\nassert out3==4;"
+    }
+  },
+  "62": {
+    "task_id": "62",
+    "task_description": "Write a method in Dafny to find the smallest number in an array.",
+    "method_signature": "method smallestNum(list:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [10, 20, 1, 45, 99];\nvar out1:=smallestNum(a1);\nassert out1==1;",
+      "test_2": "var a2:= new int[] [1, 2, 3];\nvar out2:=smallestNum(a2);\nassert out2==1;",
+      "test_3": "var a3:= new int[] [45, 46, 50, 60];\nvar out3:=smallestNum(a3);\nassert out3==45;"
+    }
+  },
+  "58": {
+    "task_id": "58",
+    "task_description": "Write a method in Dafny to check whether the given two integers have opposite sign or not.",
+    "method_signature": "method oppositeSigns(x:int,y:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=oppositeSigns(1,-2);\nassert out1==true;",
+      "test_2": "var out2:=oppositeSigns(3,2);\nassert out2==false;",
+      "test_3": "var out3:=oppositeSigns(-2,2);\nassert out3==true;"
+    }
+  },
+  "57": {
+    "task_id": "57",
+    "task_description": "Write a method in Dafny to find the largest number that can be formed with the given array of integers.",
+    "method_signature": "method findMaxNum(arr: array<int>) returns (res: int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3]];\nvar out1:=findMaxNum(a1);\nassert out1==321;",
+      "test_2": "var a2:= new int[] [4,5,6,1];\nvar out2:=findMaxNum(a2);\nassert out2==6541;",
+      "test_3": "var a3:= new int[] [1,2,3,9];\nvar out3:=findMaxNum(a3);\nassert out3==9321;"
+    }
+  },
+  "56": {
+    "task_id": "56",
+    "task_description": "Write a method in Dafny to check if a given number is one less than twice its reverse.",
+    "method_signature": "method check(num:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=check(70);\nassert out1==false;",
+      "test_2": "var out2:=check(23);\nassert out2==false;",
+      "test_3": "var out3:=check(73);\nassert out3==true;"
+    }
+  },
+  "19": {
+    "task_id": "19",
+    "task_description": "Write a method in Dafny to find whether a given array of integers contains any duplicate element.",
+    "method_signature": "method testDuplicate(arraynums:array<int>) returns (out:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3,4,5];\nvar out1:=testDuplicate(a1);\nassert out1==false;",
+      "test_2": "var a2:= new int[] [1,2,3,4, 4];\nvar out2:=testDuplicate(a2);\nassert out2==true;",
+      "test_3": "var a3:= new int[] [1,1,2,2,3,3,4,4,5];\nvar out3:=testDuplicate(a3);\nassert out3==true;"
+    }
+  },
+  "14": {
+    "task_id": "14",
+    "task_description": "Write a method in Dafny to find the volume of a triangular prism.",
+    "method_signature": "method findVolume(l:real,b:real,h:real) returns (V:real)",
+    "test_cases": {
+      "test_1": "var out1:=findVolume(10,8,6);\nassert out1==240;",
+      "test_2": "var out2:=findVolume(3,2,2);\nassert out2==6;",
+      "test_3": "var out3:=findVolume(1,2,1);\nassert out3==1;"
+    }
+  },
+  "8": {
+    "task_id": "8",
+    "task_description": "Write a method in Dafny to find squares of individual elements in an array.",
+    "method_signature": "method squareNums(nums:array<int>) returns (out:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e1:= new int[] [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];\nvar res1:=squareNums(a1);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [10,20,30];\nvar e2:= new int[] [100,400,900];\nvar res2:=squareNums(a2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [12,15];\nvar e3:= new int[] [144,225];\nvar res3:=squareNums(a3);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "7": {
+    "task_id": "7",
+    "task_description": "Write a method in Dafny to find all words which are at least 4 characters long in a string.",
+    "method_signature": "method findCharLong (text:string) returns (res:array<string>)",
+    "test_cases": {
+      "test_1": "var e1:= new string[] [\"Please\", \"move\", \"back\", \"stream\"];\nvar res1:=findCharLong(\"Please move back to stream\");\nassert arrayEquals(res1,e1);",
+      "test_2": "var e2:= new string[] [\"Jing\", \"Tech\"];\nvar res2:=findCharLong(\"Jing Eco and Tech\");\nassert arrayEquals(res2,e2);",
+      "test_3": "var e3:= new string[] [\"Jhingai\", \"wulu\", \"road\", \"Zone\"];\nvar res3:=findCharLong(\"Jhingai wulu road Zone 3\");\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "11": {
+    "task_id": "11",
+    "task_description": "Write a method in Dafny to remove first and last occurrence of a given character from the string.",
+    "method_signature": "method removeOccurance(str:string,ch:char) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=removeOccurance(\"hello\", 'l');\nassert out1==\"heo\";",
+      "test_2": "var out2:=removeOccurance(\"abcda\", 'a');\nassert out2==\"bcd\";",
+      "test_3": "var out1:=removeOccurance(\"PHP\", 'P');\nassert out1==\"H\";"
+    }
+  },
+  "16": {
+    "task_id": "16",
+    "task_description": "Write a method in Dafny to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.",
+    "method_signature": "method textLowercaseUnderscore (text:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var out1:=textLowercaseUnderscore(\"aab_cbbbc\");\nassert out1==true;",
+      "test_2": "var out2:=textLowercaseUnderscore(\"aab_Abbbc\");\nassert out2==false;",
+      "test_3": "var out3:=textLowercaseUnderscore(\"Aaab_abbbc\");\nassert out3==false;"
+    }
+  },
+  "18": {
+    "task_id": "18",
+    "task_description": "Write a method in Dafny to remove characters from the first string which are present in the second string.",
+    "method_signature": "method removeChars (firstStr:string, secondStr:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=removeChars(\"probasscurve\", \"pros\");\nassert out1==\"bacuve\";",
+      "test_2": "var out2:=removeChars(\"digitalindia\", \"talent\");\nassert out2==\"digiidi\";",
+      "test_3": "var out3:=removeChars(\"exoticmiles\", \"toxic\");\nassert out3==\"emles\";"
+    }
+  },
+  "806": {
+    "task_id": "806",
+    "task_description": "Write a method in Dafny to find maximum run of uppercase characters in the given string.",
+    "method_signature": "method maxRunUppercase (str:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=maxRunUppercase(\"GeMKSForGERksISBESt\");\nassert out1==5;",
+      "test_2": "var out2:=maxRunUppercase(\"PrECIOusMOVemENTSYT\");\nassert out2==6;",
+      "test_3": "var out3:=maxRunUppercase(\"GooGLEFluTTER\");\nassert out3==4;"
+    }
+  },
+  "777": {
+    "task_id": "777",
+    "task_description": "Write a method in Dafny to find the sum of non-repeated elements in a given list.",
+    "method_signature": "method findSum (arr:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,3,1,1,4,5,6];\nvar out1:=findSum(a1);\nassert out1==21;",
+      "test_2": "var a2:= new int[] [1,10,9,4,2,10,10,45,4];\nvar out2:=findSum(a2);\nassert out2==71;",
+      "test_3": "var a3:= new int[] [12,10,9,45,2,10,10,45,10];\nvar out3:=findSum(a3);\nassert out3==78;"
+    }
+  },
+  "776": {
+    "task_id": "776",
+    "task_description": "Write a method in Dafny to count those characters which have vowels as their neighbors in the given string.",
+    "method_signature": "method countVowels (str:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=countVowels(\"bestinstareels\");\nassert out1==7;",
+      "test_2": "var out2:=countVowels(\"partofthejourneyistheend\");\nassert out2==12;",
+      "test_3": "var out3:=countVowels(\"amazonprime\");\nassert out3==5;"
+    }
+  },
+  "772": {
+    "task_id": "772",
+    "task_description": "Write a method in Dafny to remove all the words with k length in the given string.",
+    "method_signature": "method removeLength (str:string, k:int) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=removeLength(\"The person is most value tet\",3);\nassert out1==\"person is most value\";",
+      "test_2": "var out2:=removeLength(\"If you told me about this ok\", 4);\nassert out2==\"If you me about ok\";",
+      "test_3": "var out3:=removeLength(\"Forces of darkeness is come into the play\",4);\nassert out3==\"Forces of darkeness is the\";"
+    }
+  },
+  "769": {
+    "task_id": "769",
+    "task_description": "Write a method in Dafny to get the difference between two lists.",
+    "method_signature": "method diff (arr1:array<int>, arr2:array<int>) returns (arr3:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [10, 15, 20, 25, 30, 35, 40];\nvar a2:= new int[] [25, 40, 35];\nvar e1:= new int[] [10, 20, 30, 15];\nvar res1:=diff(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1,2,3,4,5];\nvar a4:= new int[] [6,7,1];\nvar e2:= new int[] [2,3,4,5,6,7];\nvar res2:=diff(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [1,2,3];\nvar a6:= new int[] [6,7,1];\nvar e3:= new int[] [2,3,6,7];\nvar res3:=diff(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "763": {
+    "task_id": "763",
+    "task_description": "Write a method in Dafny to find the minimum difference between any two elements in a given array.",
+    "method_signature": "method findMinDiff (arr1:array<int>, k:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,5,3,19,18,25];\nvar res1:=findMinDiff(a1,6);\nassert res1==1;",
+      "test_2": "var a2:= new int[] [4,3,2,6];\nvar res2:=findMinDiff(a2,4);\nassert res2==1;",
+      "test_3": "var a3:= new int[] [30,5,20,9];\nvar res3:=findMinDiff(a3,4);\nassert res3==4;"
+    }
+  },
+  "760": {
+    "task_id": "760",
+    "task_description": "Write a method in Dafny to check whether a list of numbers contains only one distinct element or not.",
+    "method_signature": "method uniqueElement (arr1:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,1,1];\nvar res1:=uniqueElement(a1);\nassert res1==true;",
+      "test_2": "var a2:= new int[] [1,2,1,2];\nvar res2:=uniqueElement(a2);\nassert res2==false;",
+      "test_3": "var a3:= new int[] [1,2,3,4,5];\nvar res3:=uniqueElement(a3);\nassert res3==false;"
+    }
+  },
+  "751": {
+    "task_id": "751",
+    "task_description": "Write a method in Dafny to check if the given array represents min heap or not.",
+    "method_signature": "method checkMinHeap (arr1:array<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6];\nvar res1:=checkMinHeap(a1);\nassert res1==true;",
+      "test_2": "var a2:= new int[] [2, 3, 4, 5, 10, 15];\nvar res2:=checkMinHeap(a2);\nassert res2==true;",
+      "test_3": "var a3:= new int[] [2, 10, 4, 5, 3, 15];\nvar res3:=checkMinHeap(a3);\nassert res3==false;"
+    }
+  },
+  "748": {
+    "task_id": "748",
+    "task_description": "Write a method in Dafny to put spaces between words starting with capital letters in a given string.",
+    "method_signature": "method capitalWordsSpaces(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=capitalWordsSpaces(\"Python\");\nassert out1==\"Python\";",
+      "test_2": "var out2:=capitalWordsSpaces(\"PythonProgrammingExamples\");\nassert out2==\"Python Programming Examples\";",
+      "test_3": "var out3:=capitalWordsSpaces(\"GetReadyToBeCodingFreak\");\nassert out3==\"Get Ready To Be Coding Freak\";"
+    }
+  },
+  "747": {
+    "task_id": "747",
+    "task_description": "Write a method in Dafny to find the longest common subsequence for the given three string sequence.",
+    "method_signature": "method lcsOfThree (X:string, Y:string, Z:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var out1:=lcsOfThree(\"AGGT12\", \"12TXAYB\", \"12XBA\");\nassert out1==2;",
+      "test_2": "var out2:=lcsOfThree(\"Reels\", \"Reelsfor\", \"ReelsforReels\");\nassert out2==5;",
+      "test_3": "var out3:=lcsOfThree(\"abcd1e2\", \"bc12ea\", \"bd1ea\");\nassert out3==3;"
+    }
+  },
+  "743": {
+    "task_id": "743",
+    "task_description": "Write a method in Dafny to rotate a given list by specified N number of items to the right direction.",
+    "method_signature": "method rotateRight(arr:array<int>, N:int) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e1:= new int[] [8, 9, 10, 1, 2, 3, 4, 5, 6, 7];\nvar res1:=rotateRight(a1,3);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e2:= new int[] [9, 10, 1, 2, 3, 4, 5, 6, 7, 8];\nvar res2:=rotateRight(a2,2);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e3:= new int[] [6, 7, 8, 9, 10, 1, 2, 3, 4, 5];\nvar res3:=rotateRight(a3,5);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "732": {
+    "task_id": "732",
+    "task_description": "Write a method in Dafny to replace all occurrences of spaces, commas, or dots with a colon.",
+    "method_signature": "method replaceSpecialChar (str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=replaceSpecialChar(\"Python language, Programming language.\");\nassert out1==\"Python:language::Programming:language:\";",
+      "test_2": "var out2:=replaceSpecialChar(\"a b c,d e f\");\nassert out2==\"a:b:c:d:e:f\";",
+      "test_3": "var out3:=replaceSpecialChar(\"ram reshma,ram rahim.\");\nassert out3==\"ram:reshma:ram:rahim;"
+    }
+  },
+  "639": {
+    "task_id": "639",
+    "task_description": "Write a method in Dafny to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.",
+    "method_signature": "method sampleName(arr:array<string>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] ['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith'];\nvar res1:=sampleName(a1);\nassert res1==16;",
+      "test_2": "var a2:= new int[] [\"php\", \"res\", \"Python\", \"abcd\", \"Java\", \"aaa\"];\nvar res2:=sampleName(a2);\nassert res2==10;",
+      "test_3": "var a3:= new int[] [\"abcd\", \"Python\", \"abba\", \"aba\"];\nvar res3:=sampleName(a3);\nassert res3==6;"
+    }
+  },
+  "622": {
+    "task_id": "622",
+    "task_description": "Write a method in Dafny to find the median of two sorted lists of same size.",
+    "method_signature": "method getMedian(arr1:array<int>, arr2:array<int>, size:int) returns (res:real)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 12, 15, 26, 38];\nvar a2:= new int[] [2, 13, 17, 30, 45];\nvar res1:=getMedian(a1,a2,5);\nassert res1==16.0;",
+      "test_2": "var a3:= new int[] [2, 4, 8, 9];\nvar a4:= new int[] [7, 13, 19, 28];\nvar res2:=getMedian(a3,a4,4);\nassert res2==8.5;",
+      "test_3": "var a5:= new int[] [3, 6, 14, 23, 36, 42];\nvar a6:= new int[] [2, 18, 27, 39, 49, 55];\nvar res3:=getMedian(a5,a6,55);\nassert res3==25.0;"
+    }
+  },
+  "619": {
+    "task_id": "619",
+    "task_description": "Write a method in Dafny to move all the numbers to the end of the given string.",
+    "method_signature": "method moveNum (str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=moveNum(\"I1love143you55three3000thousand\");\nassert out1==\"Iloveyouthreethousand1143553000\";",
+      "test_2": "var out2:=moveNum(\"Avengers124Assemble\");\nassert out2==\"AvengersAssemble124\";",
+      "test_3": "var out3:=moveNum(\"Its11our12path13to14see15things16do17things\");\nassert out3==\"Itsourpathtoseethingsdothings11121314151617\";"
+    }
+  },
+  "616": {
+    "task_id": "616",
+    "task_description": "Write a method in Dafny which takes two integer arrays of the same length and performs the element wise modulo.",
+    "method_signature": "method tupleModulo (arr1:array<int>, arr2:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [10, 4, 5, 6];\nvar a2:= new int[] [5, 6, 7, 5];\nvar e1:= new int[] [0, 4, 5, 1];\nvar res1:=tupleModulo(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [11, 5, 6, 7];\nvar a4:= new int[] [6, 7, 8, 6];\nvar e2:= new int[] [5, 5, 6, 1];\nvar res2:=tupleModulo(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [12, 6, 7, 8];\nvar a6:= new int[] [7, 8, 9, 7];\nvar e3:= new int[] [5, 6, 7, 1];\nvar res3:=tupleModulo(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "604": {
+    "task_id": "604",
+    "task_description": "Write a method in Dafny to reverse words seperated by spaces in a given string.",
+    "method_signature": "method reverseWords (str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=reverseWords(\"python program\");\nassert out1==\"program python\";",
+      "test_2": "var out2:=reverseWords(\"\"java language\");\nassert out2==\"language java\";",
+      "test_3": "var out3:=reverseWords(\"indian man\");\nassert out3==\"man indian\";"
+    }
+  },
+  "564": {
+    "task_id": "564",
+    "task_description": "Write a method in Dafny which takes a list of integers and counts the number of possible unordered pairs where both elements are unequal.",
+    "method_signature": "method countPairs (arr:array<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,2,1];\nvar res1:=countPairs(a1,3);\nassert res1==2;",
+      "test_2": "var a2:= new int[] [1,1,1,1];\nvar res2:=countPairs(a2,4);\nassert res2==0;",
+      "test_3": "var a3:= new int[] [1,2,3,4,5];\nvar res3:=countPairs(a3,5);\nassert res3==10;"
+    }
+  },
+  "559": {
+    "task_id": "559",
+    "task_description": "Write a method in Dafny to find the sum of the largest contiguous sub-array in the given array.",
+    "method_signature": "method maxSubArraySum(arr:array<int>, size:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [-2, -3, 4, -1, -2, 1, 5, -3];\nvar res1:=maxSubArraySum(a1,8);\nassert res1==7;",
+      "test_2": "var a2:= new int[] [-3, -4, 5, -2, -3, 2, 6, -4];\nvar res2:=maxSubArraySum(a2,8);\nassert res2==8;",
+      "test_3": "var a3:= new int[] [-4, -5, 6, -3, -4, 3, 7, -5];\nvar res3:=maxSubArraySum(a3,8);\nassert res3==10;"
+    }
+  },
+  "474": {
+    "task_id": "474",
+    "task_description": "Write a method in Dafny to replace characters in a string.",
+    "method_signature": "method replaceChar(str:string, oldChar:char, newChar:char) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=replaceChar(\"polygon\",'y','l');\nassert out1==\"pollgon\";",
+      "test_2": "var out2:=replaceChar(\"character\",'c','a'\");\nassert out2==\"aharaater\";",
+      "test_3": "var out3:=replaceChar(\"python\",'l','a'\");\nassert out3==\"python\";"
+    }
+  },
+  "2": {
+    "task_id": "2",
+    "task_description": "Write a method in Dafny to find the shared elements from the given two array.",
+    "method_signature": "method similarElements (arr1:array<int>, arr2:array<int>) returns (res: array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [3, 4, 5, 6];\nvar a2:= new int[] [5, 7, 4, 10];\nvar e1:= new int[] [4, 5];\nvar res1:=similarElements(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1, 2, 3, 4];\nvar a4:= new int[] [5, 4, 3, 7];\nvar e2:= new int[] [3, 4];\nvar res2:=similarElements(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [11, 12, 14, 13];\nvar a6:= new int[] [17, 15, 14, 13];\nvar e3:= new int[] [13, 14];\nvar res3:=similarElements(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "3": {
+    "task_id": "3",
+    "task_description": "Write a method in Dafny to identify non-prime numbers.",
+    "method_signature": "method isNotPrime (n:nat) returns (res: bool)",
+    "test_cases": {
+      "test_1": "var res1:=isNotPrime(2); \nassert res1==false;",
+      "test_2": "var res2:=isNotPrime(10); \nassert res2==true;",
+      "test_3": "var res3:=isNotPrime(35); \nassert res3==true;"
+    }
+  },
+  "9": {
+    "task_id": "9",
+    "task_description": "Write a method in Dafny to find the minimum number of rotations (greater than 0) required to get the same string.",
+    "method_signature": "method findRotations(string:str) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= findRotations(\"aaaa\");\nassert res1==1;",
+      "test_2": "var res2:= findRotations(\"ab\");\nassert res2==2;",
+      "test_3": "var res3:= findRotations(\"abc\");\nassert res3==3;"
+    }
+  },
+  "17": {
+    "task_id": "17",
+    "task_description": "Write a method in Dafny that returns the perimeter of a square given its side length as input.",
+    "method_signature": "method squarePerimeter(side:int) returns (res: int)",
+    "test_cases": {
+      "test_1": "var res1:= squarePerimeter(10);\nassert res1==40;",
+      "test_2": "var res2:= squarePerimeter(5);\nassert res2==20;",
+      "test_3": "var res3:= squarePerimeter(4);\nassert res3==16;"
+    }
+  },
+  "59": {
+    "task_id": "59",
+    "task_description": "Write a method in Dafny to find the nth octagonal number.",
+    "method_signature": "method isOctagonal (n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= isOctagonal(5);\nassert res1==65;",
+      "test_2": "var res2:= isOctagonal(10);\nassert res2==280;",
+      "test_3": "var res3:= isOctagonal(15);\nassert res3==645;"
+    }
+  },
+  "61": {
+    "task_id": "61",
+    "task_description": "Write a method in Dafny to count the number of substrings with the sum of digits equal to their length.",
+    "method_signature": "method countSubstrings(str:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= countSubstrings('112112');\nassert res1==6;",
+      "test_2": "var res2:= countSubstrings('111');\nassert res2==6;",
+      "test_3": "var res3:= countSubstrings('1101112');\nassert res3==12;"
+    }
+  },
+  "399": {
+    "task_id": "399",
+    "task_description": "Write a method in Dafny to perform the mathematical bitwise xor operation across the given two sequences of Bit-vector.",
+    "method_signature": "method bitwiseXOR(sq1: seq<bv32>,sq2: seq<bv32>) returns (res:seq<bv32>)",
+    "test_cases": {
+      "test_1": "var s1: seq<bv32> := [10, 4, 6, 9];\nvar s2: seq<bv32> := [5, 2, 3, 3];\nvar e1: seq<bv32> := [15, 6, 5, 10];\nvar res1:=bitwiseXOR(s1,s2);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3: seq<bv32> := [11, 5, 7, 10];\nvar s4: seq<bv32> := [6, 3, 4, 4];\nvar e2: seq<bv32> := [13, 6, 3, 14];\nvar res2:=bitwiseXOR(s3,s4);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5: seq<bv32> := [12, 6, 8, 11];\nvar s6: seq<bv32> := [7, 4, 5, 6];\nvar e3: seq<bv32> := [11, 2, 13, 13];\nvar res3:=bitwiseXOR(s5,s6);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "69": {
+    "task_id": "69",
+    "task_description": "Write a method in Dafny to check whether a list of sequence contains the given sequence or not.",
+    "method_signature": "method isSublist (list:seq<int>, sublist:seq<int>) returns (res: bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<seq<int>> := [[2,4,3,5,7],[3,8]];\nvar s2: seq<int> := [3,7];\nvar res1:=isSublist(s1,s2);\nassert res1==false;",
+      "test_2": "var s3: seq<seq<int>> := [[2,4,3,5,7],[4,3]];\nvar s4: seq<int> := [4,3];\nvar res2:=isSublist(s3,s4);\nassert res2==true;",
+      "test_3": "var s5: seq<seq<int>> := [[2,4,3,5,7],[1,0]];\nvar s6: seq<int> := [1,6];\nvar res3:=isSublist(s5,s6);\nassert res3==false;"
+    }
+  },
+  "79": {
+    "task_id": "79",
+    "task_description": "Write a method in Dafny to check whether the length of the word is odd or not.",
+    "method_signature": "method wordLen(str:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:= wordLen(\"Hadoop\");\nassert res1==false;",
+      "test_2": "var res2:= wordLen(\"great\");\nassert res2==true;",
+      "test_3": "var res3:= wordLen(\"structure\");\nassert res3==true;"
+    }
+  },
+  "86": {
+    "task_id": "86",
+    "task_description": "Write a method in Dafny to find nth centered hexagonal number.",
+    "method_signature": "method centeredHexagonalNumber(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= centeredHexagonalNumber(10);\nassert res1==271;",
+      "test_2": "var res2:= centeredHexagonalNumber(2);\nassert res2==7;",
+      "test_3": "var res2:= centeredHexagonalNumber(9);\nassert res2==217;"
+    }
+  },
+  "750": {
+    "task_id": "750",
+    "task_description": "Write a method in Dafny to add the given tuple to the given list.",
+    "method_signature": "method addTuple(list:seq<int>, tuple:seq<int>) returns (outlist: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [5, 6, 7];\nvar s2: seq<int> := [9, 10];\nvar e1: seq<int> := [5, 6, 7, 9, 10];\nvar res1:=addTuple(s1,s2);\nassert sequenceEquals(res1,e1)",
+      "test_2": "var s3: seq<int> := [6, 7, 8];\nvar s4: seq<int> := [10, 11];\nvar e2: seq<int> := [6, 7, 8, 10, 11];\nvar res2:=addTuple(s3,s4);\nassert sequenceEquals(res2,e2)",
+      "test_3": "var s5: seq<int> := [7, 8, 9];\nvar s6: seq<int> := [11, 12];\nvar e3: seq<int> := [7, 8, 9, 11, 12];\nvar res3:=addTuple(s5,s6);\nassert sequenceEquals(res3,e3)"
+    }
+  },
+  "759": {
+    "task_id": "759",
+    "task_description": "Write a method in Dafny to check whether a given string is a decimal number with a precision of 2.",
+    "method_signature": "method isDecimal(str:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=isDecimal(\"123.11\");\nassert res1==true;",
+      "test_2": "var res2:=isDecimal(\"e666.86\");\nassert res2==false;",
+      "test_3": "var res3:=isDecimal(\"3.124587\");\nassert res3==false;"
+    }
+  },
+  "790": {
+    "task_id": "790",
+    "task_description": "Write a method in Dafny to check whether every even index contains even numbers of a given list.",
+    "method_signature": "method evenPosition(list: seq<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [3,2,1];\nvar res1:=evenPosition(s1); \nassert res1==false;",
+      "test_2": "var s2: seq<int> := [1,2,3];\nvar res2:=evenPosition(s2); \nassert res2==false;",
+      "test_3": "var s3: seq<int> := [2,1,4];\nvar res3:=evenPosition(s3); \nassert res3==true;"
+    }
+  },
+  "792": {
+    "task_id": "792",
+    "task_description": "Write a method in Dafny to count the number of lists in a given number of lists.",
+    "method_signature": "method countList (list:seq<seq<int>>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1, 3], [5, 7], [9, 11], [13, 15, 17]];\nvar res1:=countList(s1);\nassert res1==4;",
+      "test_2": "var s2:seq<seq<int>> :=[[1,2],[2,3],[4,5]];\nvar res2:=countList(s2);\nassert res2==3;",
+      "test_3": "var s3:seq<seq<int>> :=[[1,0],[2,0]];\nvar res3:=countList(s3);\nassert res3==2;"
+    }
+  },
+  "801": {
+    "task_id": "801",
+    "task_description": "Write a method in Dafny to count the number of equal numbers from three given integers.",
+    "method_signature": "method isThreeEqual (a:int, b:int, c:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=isThreeEqual(1,1,1); \nassert res1==3;",
+      "test_2": "var res2:=isThreeEqual(-1,-2,-3); \nassert res2==0;",
+      "test_3": "var res3:=isThreeEqual(-1,-2,-3); \nassert res3==0;"
+    }
+  },
+  "808": {
+    "task_id": "808",
+    "task_description": "Write a method in Dafny to check if the given sequence contain the k or not.",
+    "method_signature": "method checkK(s1: seq<int>, K:int) returns (res: bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [10, 4, 5, 6, 8];\nvar res1:=checkK(s1,6);\nassert res1==true;",
+      "test_2": "var s2: seq<int> := [1, 2, 3, 4, 5, 6];\nvar res2:=checkK(s2,7);\nassert res2==false;",
+      "test_3": "var s3: seq<int> := [7, 8, 9, 44, 11, 12];\nvar res3:=checkK(s3,11);\nassert res3==true;"
+    }
+  },
+  "809": {
+    "task_id": "809",
+    "task_description": "Write a method in Dafny to check if each element of second sequence is smaller than its corresponding element in the first sequence.",
+    "method_signature": "method checkSmaller (s1: seq<int>, s2: seq<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [1, 2, 3];\nvar s2: seq<int> := [2, 3, 4];  \nvar res1:=checkSmaller(s1,s2); \nassert res1==false;",
+      "test_2": "var s3: seq<int> := [4, 5, 6];\nvar s4: seq<int> := [3, 4, 5];  \nvar res2:=checkSmaller(s3,s4); \nassert res2==true;",
+      "test_3": "var s5: seq<int> := [11, 12, 13];\nvar s6: seq<int> := [10, 11, 12];  \nvar res3:=checkSmaller(s5,s6); \nassert res3==true;"
+    }
+  },
+  "240": {
+    "task_id": "240",
+    "task_description": "Write a method in Dafny that takes in two lists and replaces the last element of the first list with the elements of the second list.",
+    "method_signature": "method replaceList(l1: array<int>, l2: array<int>) returns (l3:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 3, 5, 7, 9, 10];\nvar a2:= new int[] [2, 4, 6, 8];\nvar e1:= new int[] [1, 3, 5, 7, 9, 2, 4, 6, 8];\nvar res1:=replaceList(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1,2,3,4,5];\nvar a4:= new int[] [5,6,7,8];\nvar e2:= new int[] [1,2,3,4,5,6,7,8];\nvar res2:=replaceList(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [1, 2,4,6,8];\nvar a6:= new int[] [3,5,7,9];\nvar e3:= new int[] [1,2,4,5,6,7,8,9];\nvar res3:=replaceList(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "251": {
+    "task_id": "251",
+    "task_description": "Write a method in Dafny that takes in a list of string and a string and inserts the string before each element in the list, and returns the resulting list.",
+    "method_signature": "method insertElement(list: seq<string>, element:string) returns (res: seq<string>)",
+    "test_cases": {
+      "test_1": "var s1: seq<string> := [\"Red\", \"Green\", \"Black\"];\nvar e1: seq<string> := [\"c\", \"Red\", \"c\", \"Green\", \"c\", \"Black\"]; \nvar res1:=insertElement(s1,\"c\"); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<string> := [\"python\", \"java\"];\nvar e2: seq<string> := [\"program\", \"python\", \"program\", \"java\"]; \nvar res2:=insertElement(s2,\"program\"); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<string> := [\"happy\", \"sad\"];\nvar e3: seq<string> := [\"laugh\", \"happy\", \"laugh\", \"sad\"]; \nvar res3:=insertElement(s3,\"laugh\"); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "728": {
+    "task_id": "728",
+    "task_description": "Write a method in Dafny takes as input two lists [a_1,...,a_n], [b_1,...,b_n] and returns [a_1+b_1,...,a_n+b_n].",
+    "method_signature": "method sumList(l1: array<int>, l2: array<int>) returns (l3:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [10,20,30];\nvar a2:= new int[] [15,25,35];\nvar e1:= new int[] [25,45,65];\nvar res1:=sumList(a1,a2);\nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1,2,3];\nvar a4:= new int[] [5,6,7];\nvar e2:= new int[] [6,8,10];\nvar res2:=sumList(a3,a4);\nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [15,20,30];\nvar a6:= new int[] [15,45,75];\nvar e3:= new int[] [30,65,105];\nvar res3:=sumList(a5,a6);\nassert arrayEquals(res3,e3);"
+    }
+  },
+  "70": {
+    "task_id": "70",
+    "task_description": "Write a method in Dafny to find whether all the given list of sequences have equal length or not.",
+    "method_signature": "method getEqual(list: seq<seq<int>>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[11, 22, 33], [44, 55, 66]];\nvar res1:=getEqual(s1);\nassert res1==true;",
+      "test_2": "var s2:seq<seq<int>> :=[[1, 2, 3], [4, 5, 6, 7]];\nvar res2:=getEqual(s2);\nassert res2==false;",
+      "test_3": "var s3:seq<seq<int>> :=[[1, 2], [3, 4]];\nvar res3:=getEqual(s3);\nassert res3==true;"
+    }
+  },
+  "80": {
+    "task_id": "80",
+    "task_description": "Write a method in Dafny to find the nth tetrahedral number.",
+    "method_signature": "method tetrahedralNumber (n: int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=tetrahedralNumber(5); \nassert res1==35;",
+      "test_2": "var res2:=tetrahedralNumber(6); \nassert res2==56;",
+      "test_3": "var res3:=tetrahedralNumber(7); \nassert res3==84;"
+    }
+  },
+  "82": {
+    "task_id": "82",
+    "task_description": "Write a method in Dafny to find the volume of a sphere.",
+    "method_signature": "method volumeSphere(r: real) returns (area: real)",
+    "test_cases": {
+      "test_1": "var res1:=volumeSphere(10); \nassert res1==4188.790204786391;",
+      "test_2": "var res2:=volumeSphere(25); \nassert res2==65449.84694978735;",
+      "test_3": "var res3:=volumeSphere(20); \nassert res3==33510.32163829113;"
+    }
+  },
+  "85": {
+    "task_id": "85",
+    "task_description": "Write a method in Dafny to find the surface area of a sphere.",
+    "method_signature": "method surfaceareaSphere(r: real) returns (area:real)",
+    "test_cases": {
+      "test_1": "var res1:=surfaceareaSphere(10); \nassert res1==1256.6370614359173;",
+      "test_2": "var res2:=surfaceareaSphere(15); \nassert res2==2827.4333882308138;",
+      "test_3": "var res3:=surfaceareaSphere(20); \nassert res3==5026.548245743669;"
+    }
+  },
+  "89": {
+    "task_id": "89",
+    "task_description": "Write a method in Dafny to find the closest smaller number than n.",
+    "method_signature": "method closestNum(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=closestNum(11); \nassert res1==10;",
+      "test_2": "var res2:=closestNum(7); \nassert res2==6;",
+      "test_3": "var res3:=closestNum(12); \nassert res3==11;"
+    }
+  },
+  "94": {
+    "task_id": "94",
+    "task_description": "Given a array of sequence, write a method in Dafny that returns the first value of the sequence with the smallest second value.",
+    "method_signature": "method indexMinimum(list: seq<seq<int>>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1, 3], [5, 7], [9, 11], [13, 15]];\nvar res1:=indexMinimum(s1);\nassert res1==1;",
+      "test_2": "var s2:seq<seq<int>> :=[[1, 4], [5, 1], [9, 11], [13, 15]];\nvar res2:=indexMinimum(s2);\nassert res2==5;",
+      "test_3": "var s3:seq<seq<int>> :=[[1, 4], [5, 1], [9, -1], [13, 15]];\nvar res3:=indexMinimum(s3);\nassert res3==9;"
+    }
+  },
+  "95": {
+    "task_id": "95",
+    "task_description": "Write a method in Dafny to find the length of the smallest list in a list of lists.",
+    "method_signature": "method findMinLength (list: seq<seq<int>>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1],[1,2]];\nvar res1:=findMinLength(s1);\nassert res1==1;",
+      "test_2": "var s2:seq<seq<int>> :=[[1,2],[1,2,3],[1,2,3,4]];\nvar res2:=findMinLength(s2);\nassert res2==2;",
+      "test_3": "var s3:seq<seq<int>> :=[[3,3,3],[4,4,4,4]];\nvar res3:=findMinLength(s3);\nassert res3==3;"
+    }
+  },
+  "106": {
+    "task_id": "106",
+    "task_description": "Write a method in Dafny to append the given array to the given sequence.",
+    "method_signature": "method addLists(arr: array<int>, se:seq<int>) returns (res:seq<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [5, 6, 7];\nvar s1: seq<int> := [9, 10];\nvar e1: seq<int> := [9, 10, 5, 6, 7]; \nvar res1:=addLists(a1,s1);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [6, 7, 8];\nvar s2: seq<int> := [10, 11];\nvar e2: seq<int> := [10, 11, 6, 7, 8]; \nvar res2:=addLists(a2,s2);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [7, 8, 9];\nvar s3: seq<int> := [11, 12];\nvar e3: seq<int> := [11, 12, 7, 8, 9]; \nvar res3:=addLists(a3,s3);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "113": {
+    "task_id": "113",
+    "task_description": "Write a method in Dafny to check if a string represents an integer or not.",
+    "method_signature": "method checkInteger (str:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=checkInteger(\"python\"); \nassert res1==false;",
+      "test_2": "var res2:=checkInteger(\"1\"); \nassert res2==true;",
+      "test_3": "var res3:=checkInteger(\"12345\"); \nassert res3==true;"
+    }
+  },
+  "116": {
+    "task_id": "116",
+    "task_description": "Write a method in Dafny to convert a given sequence of positive integers into a single integer.",
+    "method_signature": "method sequenceToInt (s1:seq<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var l1: seq<int> := [1,2,3];\nvar res1:=sequenceToInt(l1);\nassert res1==123;",
+      "test_2": "var l2: seq<int> := [4,5,6];\nvar res2:=sequenceToInt(l2);\nassert res2==456;",
+      "test_3": "var l3: seq<int> := [5,6,7];\nvar res3:=sequenceToInt(l3);\nassert res3==567;"
+    }
+  },
+  "135": {
+    "task_id": "135",
+    "task_description": "Write a method in Dafny to find the nth hexagonal number.",
+    "method_signature": "method hexagonalNum(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= hexagonalNum(10);\nassert res1==190;",
+      "test_2": "var res2:= hexagonalNum(5);\nassert res2==45;",
+      "test_3": "var res3:= hexagonalNum(7);\nassert res3==91;"
+    }
+  },
+  "139": {
+    "task_id": "139",
+    "task_description": "Write a method in Dafny to find the circumference of a circle.",
+    "method_signature": "method circleCircumference (r:real) returns (area:real)",
+    "test_cases": {
+      "test_1": "var res1:=circleCircumference(10); \nassert res1==62.83185307179586476920;",
+      "test_2": "var res2:=circleCircumference(5); \nassert res2==31.41592653589793238460;",
+      "test_3": "var res3:=circleCircumference(4); \nassert res3==25.13274122871834590768;"
+    }
+  },
+  "142": {
+    "task_id": "142",
+    "task_description": "Write a method in Dafny to count number items that are identical in the same position of three given lists.",
+    "method_signature": "method countSamePair (l1:seq<int>, l2:seq<int>, l3:seq<int>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [1,2,3,4,5,6,7,8];\nvar s2: seq<int> := [2,2,3,1,2,6,7,9];\nvar s3: seq<int> := [2,1,3,1,2,6,7,9];\nvar res1:=countSamePair(s1,s2,s3);\nassert res1==3;",
+      "test_2": "var s4: seq<int> := [1,2,3,4,5,6,7,8];\nvar s5: seq<int> := [2,2,3,1,2,6,7,8];\nvar s6: seq<int> := [2,1,3,1,2,6,7,8];\nvar res2:=countSamePair(s4,s4,s6);\nassert res2==4;",
+      "test_3": "var s7: seq<int> := [1,2,3,4,2,6,7,8];\nvar s8: seq<int> := [2,2,3,1,2,6,7,8];\nvar s9: seq<int> := [2,1,3,1,2,6,7,8];\nvar res3:=countSamePair(s7,s8,s9);\nassert res3==5;"
+    }
+  },
+  "143": {
+    "task_id": "143",
+    "task_description": "Write a method in Dafny to find number of array present in the given sequence of arrays.",
+    "method_signature": "method findLists (list: seq<seq<int>> ) returns (res: int)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1, 2, 3, 4], [5, 6, 7, 8]];\nvar res1:=findLists(s1); \nassert res1==2;",
+      "test_2": "var s2:seq<seq<int>> :=[[1, 2], [3, 4], [5, 6]];\nvar res2:=findLists(s2); \nassert res2==3;",
+      "test_3": "var s3:seq<seq<int>> :=[[9, 8, 7, 6, 5, 4, 3, 2, 1]];\nvar res3:=findLists(s3); \nassert res3==1;"
+    }
+  },
+  "171": {
+    "task_id": "171",
+    "task_description": "Write a method in Dafny to find the perimeter of a regular pentagon from the length of its sides.",
+    "method_signature": "method perimeterPentagon (a:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=perimeterPentagon(5);\nassert res1==25",
+      "test_2": "var res2:=perimeterPentagon(10);\nassert res2==50",
+      "test_3": "var res3:=perimeterPentagon(15);\nassert res3==75"
+    }
+  },
+  "230": {
+    "task_id": "230",
+    "task_description": "Write a method in Dafny that takes in a string and character, replaces blank spaces in the string with the character, and returns the string.",
+    "method_signature": "method replaceBlank(str1:string, ch:char) returns (res:string)",
+    "test_cases": {
+      "test_1": "var res1:=replaceBlank(\"hello people\",'@');\nassert res1==\"hello@people\"",
+      "test_2": "var res2:=replaceBlank(\"python program language\",'$');\nassert res2==\"python$program$language\"",
+      "test_3": "var res3:=replaceBlank(\"blank space\",'-');\nassert res3==\"blank-space\""
+    }
+  },
+  "233": {
+    "task_id": "233",
+    "task_description": "Write a method in Dafny to find the lateral surface area of a cylinder.",
+    "method_signature": "method lateralSufaceCylinder(r:real, h:real) returns (area:real)",
+    "test_cases": {
+      "test_1": "var res1:= lateralSufaceCylinder(10.0,5.0);\nassert res1==314.15926535897932384600;",
+      "test_2": "var res2:= lateralSufaceCylinder(4.0,5.0);\nassert res2==125.66370614359172953840;",
+      "test_3": "var res3:= lateralSufaceCylinder(4.0,10.0);\nassert res3==251.32741228718345907680;"
+    }
+  },
+  "238": {
+    "task_id": "238",
+    "task_description": "Write a method in Dafny to count the number of non-empty substrings of a given string.",
+    "method_signature": "method numberOfSubstrings(str:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=numberOfSubstrings(\"abc\");\nassert res1==6;",
+      "test_2": "var res2:=numberOfSubstrings(\"abcd\");\nassert res2==10;",
+      "test_3": "var res3:=numberOfSubstrings(\"abcde\");\nassert res3==15;"
+    }
+  },
+  "242": {
+    "task_id": "242",
+    "task_description": "Write a method in Dafny to count the total number of characters in a string.",
+    "method_signature": "method countCharacter(str:string) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=countCharacter(\"python programming\");\nassert res1==18;",
+      "test_2": "var res2:=countCharacter(\"language\");\nassert res2==8;",
+      "test_3": "var res3:=countCharacter(\"words\");\nassert res3==5;"
+    }
+  },
+  "257": {
+    "task_id": "257",
+    "task_description": "Write a method in Dafny that takes in two numbers and returns a sequence with the second number and then the first number.",
+    "method_signature": "method swapNumbers(a:int,b:int) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var e1: seq<int> := [20,10];\nvar res1:=swapNumbers(10,20);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var e2: seq<int> := [15,17];\nvar res2:=swapNumbers(17,15);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var e3: seq<int> := [200,100];\nvar res3:=swapNumbers(100,200);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "261": {
+    "task_id": "261",
+    "task_description": "Write a method in Dafny that takes in two sequences and performs mathematical division operation element-wise across the given sequences.",
+    "method_signature": "method divisionElements(test_tup1:seq<int>, test_tup2:seq<int>) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [10, 4, 6, 9];\nvar s2: seq<int> := [5, 2, 3, 3];\nvar e1: seq<real> := [2, 2, 2, 3];\nvar res1:=divisionElements(s1,s2);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3: seq<int> := [12, 6, 8, 16];\nvar s4: seq<int> := [6, 3, 4, 4];\nvar e2: seq<real> := [2, 2, 2, 4];\nvar res2:=divisionElements(s3,s4);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5: seq<int> := [20, 14, 36, 18];\nvar s6: seq<int> := [5, 7, 6, 9];\nvar e3: seq<real> := [4, 2, 6, 2];\nvar res3:=divisionElements(s5,s6);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "262": {
+    "task_id": "262",
+    "task_description": "Write a method in Dafny that takes in an array and an integer L and splits the given array into two parts where the length of the first part of the array is L, and returns the resulting array in a sequence.",
+    "method_signature": "method splitTwoParts (arr: array<int>, L: int) returns (part1: seq<int>, part2: seq<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1,1,2,3,4,4,5,1];\nvar e1: seq<int> := [1,1,2];\nvar e2: seq<int> := [3, 4, 4, 5, 1];\nvar res1,res2:=splitTwoParts(a1,3);\nassert sequenceEquals(res1,e1);\nassert sequenceEquals(res2,e2);",
+      "test_2": "var a2:= new int[] [1,1,2,3,4,4,5,1];\nvar e3: seq<int> := [1,1,2,3];\nvar e4: seq<int> := [4, 4, 5, 1];\nvar res3,res4:=splitTwoParts(a2,4);\nassert sequenceEquals(res3,e3);\nassert sequenceEquals(res4,e4);",
+      "test_3": "var a3:= new int[] [1,1,2,3,4,4,5,1];\nvar e5: seq<int> := [1,1];\nvar e6: seq<int> := [2,3,4, 4, 5, 1];\nvar res5,res6:=splitTwoParts(a3,2);\nassert splitTwoParts(res5,e5);\nassert sequenceEquals(res6,e6);"
+    }
+  },
+  "264": {
+    "task_id": "264",
+    "task_description": "Write a method in Dafny to calculate a dog's age in dog's years.",
+    "method_signature": "method dogAge(hAge:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=dogAge(12); \nassert res1==61;",
+      "test_2": "var res2:=dogAge(15); \nassert res2==73;",
+      "test_3": "var res3:=dogAge(24); \nassert res3==109;"
+    }
+  },
+  "266": {
+    "task_id": "266",
+    "task_description": "Write a method in Dafny to find the lateral surface area of a cube given its side length.",
+    "method_signature": "method lateralsurfaceCube(l:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=lateralsurfaceCube(5); \nassert res1==100;",
+      "test_2": "var res2:=lateralsurfaceCube(9); \nassert res2==324;",
+      "test_3": "var res3:=lateralsurfaceCube(10); \nassert res3==400;"
+    }
+  },
+  "268": {
+    "task_id": "268",
+    "task_description": "Write a method in Dafny to find the n'th star number.",
+    "method_signature": "method findStarNum(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=findStarNum(3); \nassert res1:==37;",
+      "test_2": "var res2:=findStarNum(4); \nassert res2:==73;",
+      "test_3": "var res3:=findStarNum(5); \nassert res3:==121;"
+    }
+  },
+  "269": {
+    "task_id": "269",
+    "task_description": "Write a method in Dafny to find the ascii value of a character.",
+    "method_signature": "method asciiValue(ch:char) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= asciiValue('A');\nassert res1==65;",
+      "test_2": "var res2:= asciiValue('R');\n assert res2==82;",
+      "test_3": "var res3:= asciiValue('S');\nassert res3==83;"
+    }
+  },
+  "273": {
+    "task_id": "273",
+    "task_description": "Write a method in Dafny that takes in two sequences and subtracts the elements of the first sequence by the elements of the second sequence with the same index.",
+    "method_signature": "method substractElements(s1:seq<int>, s2:seq<int>) returns (res:seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [10, 4, 5];\nvar s2: seq<int> := [2, 5, 18]; \nvar e1: seq<int> := [8, -1, -13]; \nvar res1:=substractElements(s1,s2); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3: seq<int> := [11, 2, 3];\nvar s4: seq<int> := [24, 45 ,16]; \nvar e2: seq<int> := [-13, -43, -13]; \nvar res2:=substractElements(s3,s4); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5: seq<int> := [7, 18, 9];\nvar s6: seq<int> := [10, 11, 12]; \nvar e3: seq<int> := [-3, 7, -3]; \nvar res3:=substractElements(s5,s6); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "276": {
+    "task_id": "276",
+    "task_description": "Write a method in Dafny that takes in the radius and height of a cylinder and returns the the volume.",
+    "method_signature": "method volumeCylinder(r:real,h:real) returns (v:real)",
+    "test_cases": {
+      "test_1": "var res1:=volumeCylinder(10.0,5.0); \nassert res1==1570.7500000000002;",
+      "test_2": "var res2:=volumeCylinder(4.0,5.0); \nassert res2==251.32000000000002;",
+      "test_3": "var res3:=volumeCylinder(4.0,10.0); \nassert res3==502.64000000000004;"
+    }
+  },
+  "279": {
+    "task_id": "279",
+    "task_description": "Write a method in Dafny to find the nth decagonal number.",
+    "method_signature": "method isNumDecagonal (n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=isNumDecagonal(3); \nassert res1==27;",
+      "test_2": "var res2:=isNumDecagonal(7); \nassert res2==175;",
+      "test_3": "var res3:=isNumDecagonal(10); \nassert res3==370;"
+    }
+  },
+  "282": {
+    "task_id": "282",
+    "task_description": "Write a method in Dafny to subtract two arrays element-wise.",
+    "method_signature": "method subtractList(a1:array<int>, a2:array<int>) returns (res:array<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3]; \nvar a2:= new int[] [4,5,6]; \nvar e1:= new int[] [-3,-3,-3]; \nvar res1:=subtractList(a1,a2); \nassert arrayEquals(res1,e1);",
+      "test_2": "var a3:= new int[] [1, 2]; \nvar a4:= new int[] [3,4]; \nvar e2:= new int[] [-2,-2]; \nvar res2:=subtractList(a3,a4); \nassert arrayEquals(res2,e2);",
+      "test_3": "var a5:= new int[] [90, 120]; \nvar a6:= new int[] [50,70]; \nvar e3:= new int[] [40,50]; \nvar res3:=subtractList(a5,a6); \nassert arrayEquals(res3,e3);"
+    }
+  },
+  "284": {
+    "task_id": "284",
+    "task_description": "Write a method in Dafny that takes in an array and element and checks whether all items in the array are equal to the given element.",
+    "method_signature": "method checkElement(a1:array<int>, e:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 3, 5, 7, 9, 2, 4, 6, 8]; \nvar res1:=checkElement(a1,3); \nassert res1:==false;",
+      "test_2": "var a2:= new int[] [1,1,1,1,1,1,1]; \nvar res2:=checkElement(a2,1); \nassert res2:==true;",
+      "test_3": "var a3:= new int[] [5,6,7,4,8]; \nvar res3:=checkElement(a3,6); \nassert res3:==false;"
+    }
+  },
+  "307": {
+    "task_id": "307",
+    "task_description": "Write a method in Dafny to get a deep copy of a sequence.",
+    "method_signature": "method deepCloneSequence(s1:seq<int>) returns (res:seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [5, 2, 3, 3]; \nvar e1: seq<int> := [5, 2, 3, 3]; \nvar res1:=deepCloneSequence(s1); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<int> := [3,4,7,2,6,9]; \nvar e2: seq<int> := [3,4,7,2,6,9];\nvar res2:=deepCloneSequence(s2); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<int> := [6,8,3,5,7,3,5,87]; \nvar e3: seq<int> := [6,8,3,5,7,3,5,87]; \nvar res3:=deepCloneSequence(s3); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "309": {
+    "task_id": "309",
+    "task_description": "Write a method in Dafny to find the maximum of two numbers.",
+    "method_signature": "method maximum(a:int,b:int) returns (max:int)",
+    "test_cases": {
+      "test_1": "var res1:=maximum(5,10); \nassert res1:==10;",
+      "test_2": "var res2:=maximum(-1,-2); \nassert res2:==-1;",
+      "test_3": "var res3:=maximum(9,7); \nassert res3:==9;"
+    }
+  },
+  "310": {
+    "task_id": "310",
+    "task_description": "Write a method in Dafny to convert a given string to a array of characters.",
+    "method_signature": "method stringToChar(str:string) returns (res:seq<char>)",
+    "test_cases": {
+      "test_1": "var e1: seq<char> := ['p', 'y', 't', 'h', 'o', 'n',' ' ,'3', '.', '0'];\nvar res1:=stringToChar(\"python 3.0\"); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var e2: seq<char> := ['i', 't', 'e', 'm', '1'];\nvar res2:=stringToChar(\"item1\"); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var e3: seq<char> := ['1', '5', '.', '1', '0'];\nvar res3:=stringToChar(\"15.10\"); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "312": {
+    "task_id": "312",
+    "task_description": "Write a method in Dafny to find the volume of a cone.",
+    "method_signature": "method volumeCone(r:real, h:real) returns (area:real)",
+    "test_cases": {
+      "test_1": "var res1:=volumeCone(5.0,12.0); \nassert res1==314.15926535897927;",
+      "test_2": "var res2:=volumeCone(10.0,15.0); \nassert res2==1570.7963267948965;",
+      "test_3": "var res3:=volumeCone(19.0,17.0); \nassert res3==6426.651371693521;"
+    }
+  },
+  "396": {
+    "task_id": "396",
+    "task_description": "Write a method in Dafny to check whether the given string starts and ends with the same character or not.",
+    "method_signature": "method checkChar(str:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=checkChar(\"abba\"); \nassert res1:==true;",
+      "test_2": "var res2:=checkChar(\"a\"); \nassert res2:==true;",
+      "test_3": "var res3:=checkChar(\"abcd\"); \nassert res3:==false;"
+    }
+  },
+  "401": {
+    "task_id": "401",
+    "task_description": "Write a method in Dafny to perform index wise addition of sequence elements in the given two nested sequences.",
+    "method_signature": "method addNestedSequence(a: seq<seq<int>>, b: seq<seq<int>>) returns (result: seq<seq<int>>)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1, 3], [4, 5], [2, 9], [1, 10]];\nvar s2:seq<seq<int>> :=[[6, 7], [3, 9], [1, 1], [7, 3]];\nvar e1:seq<seq<int>> :=[[7, 10], [7, 14], [3, 10], [8, 13]];\nvar res1:=addNestedSequence(s1,s2); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3:seq<seq<int>> :=[[2, 4], [5, 6], [3, 10], [2, 11]];\nvar s4:seq<seq<int>> :=[[7, 8], [4, 10], [2, 2], [8, 4]];\nvar e2:seq<seq<int>> :=[[9, 12], [9, 16], [5, 12], [10, 15]];\nvar res2:=addNestedSequence(s3,s4); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5:seq<seq<int>> :=[[3, 5], [6, 7], [4, 11], [3, 12]];\nvar s6:seq<seq<int>> :=[[8, 9], [5, 11], [3, 3], [9, 5]];\nvar e3:seq<seq<int>> :=[[11, 14], [11, 18], [7, 14], [12, 17]];\nvar res3:=addNestedSequence(s5,s6); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "405": {
+    "task_id": "405",
+    "task_description": "Write a method in Dafny to check whether an element exists within a sequence.",
+    "method_signature": "method checkSequence(list:seq<int>, k:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [10, 4, 6, 9];\nvar res1:=checkSequence(s1,9);\nassert res1:==true;",
+      "test_2": "var s2: seq<int> := [5,7,43,65,12,10, 4, 6, 9];\nvar res2:=checkSequence(s2,3);\nassert res2:==false;",
+      "test_3": "var s3: seq<int> := [2,4,6,7,10,12];\nvar res3:=checkSequence(s3,90);\nassert res3:==false;"
+    }
+  },
+  "424": {
+    "task_id": "424",
+    "task_description": "Write a method in Dafny to extract only the rear index character of each string in the given sequence of strings.",
+    "method_signature": "method extractRear(strList:seq<string>) returns (res: seq<char>)",
+    "test_cases": {
+      "test_1": "var s1: seq<string> := [\"Mers\", \"for\", \"Vers\"];\nvar e1: seq<char> := ['s', 'r', 's']; \nvar res1:=extractRear(s1); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<string> := [\"Avenge\", \"for\", \"People\"];\nvar e2: seq<char> := ['e', 'r', 'e']; \nvar res2:=extractRear(s2); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<string> := [\"Gotta\", \"get\", \"go\"];\nvar e3: seq<char> := ['a', 't', 'o']; \nvar res3:=extractRear(s3); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "430": {
+    "task_id": "430",
+    "task_description": "Write a method in Dafny to find the directrix of a parabola.",
+    "method_signature": "method parabolaDirectrix(a:int, b:int, c:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=parabolaDirectrix(5,3,2); \nassert res1:==-198;",
+      "test_2": "var res2:=parabolaDirectrix(9,8,4); \nassert res2:==-2336;",
+      "test_3": "var res3:=parabolaDirectrix(2,4,6); \nassert res3:==-130;"
+    }
+  },
+  "432": {
+    "task_id": "432",
+    "task_description": "Write a method in Dafny to find the median length of a trapezium.",
+    "method_signature": "method medianTrapezium(base1:int,base2:int,height:int) returns (res:real)",
+    "test_cases": {
+      "test_1": "var res1:=medianTrapezium(15,25,35); \nassert res1:==20.0;",
+      "test_2": "var res2:=medianTrapezium(10,20,30); \nassert res2:==15.0;",
+      "test_3": "var res3:=medianTrapezium(6,9,4); \nassert res3:==7.5;"
+    }
+  },
+  "445": {
+    "task_id": "445",
+    "task_description": "Write a method in Dafny to perform index wise multiplication of elements in the given two sequences.",
+    "method_signature": "method indexMultiplication(a: seq<int>, b: seq<int>) returns (result: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1:seq<int> :=[1, 3,4, 5, 2, 9, 1, 10];\n  var s2:seq<int> :=[6, 7, 3, 9, 1, 1, 7, 3];\n  var res1:=indexMultiplication(s1,s2); var e1:=seq<int>:=[6, 21, 12, 45, 2, 9, 7, 30]; \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3:seq<int> :=[2, 4,5, 6, 3, 10, 2, 11];\n  var s4:seq<int> :=[7, 8, 4, 10, 2, 2, 8, 4];\n  var res2:=indexMultiplication(s3,s4);var e2:=seq<int>:=[14, 31, 20, 60, 6, 20, 16, 44];  \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5:seq<int> :=[3, 5, 6, 7, 4, 11, 3, 12];\n  var s6:seq<int> :=[8, 9, 5, 11, 3, 3, 9, 5];\nvar e3:seq<seq<int>> :=[[24, 45], [30, 77], [12, 33], [27, 60]];\nvar res3:=indexMultiplication(s5,s6);var e3:=seq<int>:=[24, 45, 30, 77, 12, 33, 27, 60] \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "450": {
+    "task_id": "450",
+    "task_description": "Write a method in Dafny to extract specified size of strings from a given sequence of string values.",
+    "method_signature": "method extractString(strList: seq<string>, int k) returns (res:seq<string>)",
+    "test_cases": {
+      "test_1": "var s1: seq<string> := [\"Python\", \"list\", \"exercises\", \"practice\", \"solution\"];\nvar e1: seq<string> := [\"practice\", \"solution\"];\nvar res1:=extractString(s1,8); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<string> := [\"Python\", \"list\", \"exercises\", \"practice\", \"solution\"];\nvar e2: seq<string> := [\"Python\"];\nvar res2:=extractString(s2,6); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<string> := [\"Python\", \"list\", \"exercises\", \"practice\", \"solution\"];\nvar e3: seq<string> := [\"exercises\"];\nvar res3:=extractString(s3,9); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "452": {
+    "task_id": "452",
+    "task_description": "Write a method in Dafny that gives loss amount on a sale if the given amount has loss else return 0.",
+    "method_signature": "method lossAmount(cost:int,sale:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=lossAmount(1500,1200); \nassert res1:==0;",
+      "test_2": "var res2:=lossAmount(100,200); \nassert res2:==100;",
+      "test_3": "var res3:=lossAmount(2000,5000); \nassert res3:==3000;"
+    }
+  },
+  "455": {
+    "task_id": "455",
+    "task_description": "Write a method in Dafny to check whether the given month number contains 31 days or not.",
+    "method_signature": "method checkMonthnumbNumber (m:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=checkMonthnumbNumber(5); \nassert res1:==true;",
+      "test_2": "var res2:=checkMonthnumbNumber(2); \nassert res2:==false;",
+      "test_3": "var res3:=checkMonthnumbNumber(6); \nassert res3:==false;"
+    }
+  },
+  "456": {
+    "task_id": "456",
+    "task_description": "Write a method in Dafny to reverse each string in a given list of string values.",
+    "method_signature": "method reverseStringList(stringlist: seq<string>) returns (reverse: seq<string>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [\"Red\", \"Green\", \"Blue\", \"White\", \"Black\"];\nvar e1: seq<int> := [\"deR\", \"neerG\", \"eulB\", \"etihW\", \"kcalB\"];\nvar res1:=reverseStringList(s1);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<int> := [\"john\",\"amal\",\"joel\",\"george\"];\nvar e2: seq<int> := [\"nhoj\",\"lama\",\"leoj\",\"egroeg\"];\nvar res2:=reverseStringList(s2);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<int> := [\"jack\",\"john\",\"mary\"];\nvar e3: seq<int> := [\"kcaj\",\"nhoj',\"yram\"];\nvar res3:=reverseStringList(s3);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "457": {
+    "task_id": "457",
+    "task_description": "Write a method in Dafny to find the sublist having minimum length.",
+    "method_signature": "method findMin(list:seq<seq<int>>) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1],[1,2],[1,2,3]];\nvar e1: seq<int> := [1]; \nvar res1:=findMin(s1); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2:seq<seq<int>> :=[[1,1],[1,1,1],[1,2,7,8]];\nvar e2: seq<int> := [1,1]; \nvar res2:=findMin(s2); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3:seq<seq<int>> :=[[1,2,3],[3,4],[11,12,14]];\nvar e3: seq<int> := [3,4]; \nvar res3:=findMin(s3); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "460": {
+    "task_id": "460",
+    "task_description": "Write a method in Dafny to get the first element of each sublist.",
+    "method_signature": "method extract(list: seq<seq<int>>) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1, 2], [3, 4, 5], [6, 7, 8, 9]];\nvar e1: seq<int> := [1, 3, 6]; \nvar res1:=extract(s1); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2:seq<seq<int>> :=[[1,2,3],[4, 5]];\nvar e2: seq<int> := [1,4]; \nvar res2:=extract(s2); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3:seq<seq<int>> :=[[9,8,1],[1,2]];\nvar e3: seq<int> := [9,1]; \nvar res3:=extract(s3); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "565": {
+    "task_id": "565",
+    "task_description": "Write a method in Dafny to split a string into characters.",
+    "method_signature": "method split(str:string) returns (res:seq<char>)",
+    "test_cases": {
+      "test_1": "var e1: seq<char> := ['p','y','t','h','o','n']; \nvar res1:=split(\"python\"); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var e2: seq<char> := ['N','a','m','e']; \nvar res2:=split(\"Name\"); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var e3: seq<char> := ['p','r','o','g','r','a','m']; \nvar res3:=split(\"program\"); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "574": {
+    "task_id": "574",
+    "task_description": "Write a method in Dafny to find the surface area of a cylinder.",
+    "method_signature": "method surfaceareaCylinder(r:real,h:real) returns (areas: real)",
+    "test_cases": {
+      "test_1": "var res1:=surfaceareaCylinder(10.0,5.0); \nassert res1:==942.45;",
+      "test_2": "var res2:=surfaceareaCylinder(4.0,5.0); \nassert res2:==226.18800000000002;",
+      "test_3": "var res3:=surfaceareaCylinder(4.0,10.0); \nassert res3:==351.848;"
+    }
+  },
+  "578": {
+    "task_id": "578",
+    "task_description": "Write a method in Dafny to interleave 3 sequence of the same length into a single flat sequence.",
+    "method_signature": "method interleaveLists(list1: seq<int>, list2: seq<int>,list3: seq<int>) returns (merged: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [1,2,3,4,5,6,7];\nvar s2: seq<int> := [10,20,30,40,50,60,70];\nvar s3: seq<int> := [100,200,300,400,500,600,700];\nvar e1: seq<int> := [1, 10, 100, 2, 20, 200, 3, 30, 300, 4, 40, 400, 5, 50, 500, 6, 60, 600, 7, 70, 700];\nvar res1:=interleaveLists(s1,s2,s3);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s4: seq<int> := [10,20];\nvar s5: seq<int> := [15,2];\nvar s6: seq<int> := [5,10];\nvar e2: seq<int> := [10,15,5,20,2,10];\nvar res2:=interleaveLists(s4,s5,s6);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s7: seq<int> := [11,44];\nvar s8: seq<int> := [10,15];\nvar s9: seq<int> := [20,5];\nvar e3: seq<int> := [11,10,20,44,15,5];\nvar res3:=interleaveLists(s7,s8,s9);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "586": {
+    "task_id": "586",
+    "task_description": "Write a method in Dafny to split a list at the nth element and add the first part to the end.",
+    "method_signature": "method splitArr(l: seq<int>, n:int) returns (part:seq<int>)",
+    "test_cases": {
+      "test_1": "var l1: seq<int> := [12,10,5,6,52,36];\nvar e1: seq<int> := [5,6,52,36,12,10];\nvar res1:=splitArr(l1,2);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var l2: seq<int> := [1,2,3,4];\nvar e2: seq<int> := [2,3,4,1];\nvar res2:=splitArr(l2,1);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var l3: seq<int> := [0,1,2,3,4,5,6,7];\nvar e3: seq<int> := [3,4,5,6,7,0,1,2];\nvar res3:=splitArr(l3,3);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "587": {
+    "task_id": "587",
+    "task_description": "Write a method in Dafny to convert an array to a sequence.",
+    "method_signature": "method arrayToSequence(arr:array<int>) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [5, 10, 7, 4, 15, 3]; \nvar e1: seq<int> := [5, 10, 7, 4, 15, 3]; \nvar res1:=arrayToSequence(a1); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [2, 4, 5, 6, 2, 3, 4, 4, 7]; \nvar e2: seq<int> := [2, 4, 5, 6, 2, 3, 4, 4, 7]; \nvar res2:=arrayToSequence(a2); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [58,44,56]; \nvar e3: seq<int> := [58,44,56]; \nvar res3:=arrayToSequence(a3); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "591": {
+    "task_id": "591",
+    "task_description": "Write a method in Dafny to interchange the first and last elements in a array.",
+    "method_signature": "method swapList(list: seq<int>) returns (res:seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> :=[12, 35, 9, 56, 24];\nvar e1: seq<int> := [24, 35, 9, 56, 12]; \nvar res1:=swapList(s1); \nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<int> :=[1, 2, 3];\nvar e2: seq<int> := [3, 2, 1]; \nvar res2:=swapList(s2); \nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<int> :=[4, 5, 6];\nvar e3: seq<int> := [6, 5, 4]; \nvar res3:=swapList(s3); \nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "603": {
+    "task_id": "603",
+    "task_description": "Write a method in Dafny to get all lucid numbers smaller than or equal to a given integer.",
+    "method_signature": "method  getLudic(n: int) returns (lucids: seq<int>)",
+    "test_cases": {
+      "test_1": "var e1: seq<int> := [1, 2, 3, 5, 7];\nvar res1:=getLudic(10);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var e2: seq<int> := [1, 2, 3, 5, 7, 11, 13, 17, 23, 25];\nvar res2:=getLudic(25);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var e3: seq<int> := [1, 2, 3, 5, 7, 11, 13, 17, 23, 25, 29, 37, 41, 43];\nvar res3:=getLudic(45);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "606": {
+    "task_id": "606",
+    "task_description": "Write a method in Dafny to convert degrees to radians.",
+    "method_signature": "method radianDegree(rad:real) returns (deg: real)",
+    "test_cases": {
+      "test_1": "var res1:=radianDegree(90.0); \nassert res1:==1.5707963267948966;",
+      "test_2": "var res2:=radianDegree(60.0); \nassert res2:==1.0471975511965976;",
+      "test_3": "var res3:=radianDegree(120); \nassert res3:==2.0943951023931953;"
+    }
+  },
+  "618": {
+    "task_id": "618",
+    "task_description": "Write a method in Dafny to divide two lists element wise.",
+    "method_signature": "method divList(nums1: seq<int>,nums2:seq<int>) returns (res: seq<real>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [4,5,6];\nvar s2: seq<int> := [1, 2, 3];\nvar e1: seq<real> := [4.0,2.5,2.0];\nvar res1:=divList(s1,s2);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3: seq<int> := [3,2];\nvar s4: seq<int> := [1,4];\nvar e2: seq<real> := [3.0, 0.5];\nvar res2:=divList(s3,s4);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5: seq<int> := [90,120];\nvar s6: seq<int> := [50,70];\nvar e3: seq<real> := [1.8, 1.7142857142857142];\nvar res3:=divList(s5,s6);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "626": {
+    "task_id": "626",
+    "task_description": "Write a method in Dafny to find the area of the largest triangle that can be inscribed in a semicircle with a given radius.",
+    "method_signature": "method triangleArea(r:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=triangleArea(-1); \nassert res1:==None;",
+      "test_2": "var res2:=triangleArea(0); \nassert res2:==0;",
+      "test_3": "var res3:=triangleArea(2); \nassert res3:==4;"
+    }
+  },
+  "637": {
+    "task_id": "637",
+    "task_description": "Write a method in Dafny to check whether the given amount has no profit and no loss.",
+    "method_signature": "method noprofitNoloss(cost: int, sale: int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=noprofitNoloss(1500,1200); \nassert res1:==false;",
+      "test_2": "var res2:=noprofitNoloss(100,100); \nassert res2:==true;",
+      "test_3": "var res3:=noprofitNoloss(2000,5000); \nassert res3:==false;"
+    }
+  },
+  "641": {
+    "task_id": "641",
+    "task_description": "Write a method in Dafny to find the nth nonagonal number.",
+    "method_signature": "method isNonagonal(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= isNonagonal(10);\nassert res1==325;",
+      "test_2": "var res2:= isNonagonal(15);\nassert res2==750;",
+      "test_3": "var res3:= isNonagonal(18);\nassert res3==1089;"
+    }
+  },
+  "414": {
+    "task_id": "414",
+    "task_description": "Write a method in Dafny to check whether any value in a sequence exists in a sequence or not.",
+    "method_signature": "method overlapping(list1:seq<int>,list2:seq<int>) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [1,2,3,4,5];\nvar s2: seq<int> := [6,7,8,9];\nvar res1:=overlapping(s1,s2);\nassert res1==false;",
+      "test_2": "var s3: seq<int> := [1,2,3];\nvar s4: seq<int> := [4,5,6];\nvar res2:=overlapping(s3,s4);\nassert res2==false;",
+      "test_3": "var s5: seq<int> := [1,4,5];\nvar s6: seq<int> := [1,4,5];\nvar res3:=overlapping(s5,s6);\nassert res3==true;"
+    }
+  },
+  "451": {
+    "task_id": "451",
+    "task_description": "Write a method in Dafny to remove all whitespaces from the given string.",
+    "method_signature": "method removeWhitespaces(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var res1:=removeWhitespaces(\" Google    Flutter \"); \nassert res1:==\"GoogleFlutter\"",
+      "test_2": "var res2:=removeWhitespaces(\" Google    Dart \"); \nassert res2:==\"GoogleDart\"",
+      "test_3": "var res3:=removeWhitespaces(\" iOS    Swift \"); \nassert res3:==\"iOSSwift\""
+    }
+  },
+  "395": {
+    "task_id": "395",
+    "task_description": "Write a method in Dafny to find the first non-repeated character in a given string.",
+    "method_signature": "method firstNonRepeatingCharacter(str:string) returns (res:char)",
+    "test_cases": {
+      "test_1": "var res1:=firstNonRepeatingCharacter(\"abcabc\"); \nassert res1:==' ';",
+      "test_2": "var res2:=firstNonRepeatingCharacter(\"abc\"); \nassert res2:=='a';",
+      "test_3": "var res3:=firstNonRepeatingCharacter(\"ababc\"); \nassert res3:=='c';"
+    }
+  },
+  "389": {
+    "task_id": "389",
+    "task_description": "Write a method in Dafny to find the n'th lucas number.",
+    "method_signature": "method findLucas(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=findLucas(9); \nassert res1:==76;",
+      "test_2": "var res2:=findLucas(4); \nassert res2:==7;",
+      "test_3": "var res3:=findLucas(3); \nassert res3:==4;"
+    }
+  },
+  "304": {
+    "task_id": "304",
+    "task_description": "Write a method in Dafny to find element at a given index after number of rotations.",
+    "method_signature": "method findElement(arr:array<int>,rotations:int,index:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5]; \nvar res1:=findElement(a1,2,3); \nassert res1:==1;",
+      "test_2": "var a2:= new int[] [10, 20, 30, 40, 50]; \nvar res2:=findElement(a2,10,1); \nassert res2:==40;",
+      "test_3": "var a3:= new int[] [7, 8, 9, 10, 11]; \nvar res3:=findElement(a3,15,2); \nassert res3:==10;"
+    }
+  },
+  "291": {
+    "task_id": "291",
+    "task_description": "Write a method in Dafny to find out the number of ways of painting the fence such that at most 2 adjacent posts have the same color for the given fence with n posts and k colors.",
+    "method_signature": "method countNoOfWays(n:int, k:int)",
+    "test_cases": {
+      "test_1": "var res1:= countNoOfWays(2,4);\nassert res1==16;",
+      "test_2": "var res2:= countNoOfWays(3,2);\nassert res2==6;",
+      "test_3": "var res3:= countNoOfWays(4,4);\nassert res3==228;"
+    }
+  },
+  "628": {
+    "task_id": "628",
+    "task_description": "Write a method in Dafny to replace all spaces in the given string with '%20'.",
+    "method_signature": "method replaceSpaces(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=replaceSpaces(\"My Name is Dawood\");\nassert out1==\"My%20Name%20is%20Dawood\";",
+      "test_2": "var out2:=replaceSpaces(\"I am a Programmer\");\nassert out2==\"I%20am%20a%20Programmer\";",
+      "test_3": "var out3:=replaceSpaces(\"I love Coding\");\nassert out3==\"I%20love%20Coding\";"
+    }
+  },
+  "623": {
+    "task_id": "623",
+    "task_description": "Write a method in Dafny to compute the n-th power of each number in a list.",
+    "method_signature": "method nthNums(list:seq<int>, n:int) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> :=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e1: seq<int> := [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];\nvar res1:=nthNums(s1,2);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<int> :=[10,20,30];\nvar e2: seq<int> := [1000, 8000, 27000];\nvar res2:=nthNums(s2,3);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<int> :=[12,15];\nvar e3: seq<int> := [248832, 759375];\nvar res3:=nthNums(s3,5);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "598": {
+    "task_id": "598",
+    "task_description": "Write a method in Dafny to check whether the given number is armstrong or not.",
+    "method_signature": "method armstrongNumber(number:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=armstrongNumber(153);\nassert res1==true;",
+      "test_2": "var res2:=armstrongNumber(259);\nassert res2==false;",
+      "test_3": "var res3:=armstrongNumber(4458);\nassert res3==false;"
+    }
+  },
+  "581": {
+    "task_id": "581",
+    "task_description": "Write a method in Dafny to find the surface area of a square pyramid with a given base edge and height.",
+    "method_signature": "method surfaceArea(b: real,s:real) returns (area:real)",
+    "test_cases": {
+      "test_1": "var res1:=surfaceArea(3.0,4.0);\nassert res1==33.0;",
+      "test_2": "var res2:=surfaceArea(4.0,5.0);\nassert res2==56.0;",
+      "test_3": "var res3:=surfaceArea(1.0,1.0);\nassert res3==5.0;"
+    }
+  },
+  "562": {
+    "task_id": "562",
+    "task_description": "Write a method in Dafny to find the length of the longest sublists.",
+    "method_signature": "method findMaxLength(list: seq<seq<int>>) returns (res:int)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[1],[1,4],[5,6,7,8]];\nvar res1:=findMaxLength(s1); \nassert res1:==4;",
+      "test_2": "var s2:seq<seq<int>> :=[[0,1],[2,2,],[3,2,1]];\nvar res2:=findMaxLength(s2); \nassert res2:==3;",
+      "test_3": "var s3:seq<seq<int>> :=[[7],[22,23],[13,14,15],[10,20,30,40,50]];\nvar res3:=findMaxLength(s3); \nassert res3:==3;"
+    }
+  },
+  "555": {
+    "task_id": "555",
+    "task_description": "Write a method in Dafny to find the difference between the sum of cubes of the first n natural numbers and the sum of the first n natural numbers.",
+    "method_signature": "method difference(n: int) returns (diff: int)",
+    "test_cases": {
+      "test_1": "var res1:= difference(3);\nassert res1==30;",
+      "test_2": "var res2:= difference(5);\nassert res2==210;",
+      "test_3": "var res3:= difference(2);\nassert res3==6;"
+    }
+  },
+  "470": {
+    "task_id": "470",
+    "task_description": "Write a method in Dafny to find the pairwise addition of the neighboring elements of the given sequence.",
+    "method_signature": "method addPairwise(n: seq<int>) returns (res:seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [1, 5, 7, 8, 10];\nvar e1: seq<int> := [6, 12, 15, 18];\nvar res1:=addPairwise(s1);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2: seq<int> := [2, 6, 8, 9, 11];\nvar e2: seq<int> := [8, 14, 17, 20];\nvar res2:=addPairwise(s2);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3: seq<int> := [3, 7, 9, 10, 12];\nvar e3: seq<int> := [10, 16, 19, 22];\nvar res3:=addPairwise(s3);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "448": {
+    "task_id": "448",
+    "task_description": "Write a method in Dafny to calculate the sum of perrin numbers.",
+    "method_signature": "method calSum(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:= calSum(9);\nassert res1==49;",
+      "test_2": "var res2:= calSum(10);\nassert res2==66;",
+      "test_3": "var res3:= calSum(11);\nassert res3==88;"
+    }
+  },
+  "437": {
+    "task_id": "437",
+    "task_description": "Write a method in Dafny to remove odd characters in a string.",
+    "method_signature": "method removeOddChars(str:string) returns (res:string)",
+    "test_cases": {
+      "test_1": "var out1:=removeOddChars(\"python\");\nassert out1==\"yhn\";",
+      "test_2": "var out2:=removeOddChars(\"program\");\nassert out2==\"rga\";",
+      "test_3": "var out3:=removeOddChars(\"language\");\nassert out3==\"agae\";"
+    }
+  },
+  "429": {
+    "task_id": "429",
+    "task_description": "Write a method in Dafny to extract the elementwise and sequence from the given two sequence.",
+    "method_signature": "method andTuples(test_tup1:seq<int>, test_tup2: seq<int>) returns (res: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [10, 4, 6, 9];\nvar s2: seq<int> := [5, 2, 3, 3];\nvar e1: seq<int> := [0, 0, 2, 1];\nvar res1:=andTuples(s1,s2);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s3: seq<int> := [1, 2, 3, 4];\nvar s4: seq<int> := [5, 6, 7, 8];\nvar e2: seq<int> := [1, 2, 3, 0];\nvar res2:=andTuples(s3,s4);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s5: seq<int> := [8, 9, 11, 12];\nvar s6: seq<int> := [7, 13, 14, 17];\nvar e3: seq<int> := [0, 9, 10, 0];\nvar res3:=andTuples(s5,s6);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "426": {
+    "task_id": "426",
+    "task_description": "Write a method in Dafny to filter odd numbers.",
+    "method_signature": "method filterOddNumbers (arr: array<int>) returns (odds: seq<int>)",
+    "test_cases": {
+      "test_1": "var a1:= new int[] [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nvar e1: seq<int> := [1,3,5,7,9];\nvar res1:=filterOddNumbers(a1);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var a2:= new int[] [10,20,45,67,84,93];\nvar e2: seq<int> := [45,67,93];\nvar res2:=filterOddNumbers(a2);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var a3:= new int[] [5,7,9,8,6,4,3];\nvar e3: seq<int> := [5,7,9,3];\nvar res3:=filterOddNumbers(a3);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "406": {
+    "task_id": "406",
+    "task_description": "Write a method in Dafny to find whether the parity of a given number is odd.",
+    "method_signature": "method findParity(n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=findParity(12);\nassert res1==false;",
+      "test_2": "var res2:=findParity(7);\nassert res2==true;",
+      "test_3": "var res3:=findParity(10);\nassert res3==false;"
+    }
+  },
+  "394": {
+    "task_id": "394",
+    "task_description": "Write a method in Dafny to check if given sequence contains no duplicates.",
+    "method_signature": "method checkDistinct(test_tup: seq<int>) returns (res: bool)",
+    "test_cases": {
+      "test_1": "var s1: seq<int> := [1, 4, 5, 6, 1, 4];\nvar res1:=checkDistinct(s1);\nassert res1==false;",
+      "test_2": "var s2: seq<int> := [1, 4, 5, 6];\nvar res2:=checkDistinct(s2);\nassert res2==true;",
+      "test_3": "var s3: seq<int> := [2, 3, 4, 5, 6];\nvar res3:=checkDistinct(s3);\nassert res3==true;"
+    }
+  },
+  "305": {
+    "task_id": "305",
+    "task_description": "Write a method in Dafny to return two words from a list of words starting with letter 'p'.",
+    "method_signature": " method startWithP(words: seq<string>) returns (w1:string, w2:string)",
+    "test_cases": {
+      "test_1": "var s1: seq<string> := [\"Python PHP\", \"Java JavaScript\", \"c c++\"];\nvar w1,w2:=startWithP(s1);\nassert w1==\"Python\";\nassert w2==\"PHP\";",
+      "test_2": "var s2: seq<string> := [\"Python Programming\",\"Java Programming\"];\nvar w3,w4:=startWithP(s2);\nassert w3==\"Python\";\nassert w4==\"Programming\";",
+      "test_3": "var s3: seq<string> := [\"Pqrst Pqr\",\"qrstuv\"];\nvar w5,w6:=startWithP(s3);\nassert w5==\"Pqrst\";\nassert w6==\"Pqr\";"
+    }
+  },
+  "292": {
+    "task_id": "292",
+    "task_description": "Write a method in Dafny to find quotient of two numbers (rounded down to the nearest integer).",
+    "method_signature": "method  findQuotient(a:int, b:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=findQuotient(10,3);\nassert res1==3;",
+      "test_2": "var res2:=findQuotient(4,2);\nassert res2==2;",
+      "test_3": "var res3:=findQuotient(20,5);\nassert res3==4;"
+    }
+  },
+  "290": {
+    "task_id": "290",
+    "task_description": "Write a method in Dafny to find the list of maximum length in a list of lists.",
+    "method_signature": "method maxLength(list1: seq<seq<int>>) returns (max: seq<int>)",
+    "test_cases": {
+      "test_1": "var s1:seq<seq<int>> :=[[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]];\nvar e1: seq<int> := [13, 15, 17];\nvar res1:=maxLength(s1);\nassert sequenceEquals(res1,e1);",
+      "test_2": "var s2:seq<seq<int>> :=[[1], [5, 7], [10, 12, 14,15]];\nvar e2: seq<int> := [10, 12, 14,15];\nvar res2:=maxLength(s2);\nassert sequenceEquals(res2,e2);",
+      "test_3": "var s3:seq<seq<int>> :=[[5], [15,20,25]];\nvar e3: seq<int> := [15,20,25];\nvar res3:=maxLength(s3);\nassert sequenceEquals(res3,e3);"
+    }
+  },
+  "287": {
+    "task_id": "287",
+    "task_description": "Write a method in Dafny takes in an integer n and returns the sum of squares of first n even natural numbers.",
+    "method_signature": "method squareSumEvenN(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=squareSumEvenN(2);\nassert res1==20;",
+      "test_2": "var res2:=squareSumEvenN(3);\nassert res2==56;",
+      "test_3": "var res3:=squareSumEvenN(4);\nassert res3==120;"
+    }
+  },
+  "285": {
+    "task_id": "285",
+    "task_description": "Write a method in Dafny that checks whether a string contains the 'a' character followed by two or three 'b' characters.",
+    "method_signature": "method textMatchTwoThree (text:string) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=textMatchTwoThree(\"ac\");\nassert res1==false;",
+      "test_2": "var res2=textMatchTwoThree(\"dc\");\nassert res2==false;",
+      "test_3": "var res3=textMatchTwoThree(\"abbbba\");\nassert res3==true;"
+    }
+  },
+  "577": {
+    "task_id": "577",
+    "task_description": "Write a method in Dafny to find the factorial of the last digit in a given number.",
+    "method_signature": "method lastDigitFactorial(n:int) returns (res:int)",
+    "test_cases": {
+      "test_1": "var res1:=lastDigitFactorial(4);\nassert res1==4;",
+      "test_2": "var res2:=lastDigitFactorial(21);\nassert res2==0;",
+      "test_3": "var res3:=lastDigitFactorial(30);\nassert res3==0;"
+    }
+  },
+  "131": {
+    "task_id": "131",
+    "task_description": "Write a method in Dafny to reverse only the vowels of a given string (where y is not a vowel).",
+    "method_signature": "method reverseVowels(str: string) returns (vowels: string)",
+    "test_cases": {
+      "test_1": "var out1:=reverseVowels(\"Python\");\nassert out1==\"Python\";",
+      "test_2": "var out2:=reverseVowels(\"USA\");\nassert out2==\"ASU\";",
+      "test_3": "var out3:=reverseVowels(\"ab\");\nassert out3==\"ab\";"
+    }
+  },
+  "20": {
+    "task_id": "20",
+    "task_description": "Write a method in Dafny to check if the given number is woodball or not.",
+    "method_signature": "method isWoodall (n:int) returns (res:bool)",
+    "test_cases": {
+      "test_1": "var res1:=isWoodall(383);\nassert res1==true;",
+      "test_2": "var res2:=isWoodall(254);\nassert res2==false;",
+      "test_3": "var res3:=isWoodall(200);\nassert res3==false;"
+    }
+  },
+  "799": {
+    "task_id": "799",
+    "task_description": "Write a method in Dafny to that rotate left bits by d bits a given number in Bit-vector. We assume that the number is 32 bit.",
+    "method_signature": "method leftRotate (n: bv32, d: int) returns (r: bv32)",
+    "test_cases": {
+      "test_1": "var res1:=leftRotate(16,2);\nassert res1==64;",
+      "test_2": "var res2:=leftRotate(10,2);\nassert res2==40;",
+      "test_3": "var res3:=leftRotate(99,3);\nassert res3==792;"
+    }
+  }
+}

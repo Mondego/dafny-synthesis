@@ -1,2 +1,20 @@
-1) Python Packages Installation 
-2) Dafny Installation
+To execute the prompt scripts and run verification and test the verified Dafny methods, 
+the following requirements need to be set as prerequisites:
+
+1) Dafny Installation
+  - Follow this wiki https://github.com/dafny-lang/dafny/wiki/INSTALL
+      to install the Dafny version (4.0.0.50303) on any desired UNIX-based system.
+  - Make sure that ``dafny`` is accessible from the command line.
+  - To check Dafny instalation , try ``dafny --version`` command in the command line.
+  - However, to review the verified methods, we recommed install VSCode with [Dany extension] (https://marketplace.visualstudio.com/items?itemName=dafny-lang.ide-vscode).
+  
+2) Python Version and Packages Installation
+   
+  - Python 3.10 and the following three packages
+  - pip install openai==0.27.10
+  - pip install google==3.0.0
+  - pip install langchain==0.0.354
+  Or User may execute the ``requirements.txt`` file in ``Scripts/ requirements.txt``
+  - pip install -r requirements.txt
+   
+  
