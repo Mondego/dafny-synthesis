@@ -52,7 +52,7 @@ the following requirements need to be installed as prerequisites:
 ### Python Package Installation
  -  python ``version >== 3.10`` is required. To check python version try ``python --version``.
    - Clone the repository and install required packages
-  ```
+  ``` bash
   git clone https://github.com/Mondego/dafny-synthesis.git
   cd dafny-synthesis
   python -m venv venv
@@ -62,6 +62,9 @@ the following requirements need to be installed as prerequisites:
 ### Update `env.config` file
 Make sure to update the `env.config` file before executing the prompt scripts.
 
+``` bash
+nano env.config
+```
 ``` yml
 [DEFAULT]
 # OpenAI API KEY
@@ -91,25 +94,25 @@ spec_shot_count = 3
 code_shot_count = 5
 ```
 
-## Executing Prompts
+### Executing Prompts
   - 📜 RQ1-[Contextless-Prompting]
 ```bash 
-  cd dafny-synthesis/code
+  cd Scripts
   python contextless_prompt.py
 ```
   - 📜 RQ2-[Signature-Prompting]
 ```bash 
-  cd dafny-synthesis/code
+  cd Scripts
   python signature_prompt.py
 ```
   - 📜 RQ3-[Dynamic-Few-Shot-Prompting]
 ```bash 
-  cd dafny-synthesis/code
+  cd Scripts
   python dynamic_few_shot_prompt.py
 ```
 
 
-### Citation
+## Citation
 ```bibtex
 @article{MRHMisuDafnyFSE24,
     title = {Towards AI-Assisted Synthesis of Verified Dafny Methods},
