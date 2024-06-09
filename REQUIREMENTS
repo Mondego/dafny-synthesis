@@ -1,5 +1,5 @@
-To executing the prompt scripts and run verification and test the verified Dafny methods, 
-the following requirements need to be setup as prerequisites:
+To executing the prompts and run verification and test the verified Dafny methods,
+following requirements need to be setup as prerequisites:
 
 1) Dafny Installation
    - Follow this wiki https://github.com/dafny-lang/dafny/wiki/INSTALL
@@ -8,12 +8,16 @@ the following requirements need to be setup as prerequisites:
    - To check Dafny instalation , try ``dafny --version`` command in the command line.
    - However, to review the verified methods, we recommed install VSCode with [Dany extension] (https://marketplace.visualstudio.com/items?itemName=dafny-lang.ide-vscode) .
   
-2) Python Version and Packages Installation
-   - Python 3.10 and the following three packages
-   - langchain==0.0.354
+2) Python (version==3.10) and Package Installation
    - openai==0.27.10
+   - langchain==0.0.354
    - google==3.0.0
+   - google-ai-generativelanguage==0.6.2
+   - google-generativeai==0.5.2
+   - tiktoken==0.4.0
+   - faiss-cpu==1.8.0
+   - Jinja2==3.1.3
 
 3) OpenAI and Google API Keys
-   - To run the prompt scirpts, users need to have their own OpenAI and Google API Keys
-   - Before executing the scripts, add your OpenAI and Google API Keys in ``/Scripts/env.config`` file 
+   - To run the prompts, users need to have their own OpenAI and Google API Keys
+   - Before executing the scripts, add your OpenAI and Google API Keys in ``env.config`` file 

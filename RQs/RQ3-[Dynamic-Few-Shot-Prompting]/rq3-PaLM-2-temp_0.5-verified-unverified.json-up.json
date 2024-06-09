@@ -71,7 +71,7 @@
     "model": "palm2",
     "dafny_code": "method NonPrime(n: int) returns (result: bool)\n    requires n >= 2\n    ensures result <==> (exists k :: 2 <= k < n && n % k == 0)\n{\n    result := false;\n    var i := 2;\n    while i <= n/2\n        invariant 2 <= i\n        invariant result <==> (exists k :: 2 <= k < i && n % k == 0)\n    {\n        if n % i == 0\n        {\n            result := true;\n            break;\n        }\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "3"
+    "K": 3
   },
   "7": {
     "id": "7",
@@ -145,7 +145,7 @@
     "model": "palm2",
     "dafny_code": "method SquareElements(a: array<int>) returns (squared: array<int>)\n    ensures squared.Length == a.Length\n    ensures forall i :: 0 <= i < a.Length ==> squared[i] == a[i] * a[i]\n{\n    var squaredArray := new int[a.Length];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant squaredArray.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> squaredArray[k] == a[k] * a[k]\n    {\n        squaredArray[i] := a[i] * a[i];\n    }\n    return squaredArray;\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "9": {
     "id": "9",
@@ -256,7 +256,7 @@
     "model": "palm2",
     "dafny_code": "method VolumeOfTriangularPrism(base: int, height: int, length: int) returns (volume: int)\n    requires base > 0 && height > 0 && length > 0\n    ensures volume == (base * height * length) / 2\n{\n    volume := (base * height * length) / 2;\n}",
     "note": "Right postconditions.\n\n[OPTIONAL-PRE]\n//[STRONG-POST]",
-    "K": "1"
+    "K": 1
   },
   "16": {
     "id": "16",
@@ -330,7 +330,7 @@
     "model": "palm2",
     "dafny_code": "method PerimeterOfSquare(sideLength: int) returns (perimeter: int)\n    requires sideLength > 0\n    ensures perimeter == 4 * sideLength\n{\n    perimeter := 4 * sideLength;\n}",
     "note": "Right postconditions. Very simple.\n[OPTIONAL-PRE]\n//[STRONG-POST]",
-    "K": "1"
+    "K": 1
   },
   "18": {
     "id": "18",
@@ -441,7 +441,7 @@
     "model": "palm2",
     "dafny_code": "method IsWoodball(n: int) returns (result: bool)\n    requires n >= 0\n    ensures result <==> ((n % 2 == 0) && (n % 3 == 0) && (n % 5 == 0))\n{\n    result := (n % 2 == 0) && (n % 3 == 0) && (n % 5 == 0);\n}",
     "note": "MISUNDERSTANDING\nThe formal postcondition is not that of a Woodall number\n\nMETA \"woodball\" does not exist\n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "56": {
     "id": "56",
@@ -552,7 +552,7 @@
     "model": "palm2",
     "dafny_code": "method NthOctagonalNumber(n: int) returns (o: int)\n    requires n >= 0\n    ensures o == 8 * n * (n + 1) / 2\n{\n    o := 8 * n * (n + 1) / 2;\n}",
     "note": "MISUNDERSTANDING wrong formula. Should be 3n2 \u2212 2n\n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "61": {
     "id": "61",
@@ -848,7 +848,7 @@
     "model": "palm2",
     "dafny_code": "method IsOddLength(s: string) returns (result: bool)\n    ensures result <==> |s| % 2 == 1\n{\n    result := |s| % 2 == 1;\n}",
     "note": "Right postcondition\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "4"
+    "K": 4
   },
   "80": {
     "id": "80",
@@ -885,7 +885,7 @@
     "model": "palm2",
     "dafny_code": "method NthTetrahedralNumber(n: int) returns (result: int)\n    requires n >= 0\n    ensures result == n * (n + 1) * (n + 2) / 6\n{\n    result := n * (n + 1) * (n + 2) / 6;\n}",
     "note": "Right postcondition\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "82": {
     "id": "82",
@@ -996,7 +996,7 @@
     "model": "palm2",
     "dafny_code": "method CenteredHexagonalNumber(n: int) returns (result: int)\n    requires n >= 0\n    ensures result == n * (2 * n + 1)\n{\n    result := n * (2 * n + 1);\n}",
     "note": "MISUNDERSTANDING wrong formula. It's 3*N*(N \u2013 1) + 1\n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "89": {
     "id": "89",
@@ -1033,7 +1033,7 @@
     "model": "palm2",
     "dafny_code": "method ClosestSmaller(n: int) returns (closest: int)\n    requires n >= 0\n    ensures n > closest\n    ensures closest <= n\n{\n    closest := n - 1;\n}",
     "note": "Weird formulation of postconditions. Should be N-1 in the postcondition.\n\n[OPTIONAL-PRE]\n//[WEAK-POST]",
-    "K": "2"
+    "K": 2
   },
   "93": {
     "id": "93",
@@ -1292,7 +1292,7 @@
     "model": "palm2",
     "dafny_code": "predicate IsDigit(c: char)\n    {\n        48 <= c as int <= 57\n    }\n\n    method IsIntege(s: string) returns (result: bool)\n    ensures result <==> (forall i :: 0 <= i < |s| ==> IsDigit(s[i]))\n{\n    result := true;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant result <==> (forall k :: 0 <= k < i ==> IsDigit(s[k]))\n    {\n        if !IsDigit(s[i]) {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "116": {
     "id": "116",
@@ -1329,7 +1329,7 @@
     "model": "palm2",
     "dafny_code": "method ToSingleInt(nums: seq<int>) returns (result: int)\n    ensures result == Product(nums)\n{\n    result := Product(nums);\n}\n\nfunction Product(nums: seq<int>) : int\n{\n    if |nums| == 0 then 1\n    else nums[0] * Product(nums[1..])\n}",
     "note": "MISUNDERSTANDING\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "119": {
     "id": "119",
@@ -1514,7 +1514,7 @@
     "model": "palm2",
     "dafny_code": "method NthHexagonalNumber(n: int) returns (result: int)\n    requires n >= 0\n    ensures result == 3 * n * (n + 1) / 2\n{\n    result := 3 * n * (n + 1) / 2;\n}",
     "note": "MISUNDERSTANDING\nThe right formula is n*(2*n-1) \n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "138": {
     "id": "138",
@@ -1884,7 +1884,7 @@
     "model": "palm2",
     "dafny_code": "method PerimeterOfRegularPentagon(sideLength: int) returns (perimeter: int)\n    requires sideLength > 0\n    ensures perimeter == 5 * sideLength\n{\n    perimeter := 5 * sideLength;\n}",
     "note": "Right postcondition Very simple\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "230": {
     "id": "230",
@@ -1921,7 +1921,7 @@
     "model": "palm2",
     "dafny_code": "method ReplaceSpaces(s: string, c: char) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==> (s[i] == ' ' ==> v[i] == c) && (s[i] != ' ' ==> v[i] == s[i])\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i ==> (s[k] == ' ' ==> s'[k] == c) && (s[k] != ' ' ==> s'[k] == s[k])\n    {\n        if s[i] == ' '\n        {\n            s' := s' + [c];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n",
-    "K": "3"
+    "K": 3
   },
   "233": {
     "id": "233",
@@ -1995,7 +1995,7 @@
     "model": "palm2",
     "dafny_code": "method CubeVolume(sideLength: int) returns (volume: int)\n    requires sideLength > 0\n    ensures volume == sideLength * sideLength * sideLength\n{\n    volume := sideLength * sideLength * sideLength;\n}",
     "note": "Right postconditions. Very simple\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "235": {
     "id": "235",
@@ -2180,7 +2180,7 @@
     "model": "palm2",
     "dafny_code": "method CountCharacters(s: string) returns (count: int)\n    ensures count == |s|\n{\n    count := 0;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant count == i\n    {\n        count := count + 1;\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "249": {
     "id": "249",
@@ -2328,7 +2328,7 @@
     "model": "palm2",
     "dafny_code": "method TwoNumbers(a: int, b: int) returns (result: seq<int>)\n    ensures result == [b, a]\n{\n    result := [b, a];\n}",
     "note": "Right postconditions. Nice solution\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "261": {
     "id": "261",
@@ -2439,7 +2439,7 @@
     "model": "palm2",
     "dafny_code": "method DogYears(humanYears: int) returns (dogYears: int)\n    requires humanYears >= 0\n    ensures dogYears == humanYears * 7\n{\n    dogYears := humanYears * 7;\n}",
     "note": "Right postconditions.\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "266": {
     "id": "266",
@@ -2476,7 +2476,7 @@
     "model": "palm2",
     "dafny_code": "method LateralSurfaceAreaOfCube(sideLength: int) returns (area: int)\n    requires sideLength > 0\n    ensures area == 4 * sideLength * sideLength\n{\n    area := 4 * sideLength * sideLength;\n}",
     "note": "Right postconditions\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "268": {
     "id": "268",
@@ -2513,7 +2513,7 @@
     "model": "palm2",
     "dafny_code": "method StarNumber(n: int) returns (sn: int)\n    requires n >= 0\n    ensures sn == 1 + n * (n + 1) / 2\n{\n    sn := 1 + n * (n + 1) / 2;\n}",
     "note": "MISUNDERSTANDING the formula is 6n(n - 1) + 1\n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "4"
+    "K": 4
   },
   "269": {
     "id": "269",
@@ -2550,7 +2550,7 @@
     "model": "palm2",
     "dafny_code": "method AsciiValue(c: char) returns (value: int)\n    ensures value == (c as int)\n{\n    value := c as int;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "270": {
     "id": "270",
@@ -2735,7 +2735,7 @@
     "model": "palm2",
     "dafny_code": "method NthDecagonalNumber(n: int) returns (d: int)\n    requires n >= 0\n    ensures d == n * (3 * n - 1) / 2\n{\n    d := n * (3 * n - 1) / 2;\n}",
     "note": "MISUNDERSTANDING The right formula is 4n2-3n\n\n[OPTIONAL-PRE]\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "281": {
     "id": "281",
@@ -2809,7 +2809,7 @@
     "model": "palm2",
     "dafny_code": "method SubtractArrays(a: array<int>, b: array<int>) returns (result: array<int>)\n    requires a != null && b != null\n    requires a.Length == b.Length\n    ensures result != null\n    ensures result.Length == a.Length\n    ensures forall i :: 0 <= i < a.Length ==> result[i] == a[i] - b[i]\n{\n    result := new int[a.Length];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result != null\n        invariant result.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] - b[k]\n    {\n        result[i] := a[i] - b[i];\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "2"
+    "K": 2
   },
   "283": {
     "id": "283",
@@ -2883,7 +2883,7 @@
     "model": "palm2",
     "dafny_code": "method AllEqual(a: array<int>, x: int) returns (result: bool)\n    requires a != null\n    ensures result ==> forall i :: 0 <= i < a.Length ==> a[i] == x\n    ensures !result ==> exists i :: 0 <= i < a.Length && a[i] != x\n{\n    result := true;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result ==> forall k :: 0 <= k < i ==> a[k] == x\n    {\n        if a[i] != x {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n\n[OPTIONAL-PRE]\n",
-    "K": "1"
+    "K": 1
   },
   "285": {
     "id": "285",
@@ -3290,7 +3290,7 @@
     "model": "palm2",
     "dafny_code": "method Max(a: int, b: int) returns (maxValue: int)\n    ensures maxValue == a || maxValue == b\n    ensures maxValue >= a && maxValue >= b\n{\n    if a >= b {\n        maxValue := a;\n    } else {\n        maxValue := b;\n    }\n}",
     "note": "Right postcondition\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "310": {
     "id": "310",
@@ -3327,7 +3327,7 @@
     "model": "palm2",
     "dafny_code": "method StringToCharArray(s: string) returns (chars: array<char>)\n    ensures chars.Length == |s|\n    ensures forall i :: 0 <= i < chars.Length ==> chars[i] == s[i]\n{\n    chars := new char[|s|];\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant chars.Length == |s|\n        invariant forall k :: 0 <= k < i ==> chars[k] == s[k]\n    {\n        chars[i] := s[i];\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]",
-    "K": "1"
+    "K": 1
   },
   "312": {
     "id": "312",
@@ -3734,7 +3734,7 @@
     "model": "palm2",
     "dafny_code": "method IsOdd(n: int) returns (result: bool)\n    ensures result <==> n % 2 != 0\n{\n    result := n % 2 != 0;\n}",
     "note": "Right postconditions. Very simple\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "412": {
     "id": "412",
@@ -4067,7 +4067,7 @@
     "model": "palm2",
     "dafny_code": "method DirectrixOfParabola(a: int, b: int) returns (dir: int)\n    requires a != 0\n    ensures dir == -b / (2 * a)\n{\n    dir := -b / (2 * a);\n}",
     "note": "MISUNDERSTANDING\nWrong number of arguments to method, wrong formula. It should be c-((b*b+1)*4*a)\n\n[REQUIRED-PRE]\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "3"
+    "K": 3
   },
   "432": {
     "id": "432",
@@ -4104,7 +4104,7 @@
     "model": "palm2",
     "dafny_code": "method MedianLength(a: int, b: int, c: int, d: int) returns (median: int)\n    requires a > 0 && b > 0 && c > 0 && d > 0\n    ensures median == (a + b + c + d) / 2\n{\n    median := (a + b + c + d) / 2;\n}",
     "note": "MISUNDERSTANDING\nWrong number of arguments, wrong formula. It should be 0.5*(a+b)\n[OPTIONAL-PRE]\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "436": {
     "id": "436",
@@ -4437,7 +4437,7 @@
     "model": "palm2",
     "dafny_code": "method LossAmount(salePrice: int, costPrice: int) returns (lossAmount: int)\n    ensures lossAmount == 0 || lossAmount == salePrice - costPrice\n{\n    if salePrice < costPrice\n    {\n        lossAmount := salePrice - costPrice;\n    }\n    else\n    {\n        lossAmount := 0;\n    }\n}",
     "note": "Slight MISUNDERSTANDING. WEAK postconditions\n\n//[WEAK-POST]\n//[MISUNDERSTANDING]",
-    "K": "1"
+    "K": 1
   },
   "455": {
     "id": "455",
@@ -4474,7 +4474,7 @@
     "model": "palm2",
     "dafny_code": "method Is31DaysMonth(month: int) returns (result: bool)\n    requires 1 <= month && month <= 12\n    ensures result <==> (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)\n{\n    result := month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "456": {
     "id": "456",
@@ -4585,7 +4585,7 @@
     "model": "palm2",
     "dafny_code": "method RectangleArea(length: int, width: int) returns (area: int)\n    requires length >= 0 && width >= 0\n    ensures area == length * width\n{\n    area := length * width;\n}",
     "note": "Right postconditions. Very simple.\n[OPTIONAL-PRE]\n\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "460": {
     "id": "460",
@@ -4659,7 +4659,7 @@
     "model": "palm2",
     "dafny_code": "predicate IsUpperCase(c : char)\n{\n    65 <= c as int <= 90\n}\n\n\nmethod CountUppercase(s: string) returns (count: int)\n    ensures count >= 0\n    ensures count == | set i: int | 0 <= i < |s| && IsUpperCase(s[i])|\n{\n    var uppercase := set i: int | 0 <= i < |s| && IsUpperCase(s[i]);\n    count := |uppercase|;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "470": {
     "id": "470",
@@ -4770,7 +4770,7 @@
     "model": "palm2",
     "dafny_code": "method FirstDigit(n: int) returns (first: int)\n    requires n >= 0\n    ensures 0 <= first < 10\n{\n    first := n % 10;\n}",
     "note": "WEAK\n[OPTIONAL-PRE]\n//[WEAK-POST]",
-    "K": "1"
+    "K": 1
   },
   "554": {
     "id": "554",
@@ -4807,7 +4807,7 @@
     "model": "palm2",
     "dafny_code": "method OddList(lst: seq<int>) returns (oddList: seq<int>)\n    requires forall i :: 0 <= i < |lst| ==> lst[i] % 2 != 0\n    ensures |oddList| == |lst|\n    ensures forall i :: 0 <= i < |oddList| ==> oddList[i] == lst[i]\n{\n    oddList := lst;\n}",
     "note": "MISUNDERSTANDING wrong precondition\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "555": {
     "id": "555",
@@ -4844,7 +4844,7 @@
     "model": "palm2",
     "dafny_code": "method DifferenceOfSumOfCubesAndSumOfNaturalNumbers(n: int) returns (difference: int)\n    requires n > 0\n    ensures difference == n * (n + 1) * (2 * n + 1) / 6 - n * (n + 1) / 2\n{\n    difference := n * (n + 1) * (2 * n + 1) / 6 - n * (n + 1) / 2;\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "557": {
     "id": "557",
@@ -5029,7 +5029,7 @@
     "model": "palm2",
     "dafny_code": "method SplitStringIntoCharacters(s: string) returns (chars: seq<char>)\n    ensures |chars| == |s|\n    ensures forall i :: 0 <= i < |chars| ==> chars[i] == s[i]\n{\n    chars := s;\n}",
     "note": "Right postconditions\n//[STRONG-POST]",
-    "K": "5"
+    "K": 5
   },
   "572": {
     "id": "572",
@@ -5214,7 +5214,7 @@
     "model": "palm2",
     "dafny_code": "method SquarePyramidSurfaceArea(baseEdge: int, height: int) returns (area: int)\n    requires baseEdge >= 0 && height >= 0\n    ensures area == 2 * baseEdge * height + 2 * baseEdge * baseEdge\n{\n    area := 2 * baseEdge * height + 2 * baseEdge * baseEdge;\n}",
     "note": "Right postcondition\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "586": {
     "id": "586",
@@ -5288,7 +5288,7 @@
     "model": "palm2",
     "dafny_code": "method ArrayToSequence(a: array<int>) returns (s: seq<int>)\n    requires a.Length > 0\n    ensures s == a[..]\n{\n    s := a[0..];\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "589": {
     "id": "589",
@@ -5362,7 +5362,7 @@
     "model": "palm2",
     "dafny_code": "method SwapFirstAndLast(a: array<int>)\n    requires a.Length > 0\n    modifies a\n    ensures a[0] == old(a[a.Length - 1])\n    ensures a[a.Length - 1] == old(a[0])\n    ensures forall k :: 1 <= k < a.Length - 1 ==> a[k] == old(a[k])\n{\n    var tmp := a[0];\n    a[0] := a[a.Length - 1];\n    a[a.Length - 1] := tmp;\n}",
     "note": "Right postconditions\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "598": {
     "id": "598",
@@ -5547,7 +5547,7 @@
     "model": "palm2",
     "dafny_code": "method Divide(a: array<int>, b: array<int>) returns (result: array<int>)\n    requires a.Length == b.Length\n    requires forall i :: 0 <= i < b.Length ==> b[i] != 0\n    ensures result.Length == a.Length\n    ensures forall i :: 0 <= i < result.Length ==> result[i] == a[i] / b[i]\n{\n    result := new int[a.Length];\n    var i := 0;\n    while i < a.Length\n        invariant 0 <= i <= a.Length\n        invariant result.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] / b[k]\n    {\n        result[i] := a[i] / b[i];\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n[REQUIRED-PRE]",
-    "K": "2"
+    "K": 2
   },
   "619": {
     "id": "619",
@@ -5695,7 +5695,7 @@
     "model": "palm2",
     "dafny_code": "method LargestTriangleArea(radius: int) returns (area: int)\n    requires radius > 0\n    ensures area == 2 * radius * radius / 3\n{\n    area := 2 * radius * radius / 3;\n}",
     "note": "MISUNDERSTANDING. The right formula is r*r, according to MBPP\n\n[OPTIONAL-PRE]\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "628": {
     "id": "628",
@@ -5769,7 +5769,7 @@
     "model": "palm2",
     "dafny_code": "method NoProfitNoLoss(amount: int) returns (result: bool)\n    requires amount >= 0\n    ensures result == (amount == 0)\n{\n    result := amount == 0;\n}",
     "note": "MISUNDERSTANDING wrong number of arguments, bad postcondition\n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "639": {
     "id": "639",
@@ -5806,7 +5806,7 @@
     "model": "palm2",
     "dafny_code": "",
     "note": "META empty response to prompt 2",
-    "K": "1"
+    "K": 1
   },
   "641": {
     "id": "641",
@@ -5843,7 +5843,7 @@
     "model": "palm2",
     "dafny_code": "method Nonagonal(n: int) returns (result: int)\n    requires n >= 0\n    ensures result == n * (n + 1) * (2 * n + 1) / 3\n{\n    result := n * (n + 1) * (2 * n + 1) / 3;\n}",
     "note": "MISUNDERSTANDING wrong formula. It should be \nn*(7*n \u2013 5) / 2.\n\n[OPTIONAL-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "728": {
     "id": "728",
@@ -5880,7 +5880,7 @@
     "model": "palm2",
     "dafny_code": "method AddLists(a: array<int>, b: array<int>) returns (result: array<int>)\n    requires a.Length == b.Length\n    ensures result.Length == a.Length\n    ensures forall i :: 0 <= i < result.Length ==> result[i] == a[i] + b[i]\n{\n    result := new int[a.Length];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] + b[k]\n    {\n        result[i] := a[i] + b[i];\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "747": {
     "id": "747",
@@ -5917,7 +5917,7 @@
     "model": "palm2",
     "dafny_code": "",
     "note": "META something wrong with response to both prompts",
-    "K": "1"
+    "K": 1
   },
   "748": {
     "id": "748",
@@ -6102,7 +6102,7 @@
     "model": "palm2",
     "dafny_code": "method IsMonthWith30Days(month: int) returns (result: bool)\n    requires 1 <= month <= 12\n    ensures result <==> month in {4, 6, 9, 11}\n{\n    result := month in {4, 6, 9, 11};\n}",
     "note": "Right postcondition.\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "763": {
     "id": "763",
@@ -6324,7 +6324,7 @@
     "model": "palm2",
     "dafny_code": "predicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\nmethod IsEvenAtIndexEven(a: array<int>) returns (result: bool)\n    ensures result <==> forall i :: 0 <= i < a.Length && IsEven(i) ==> IsEven(a[i])\n{\n    result := true;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result <==> forall k :: 0 <= k < i && IsEven(k) ==> IsEven(a[k])\n    {\n        if IsEven(i) && !IsEven(a[i])\n        {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "792": {
     "id": "792",
@@ -6361,7 +6361,7 @@
     "model": "palm2",
     "dafny_code": "method CountLists(lists: array<array<int>>) returns (count: int)\n    requires lists != null\n    ensures count == lists.Length\n{\n    count := 0;\n    for i := 0 to lists.Length\n        invariant 0 <= i <= lists.Length\n        invariant count == i\n    {\n        count := count + 1;\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n[OPTIONAL-PRE]",
-    "K": "2"
+    "K": 2
   },
   "799": {
     "id": "799",
@@ -6435,7 +6435,7 @@
     "model": "palm2",
     "dafny_code": "method CountEqual(a: int, b: int, c: int) returns (count: int)\n    ensures count == (if a == b && b == c then 3 else if a == b || b == c || a == c then 2 else 0)\n{\n    if a == b && b == c {\n        count := 3;\n    } else if a == b || b == c || a == c {\n        count := 2;\n    } else {\n        count := 0;\n    }\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "804": {
     "id": "804",
@@ -6472,7 +6472,7 @@
     "model": "palm2",
     "dafny_code": "method IsProductEven(arr: array<int>) returns (result: bool)\n    requires arr.Length > 0\n    ensures result <==> ((arr[0] % 2 == 0) && (forall i :: 0 < i < arr.Length ==> arr[i] % 2 == 0))\n{\n    result := (arr[0] % 2 == 0) && (forall i :: 0 < i < arr.Length ==> arr[i] % 2 == 0);\n}",
     "note": "MISUNDERSTANDING wrong postcondition. We don't need all numbers to be even, just one.\n[REQUIRED-PRE]\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]\n",
-    "K": "3"
+    "K": 3
   },
   "806": {
     "id": "806",
@@ -6546,7 +6546,7 @@
     "model": "palm2",
     "dafny_code": "method Contains(s: seq<int>, k: int) returns (result: bool)\n    ensures result <==> (exists i :: 0 <= i < |s| && s[i] == k)\n{\n    result := false;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant result <==> (exists j :: 0 <= j < i && s[j] == k)\n    {\n        if s[i] == k {\n            result := true;\n            break;\n        }\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "809": {
     "id": "809",

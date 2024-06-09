@@ -34,7 +34,7 @@
     "model": "gpt4",
     "dafny_code": "predicate InArray(a: array<int>, x: int)\n    reads a\n{\n    exists i :: 0 <= i < a.Length && a[i] == x\n}\n\nmethod SharedElements(a: array<int>, b: array<int>) returns (result: seq<int>)\n    // All elements in the output are in both a and b\n    ensures forall x :: x in result ==> (InArray(a, x) && InArray(b, x))\n    // The elements in the output are all different\n    ensures forall i, j :: 0 <= i < j < |result| ==> result[i] != result[j]\n{\n    var res: seq<int> := [];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant forall x :: x in res ==> InArray(a, x) && InArray(b, x)\n        invariant forall i, j :: 0 <= i < j < |res| ==> res[i] != res[j]\n    {\n        if InArray(b, a[i]) && a[i] !in res\n        {\n            res := res + [a[i]];\n        }\n    }\n    result := res;\n}",
     "note": "Right postconditions. All good\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "3": {
     "id": "3",
@@ -71,7 +71,7 @@
     "model": "gpt4",
     "dafny_code": "method IsNonPrime(n: int) returns (result: bool)\n    requires n >= 2\n    ensures result <==> (exists k :: 2 <= k < n && n % k == 0)\n{\n    result := false;\n    var i := 2;\n    while i <= n/2\n        invariant 2 <= i\n        invariant result <==> (exists k :: 2 <= k < i && n % k == 0)\n    {\n        if n % i == 0\n        {\n            result := true;\n            break;\n        }\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions. All good\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "7": {
     "id": "7",
@@ -145,7 +145,7 @@
     "model": "gpt4",
     "dafny_code": "method SquareElements(a: array<int>) returns (squared: array<int>)\n    ensures squared.Length == a.Length\n    ensures forall i :: 0 <= i < a.Length ==> squared[i] == a[i] * a[i]\n{\n    squared := new int[a.Length];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant squared.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> squared[k] == a[k] * a[k]\n    {\n        squared[i] := a[i] * a[i];\n    }\n}",
     "note": "Right postconditions. All good\n\n[STRONG-POST]\n[STRONG-INV]",
-    "K": "1"
+    "K": 1
   },
   "9": {
     "id": "9",
@@ -256,7 +256,7 @@
     "model": "gpt4",
     "dafny_code": "method TriangularPrismVolume(base: int, height: int, length: int) returns (volume: int)\n    requires base > 0\n    requires height > 0\n    requires length > 0\n    ensures volume == (base * height * length) / 2\n{\n    volume := (base * height * length) / 2;\n}",
     "note": "Right postconditions.\nVery simple problem\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "16": {
     "id": "16",
@@ -330,7 +330,7 @@
     "model": "gpt4",
     "dafny_code": "method SquarePerimeter(side: int) returns (perimeter: int)\n    requires side > 0\n    ensures perimeter == 4 * side\n{\n    perimeter := 4 * side;\n}",
     "note": "Right postcondition.\nVery simple problem\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "18": {
     "id": "18",
@@ -367,7 +367,7 @@
     "model": "gpt4",
     "dafny_code": "method RemoveChars(s1: string, s2: string) returns (v: string)\n    ensures |v| <= |s1|\n    ensures forall i :: 0 <= i < |v| ==> (v[i] in s1) && !(v[i] in s2)\n    ensures forall i :: 0 <= i < |s1| ==> (s1[i] in s2) || (s1[i] in v)\n{\n    var v' : string := [];\n    for i := 0 to |s1|\n    invariant 0 <= i <= |s1|\n    invariant |v'| <= i\n    invariant forall k :: 0 <= k < |v'| ==> (v'[k] in s1) && !(v'[k] in s2)\n    invariant forall k :: 0 <= k < i ==> (s1[k] in s2) || (s1[k] in v')\n    {\n        if !(s1[i] in s2)\n        {\n            v' := v' + [s1[i]];\n        }\n    }\n    return v';\n}",
     "note": "Right postconditions. All good\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "3"
+    "K": 3
   },
   "19": {
     "id": "19",
@@ -509,7 +509,7 @@
     "model": "gpt4",
     "dafny_code": "/* \n  * This problem is not straightforward to solve in Dafny because it involves string manipulation and sorting, \n  * which is not natively supported in Dafny. However, a pseudo-code for this problem would look like this:\n  * \n  * 1. Convert all integers in the array to strings\n  * 2. Sort the array of strings in descending order using a custom comparator that compares two strings s1 and s2 by comparing s1+s2 and s2+s1\n  * 3. Concatenate all strings in the array to form the largest number\n  * \n  * In a language like Python, the code would look like this:\n  * \n  * def largestNumber(nums):\n  *     if not nums: return \"0\"\n  *     nums = [str(num) for num in nums]\n  *     nums.sort(cmp=lambda x, y: cmp(y+x, x+y))\n  *     return ''.join(nums).lstrip('0') or '0'\n  * \n  * Unfortunately, this code cannot be directly translated to Dafny due to Dafny's limitations.\n  */",
     "note": "META The problem spec has problems. Originally, it was \"with the given array [list] of digits\" but it now says \"of integers\". That changes the problem significantly. E.g.\nmax_formed([19, 21]) == ??",
-    "K": "3"
+    "K": 3
   },
   "59": {
     "id": "59",
@@ -546,7 +546,7 @@
     "model": "gpt4",
     "dafny_code": "method NthOctagonalNumber(n: int) returns (octagonalNumber: int)\n    requires n >= 0\n    ensures octagonalNumber == n * (3 * n - 2)\n{\n    octagonalNumber := n * (3 * n - 2);\n}",
     "note": "Right postcondition. All good\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "61": {
     "id": "61",
@@ -583,7 +583,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsDigit(c: char)\n{\n    48 <= c as int <= 57\n}\n\nmethod CountSubstringsWithSumOfDigitsEqualToLength(s: string) returns (count: int)\n    ensures count >= 0\n{\n    count := 0;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n    {\n        var sum := 0;\n        for j := i to |s|\n            invariant i <= j <= |s|\n            invariant sum >= 0\n            invariant sum <= j - i\n        {\n            if j == |s| || !IsDigit(s[j]) {\n                if sum == j - i {\n                    count := count + 1;\n                }\n                break;\n            }\n            sum := sum + (s[j] as int - 48);\n            if sum > j - i + 1 {\n                break;\n            }\n        }\n    }\n}",
     "note": "Right textual postcondition, but the code is missing the most important formal postcondition.\nWEAK\n\n[WEAK-POST]\n[WEAK-INV]",
-    "K": "2"
+    "K": 2
   },
   "66": {
     "id": "66",
@@ -731,7 +731,7 @@
     "model": "gpt4",
     "dafny_code": "method ContainsSequence(list: seq<seq<int>>, sub: seq<int>) returns (result: bool)\n    ensures result <==> (exists i :: 0 <= i < |list| && sub == list[i])\n{\n    result := false;\n    for i := 0 to |list|\n        invariant 0 <= i <= |list|\n        invariant result <==> (exists k :: 0 <= k < i && sub == list[k])\n    {\n        if sub == list[i] {\n            result := true;\n            break;\n        }\n    }\n}",
     "note": "Right postconditions.\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "70": {
     "id": "70",
@@ -768,7 +768,7 @@
     "model": "gpt4",
     "dafny_code": "method AllSequencesEqualLength(sequences: seq<seq<int>>) returns (result: bool)\n    ensures result <==> forall i, j :: 0 <= i < |sequences| && 0 <= j < |sequences| ==> |sequences[i]| == |sequences[j]|\n{\n    if |sequences| == 0 {\n        return true;\n    }\n\n    var firstLength := |sequences[0]|;\n    result := true;\n\n    for i := 1 to |sequences|\n        invariant 1 <= i <= |sequences|\n        invariant result <==> forall k :: 0 <= k < i ==> |sequences[k]| == firstLength\n    {\n        if |sequences[i]| != firstLength {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postconditions\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "72": {
     "id": "72",
@@ -842,7 +842,7 @@
     "model": "gpt4",
     "dafny_code": "method IsLengthOdd(s: string) returns (result: bool)\n    ensures result <==> |s| % 2 == 1\n{\n    result := |s| % 2 == 1;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "3"
+    "K": 3
   },
   "80": {
     "id": "80",
@@ -879,7 +879,7 @@
     "model": "gpt4",
     "dafny_code": "method TetrahedralNumber(n: int) returns (t: int)\n    requires n >= 0\n    ensures t == n * (n + 1) * (n + 2) / 6\n{\n    t := n * (n + 1) * (n + 2) / 6;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "82": {
     "id": "82",
@@ -916,7 +916,7 @@
     "model": "gpt4",
     "dafny_code": "method SphereVolume(radius: real) returns (volume: real)\n    requires radius > 0.0\n    ensures volume == 4.0/3.0 * 3.1415926535 * radius * radius * radius\n{\n    volume := 4.0/3.0 * 3.1415926535 * radius * radius * radius;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "85": {
     "id": "85",
@@ -953,7 +953,7 @@
     "model": "gpt4",
     "dafny_code": "method SphereSurfaceArea(radius: real) returns (area: real)\n    requires radius > 0.0\n    ensures area == 4.0 * 3.14159265358979323846 * radius * radius\n{\n    area := 4.0 * 3.14159265358979323846 * radius * radius;\n}",
     "note": "Right postcondition.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "86": {
     "id": "86",
@@ -990,7 +990,7 @@
     "model": "gpt4",
     "dafny_code": "method CenteredHexagonalNumber(n: nat) returns (result: nat)\n    requires n >= 0\n    ensures result == 3 * n * (n - 1) + 1\n{\n    result := 3 * n * (n - 1) + 1;\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "89": {
     "id": "89",
@@ -1027,7 +1027,7 @@
     "model": "gpt4",
     "dafny_code": "method ClosestSmaller(n: int) returns (m: int)\n    requires n > 0\n    ensures m + 1 == n\n{\n    m := n - 1;\n}",
     "note": "Confusion in the first prompt:\nIt misunderstood the problem, the argument should be just N, not an array, and the result should be N-1.\nThe actual formal spec is correct\n\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "93": {
     "id": "93",
@@ -1101,7 +1101,7 @@
     "model": "gpt4",
     "dafny_code": "method MinSecondValueFirst(s: array<seq<int>>) returns (firstOfMinSecond: int)\n    requires s.Length > 0\n    requires forall i :: 0 <= i < s.Length ==> |s[i]| >= 2\n    ensures exists i :: 0 <= i < s.Length && firstOfMinSecond == s[i][0] && \n        (forall j :: 0 <= j < s.Length ==> s[i][1] <= s[j][1])\n{\n    var minSecondIndex := 0;\n    for i := 1 to s.Length\n        invariant 0 <= i <= s.Length\n        invariant 0 <= minSecondIndex < i\n        invariant forall j :: 0 <= j < i ==> s[minSecondIndex][1] <= s[j][1]\n    {\n        if s[i][1] < s[minSecondIndex][1]\n        {\n            minSecondIndex := i;\n        }\n    }\n    firstOfMinSecond := s[minSecondIndex][0];\n}",
     "note": "Right postconditions\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "95": {
     "id": "95",
@@ -1138,7 +1138,7 @@
     "model": "gpt4",
     "dafny_code": "method SmallestListLength(s: seq<seq<int>>) returns (v: int)\n    requires |s| > 0\n    ensures forall i :: 0 <= i < |s| ==> v <= |s[i]|\n    ensures exists i :: 0 <= i < |s| && v == |s[i]|\n{\n    v := |s[0]|;\n    for i := 1 to |s|\n        invariant 0 <= i <= |s|\n        invariant forall k :: 0 <= k < i ==> v <= |s[k]|\n        invariant exists k :: 0 <= k < i && v == |s[k]|\n    {\n        if |s[i]| < v\n        {\n            v := |s[i]|;\n        }\n    }\n}",
     "note": "Right postconditions\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "96": {
     "id": "96",
@@ -1212,7 +1212,7 @@
     "model": "gpt4",
     "dafny_code": "function countTo( a:array<bool>, n:int ) : int\n  requires a != null;\n  requires 0 <= n && n <= a.Length;\n  decreases n;\n  reads a;\n{\n  if (n == 0) then 0 else countTo(a, n-1) + (if a[n-1] then 1 else 0)\n}\n\nmethod CountTrue(a: array<bool>) returns (result: int)\n    requires a != null\n    ensures result == countTo(a, a.Length)\n{\n    result := 0;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result == countTo(a, i)\n    {\n        if a[i] {\n            result := result + 1;\n        }\n    }\n}",
     "note": "Right postconditions\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "2"
+    "K": 2
   },
   "106": {
     "id": "106",
@@ -1249,7 +1249,7 @@
     "model": "gpt4",
     "dafny_code": "method AppendArrayToSeq(s: seq<int>, a: array<int>) returns (r: seq<int>)\n    requires a != null\n    ensures |r| == |s| + a.Length\n    ensures forall i :: 0 <= i < |s| ==> r[i] == s[i]\n    ensures forall i :: 0 <= i < a.Length ==> r[|s| + i] == a[i]\n{\n    r := s;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant |r| == |s| + i\n        invariant forall j :: 0 <= j < |s| ==> r[j] == s[j]\n        invariant forall j :: 0 <= j < i ==> r[|s| + j] == a[j]\n    {\n        r := r + [a[i]];\n    }\n}",
     "note": "Right postconditions\n\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "113": {
     "id": "113",
@@ -1286,7 +1286,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsDigit(c: char)\n{\n    48 <= c as int <= 57\n}\n\nmethod IsInteger(s: string) returns (result: bool)\n    ensures result <==> (|s| > 0) && (forall i :: 0 <= i < |s| ==> IsDigit(s[i]))\n{\n    result := true;\n    if |s| == 0 {\n        result := false;\n    } else {\n        for i := 0 to |s|\n            invariant 0 <= i <= |s|\n            invariant result <==> (forall k :: 0 <= k < i ==> IsDigit(s[k]))\n        {\n            if !IsDigit(s[i]) {\n                result := false;\n                break;\n            }\n        }\n    }\n}",
     "note": "Right postconditions\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "116": {
     "id": "116",
@@ -1397,7 +1397,7 @@
     "model": "gpt4",
     "dafny_code": "method SumOfCommonDivisors(a: int, b: int) returns (sum: int)\n    requires a > 0 && b > 0\n    ensures sum >= 0\n    ensures forall d :: 1 <= d <= a && 1 <= d <= b && a % d == 0 && b % d == 0 ==> sum >= d\n{\n    sum := 0;\n    var i := 1;\n    while i <= a && i <= b\n        invariant 1 <= i <= a + 1 && 1 <= i <= b + 1\n        invariant sum >= 0\n        invariant forall d :: 1 <= d < i && a % d == 0 && b % d == 0 ==> sum >= d\n    {\n        if a % i == 0 && b % i == 0 {\n            sum := sum + i;\n        }\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions in text, but the formal spec is short of expressing the most important one.\nWEAK\n\n[WEAK-POST]\n[WEAK-INV]\n[REQUIRED-PRE]",
-    "K": "4"
+    "K": 4
   },
   "131": {
     "id": "131",
@@ -1471,7 +1471,7 @@
     "model": "gpt4",
     "dafny_code": "function sumNegativesTo( a:array<int>, n:int ) : int\n  requires a != null;\n  requires 0 <= n && n <= a.Length;\n  decreases n;\n  reads a;\n{\n  if (n == 0) then 0 else if a[n-1] < 0 then sumNegativesTo(a, n-1) + a[n-1] else sumNegativesTo(a, n-1)\n}\n\nmethod SumOfNegatives(a: array<int>) returns (result: int)\n    ensures result == sumNegativesTo(a, a.Length)\n{\n    result := 0;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result == sumNegativesTo(a, i)\n    {\n        if a[i] < 0 {\n            result := result + a[i];\n        }\n    }\n}",
     "note": "Right postconditions.\nGood example.\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "4"
+    "K": 4
   },
   "135": {
     "id": "135",
@@ -1508,7 +1508,7 @@
     "model": "gpt4",
     "dafny_code": "method NthHexagonalNumber(n: int) returns (hexNum: int)\n    requires n >= 0\n    ensures hexNum == n * ((2 * n) - 1)\n{\n    hexNum := n * ((2 * n) - 1);\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "138": {
     "id": "138",
@@ -1582,7 +1582,7 @@
     "model": "gpt4",
     "dafny_code": "method CircleCircumference(radius: real) returns (circumference: real)\n    requires radius > 0.0\n    ensures circumference == 2.0 * 3.14159265358979323846 * radius\n{\n    circumference := 2.0 * 3.14159265358979323846 * radius;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "142": {
     "id": "142",
@@ -1619,7 +1619,7 @@
     "model": "gpt4",
     "dafny_code": "method CountIdenticalPositions(a: seq<int>, b: seq<int>, c: seq<int>) returns (count: int)\n    requires |a| == |b| && |b| == |c|\n    ensures count >= 0\n    ensures count == | set i: int | 0 <= i < |a| && a[i] == b[i] && b[i] == c[i]|\n{\n    var identical := set i: int | 0 <= i < |a| && a[i] == b[i] && b[i] == c[i];\n    count := |identical|;\n}",
     "note": "Right postconditions. Interesting case.\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "143": {
     "id": "143",
@@ -1656,7 +1656,7 @@
     "model": "gpt4",
     "dafny_code": "method CountArrays(arrays: seq<array<int>>) returns (count: int)\n    ensures count >= 0\n    ensures count == |arrays|\n{\n    count := |arrays|;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "3"
+    "K": 3
   },
   "145": {
     "id": "145",
@@ -1693,7 +1693,7 @@
     "model": "gpt4",
     "dafny_code": "method MaxDifference(a: array<int>) returns (diff: int)\n    requires a.Length > 1\n    ensures forall i, j :: 0 <= i < a.Length && 0 <= j < a.Length ==> a[i] - a[j] <= diff\n{\n    var minVal := a[0];\n    var maxVal := a[0];\n\n    for i := 1 to a.Length\n        invariant 1 <= i <= a.Length\n        invariant minVal <= maxVal\n        invariant forall k :: 0 <= k < i ==> minVal <= a[k] && a[k] <= maxVal\n    {\n        if a[i] < minVal {\n            minVal := a[i];\n        } else if a[i] > maxVal {\n            maxVal := a[i];\n        }\n    }\n    diff := maxVal - minVal;\n}",
     "note": "Right postconditions\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]\n",
-    "K": "2"
+    "K": 2
   },
   "161": {
     "id": "161",
@@ -1730,7 +1730,7 @@
     "model": "gpt4",
     "dafny_code": "predicate InArray(a: array<int>, x: int)\n    reads a\n{\n    exists i :: 0 <= i < a.Length && a[i] == x\n}\n\nmethod RemoveElements(a: array<int>, b: array<int>) returns (result: seq<int>)\n    // All elements in the output are in a and not in b\n    ensures forall x :: x in result ==> InArray(a, x) && !InArray(b, x)\n    // The elements in the output are all different\n    ensures forall i, j :: 0 <= i < j < |result| ==> result[i] != result[j]\n{\n    var res: seq<int> := [];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant forall x :: x in res ==> InArray(a, x) && !InArray(b, x)\n        invariant forall i, j :: 0 <= i < j < |res| ==> res[i] != res[j]\n    {\n        if !InArray(b, a[i]) && a[i] !in res\n        {\n            res := res + [a[i]];\n        }\n    }\n\n    result := res;\n}",
     "note": "Right postconditions.\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "166": {
     "id": "166",
@@ -1841,7 +1841,7 @@
     "model": "gpt4",
     "dafny_code": "function sumTo( a:array<int>, start:int, end:int ) : int\n    requires a != null;\n    requires 0 <= start && start <= end && end <= a.Length;\n    decreases end;\n    reads a;\n    {\n        if (start == end) then 0 else sumTo(a, start, end-1) + a[end-1]\n    }\n\n    method SumInRange(a: array<int>, start: int, end: int) returns (sum: int)\n    requires a != null\n    requires 0 <= start && start <= end && end <= a.Length\n    ensures sum == sumTo(a, start, end)\n    {\n        sum := 0;\n        for i := start to end\n            invariant start <= i <= end\n            invariant sum == sumTo(a, start, i)\n        {\n            sum := sum + a[i];\n        }\n    }",
     "note": "Right postconditions\n[STRONG-POST]\n[STRONG-INV]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "171": {
     "id": "171",
@@ -1878,7 +1878,7 @@
     "model": "gpt4",
     "dafny_code": "method PentagonPerimeter(side: int) returns (perimeter: int)\n    requires side > 0\n    ensures perimeter == 5 * side\n{\n    perimeter := 5 * side;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "230": {
     "id": "230",
@@ -1915,7 +1915,7 @@
     "model": "gpt4",
     "dafny_code": "method ReplaceBlanksWithChar(s: string, ch: char) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==> (s[i] == ' ' ==> v[i] == ch) && (s[i] != ' ' ==> v[i] == s[i])\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i ==> (s[k] == ' ' ==> s'[k] == ch) && (s[k] != ' ' ==> s'[k] == s[k])\n    {\n        if s[i] == ' '\n        {\n            s' := s' + [ch];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}",
     "note": "Right postconditions.\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "233": {
     "id": "233",
@@ -1952,7 +1952,7 @@
     "model": "gpt4",
     "dafny_code": "method CylinderLateralSurfaceArea(radius: real, height: real) returns (area: real)\n    requires radius > 0.0 && height > 0.0\n    ensures area == 2.0 * (radius * height) * 3.14\n{\n    area := 2.0 * (radius * height) * 3.14;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "234": {
     "id": "234",
@@ -1989,7 +1989,7 @@
     "model": "gpt4",
     "dafny_code": "method CubeVolume(size: int) returns (volume: int)\n    requires size > 0\n    ensures volume == size * size * size\n{\n    volume := size * size * size;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "235": {
     "id": "235",
@@ -2063,7 +2063,7 @@
     "model": "gpt4",
     "dafny_code": "method CountNonEmptySubstrings(s: string) returns (count: int)\n    ensures count >= 0\n    ensures count == (|s| * (|s| + 1)) / 2 // Formula for the number of non-empty substrings of a string\n{\n    count := (|s| * (|s| + 1)) / 2;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "239": {
     "id": "239",
@@ -2137,7 +2137,7 @@
     "model": "gpt4",
     "dafny_code": "method ReplaceLastElement(first: seq<int>, second: seq<int>) returns (result: seq<int>)\n    requires |first| > 0\n    ensures |result| == |first| - 1 + |second|\n    ensures forall i :: 0 <= i < |first| - 1 ==> result[i] == first[i]\n    ensures forall i :: |first| - 1 <= i < |result| ==> result[i] == second[i - |first| + 1]\n{\n    result := first[0..|first| - 1] + second;\n}",
     "note": "Right postconditions\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "242": {
     "id": "242",
@@ -2174,7 +2174,7 @@
     "model": "gpt4",
     "dafny_code": "method CountCharacters(s: string) returns (count: int)\n    ensures count >= 0\n    ensures count == |s|\n{\n    count := |s|;\n}",
     "note": "Right postconditions. Very simple problem\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "249": {
     "id": "249",
@@ -2211,7 +2211,7 @@
     "model": "gpt4",
     "dafny_code": "predicate InArray(a: array<int>, x: int)\n    reads a\n{\n    exists i :: 0 <= i < a.Length && a[i] == x\n}\n\nmethod Intersection(a: array<int>, b: array<int>) returns (result: seq<int>)\n    // All elements in the output are in both a and b\n    ensures forall x :: x in result ==> (InArray(a, x) && InArray(b, x))\n    // The elements in the output are all different\n    ensures forall i, j :: 0 <= i < j < |result| ==> result[i] != result[j]\n{\n    var res: seq<int> := [];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant forall x :: x in res ==> (InArray(a, x) && InArray(b, x))\n        invariant forall i, j :: 0 <= i < j < |res| ==> res[i] != res[j]\n    {\n        if InArray(b, a[i]) && a[i] !in res\n        {\n            res := res + [a[i]];\n        }\n    }\n\n    result := res;\n}",
     "note": "Right postconditions\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "251": {
     "id": "251",
@@ -2248,7 +2248,7 @@
     "model": "gpt4",
     "dafny_code": "method InsertBeforeEach(s: seq<string>, x: string) returns (v: seq<string>)\n        ensures |v| == 2 * |s|\n        ensures forall i :: 0 <= i < |s| ==> v[2*i] == x && v[2*i + 1] == s[i]\n    {\n        v := [];\n        for i := 0 to |s|\n            invariant 0 <= i <= |s|\n            invariant |v| == 2 * i\n            invariant forall j :: 0 <= j < i ==> v[2*j] == x && v[2*j + 1] == s[j]\n        {\n            v := v + [x, s[i]];\n        }\n    }",
     "note": "Right postconditions.\n\n\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "256": {
     "id": "256",
@@ -2322,7 +2322,7 @@
     "model": "gpt4",
     "dafny_code": "method Swap(a: int, b: int) returns (result: seq<int>)\n    ensures |result| == 2\n    ensures result[0] == b\n    ensures result[1] == a\n{\n    result := [b, a];\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "261": {
     "id": "261",
@@ -2359,7 +2359,7 @@
     "model": "gpt4",
     "dafny_code": "method ElementWiseDivision(a: seq<int>, b: seq<int>) returns (result: seq<int>)\n    requires |a| == |b|\n    requires forall i :: 0 <= i < |b| ==> b[i] != 0\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == a[i] / b[i]\n{\n    result := [];\n    var i := 0;\n    while i < |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] / b[k]\n    {\n        result := result + [a[i] / b[i]];\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "4"
+    "K": 4
   },
   "262": {
     "id": "262",
@@ -2396,7 +2396,7 @@
     "model": "gpt4",
     "dafny_code": "method SplitArray(arr: array<int>, L: int) returns (firstPart: seq<int>, secondPart: seq<int>)\n    requires 0 <= L <= arr.Length\n    ensures |firstPart| == L\n    ensures |secondPart| == arr.Length - L\n    ensures firstPart + secondPart == arr[..]\n{\n    firstPart := arr[..L];\n    secondPart := arr[L..];\n}",
     "note": "Right postconditions. It didn't quite return a sequence, but returned two things, which is semantically similar\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "264": {
     "id": "264",
@@ -2433,7 +2433,7 @@
     "model": "gpt4",
     "dafny_code": "method DogYears(humanYears: int) returns (dogYears: int)\n    requires humanYears >= 0\n    ensures dogYears == 7 * humanYears\n{\n    dogYears := 7 * humanYears;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "266": {
     "id": "266",
@@ -2470,7 +2470,7 @@
     "model": "gpt4",
     "dafny_code": "method LateralSurfaceArea(size: int) returns (area: int)\n    requires size > 0\n    ensures area == 4 * size * size\n{\n    area := 4 * size * size;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "268": {
     "id": "268",
@@ -2507,7 +2507,7 @@
     "model": "gpt4",
     "dafny_code": "method StarNumber(n: int) returns (star: int)\n    requires n >= 0\n    ensures star == 6 * n * (n - 1) + 1\n{\n    star := 6 * n * (n - 1) + 1;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "269": {
     "id": "269",
@@ -2544,7 +2544,7 @@
     "model": "gpt4",
     "dafny_code": "method AsciiValue(c: char) returns (ascii: int)\n    ensures ascii == c as int\n{\n    ascii := c as int;\n}",
     "note": "Right postconditions Very simple\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "270": {
     "id": "270",
@@ -2655,7 +2655,7 @@
     "model": "gpt4",
     "dafny_code": "method SubtractSequences(a: seq<int>, b: seq<int>) returns (result: seq<int>)\n    requires |a| == |b|\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == a[i] - b[i]\n{\n    result := [];\n    var i := 0;\n    while i < |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] - b[k]\n    {\n        result := result + [a[i] - b[i]];\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "276": {
     "id": "276",
@@ -2692,7 +2692,7 @@
     "model": "gpt4",
     "dafny_code": "method CylinderVolume(radius: real, height: real) returns (volume: real)\n    requires radius > 0.0\n    requires height > 0.0\n    ensures volume == 3.14159265359 * radius * radius * height\n{\n    volume := 3.14159265359 * radius * radius * height;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "279": {
     "id": "279",
@@ -2729,7 +2729,7 @@
     "model": "gpt4",
     "dafny_code": "method NthDecagonalNumber(n: int) returns (decagonal: int)\n    requires n >= 0\n    ensures decagonal == 4 * n * n - 3 * n\n{\n    decagonal := 4 * n * n - 3 * n;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "281": {
     "id": "281",
@@ -2803,7 +2803,7 @@
     "model": "gpt4",
     "dafny_code": "method ElementWiseSubtraction(a: array<int>, b: array<int>) returns (result: array<int>)\n    requires a != null && b != null\n    requires a.Length == b.Length\n    ensures result != null\n    ensures result.Length == a.Length\n    ensures forall i :: 0 <= i < result.Length ==> result[i] == a[i] - b[i]\n{\n    result := new int[a.Length];\n    var i := 0;\n    while i < a.Length\n        invariant 0 <= i <= a.Length\n        invariant result.Length == a.Length\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] - b[k]\n    {\n        result[i] := a[i] - b[i];\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]\n",
-    "K": "1"
+    "K": 1
   },
   "283": {
     "id": "283",
@@ -2877,7 +2877,7 @@
     "model": "gpt4",
     "dafny_code": "method AllElementsEqual(a: array<int>, n: int) returns (result: bool)\n    requires a != null\n    ensures result ==> forall i :: 0 <= i < a.Length ==> a[i] == n\n    ensures !result ==> exists i :: 0 <= i < a.Length && a[i] != n\n{\n    result := true;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result ==> forall k :: 0 <= k < i ==> a[k] == n\n    {\n        if a[i] != n {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postconditions.\n[STRONG-POST]\n[STRONG-INV]\n[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "285": {
     "id": "285",
@@ -2988,7 +2988,7 @@
     "model": "gpt4",
     "dafny_code": "method MaxLengthList(lists: seq<seq<int>>) returns (maxList: seq<int>)\n    requires |lists| > 0\n    ensures forall l :: l in lists ==> |l| <= |maxList|\n    ensures maxList in lists\n{\n    maxList := lists[0];\n\n    for i := 1 to |lists|\n        invariant 1 <= i <= |lists|\n        invariant forall l :: l in lists[..i] ==> |l| <= |maxList|\n        invariant maxList in lists[..i]\n    {\n        if |lists[i]| > |maxList| {\n            maxList := lists[i];\n        }\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "2"
+    "K": 2
   },
   "291": {
     "id": "291",
@@ -3062,7 +3062,7 @@
     "model": "gpt4",
     "dafny_code": "method Quotient(a: int, b: int) returns (result: int)\n    requires b != 0\n    ensures result == a / b\n{\n    result := a / b;\n}",
     "note": "Right postcondition. Very simple\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "295": {
     "id": "295",
@@ -3136,7 +3136,7 @@
     "model": "gpt4",
     "dafny_code": "method ElementAtIndexAfterRotation(l: seq<int>, n: int, index: int) returns (element: int)\n    requires n >= 0\n    requires 0 <= index < |l|\n    ensures element == l[(index - n + |l|) % |l|]\n{\n    element := l[(index - n + |l|) % |l|];\n}",
     "note": "META: I don't understand this problem. The signature here is very different from the one in MBPP-san\n\n[REQUIRED-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "305": {
     "id": "305",
@@ -3210,7 +3210,7 @@
     "model": "gpt4",
     "dafny_code": "method DeepCopySeq(s: seq<int>) returns (copy: seq<int>)\n    ensures |copy| == |s|\n    ensures forall i :: 0 <= i < |s| ==> copy[i] == s[i]\n{\n    var newSeq: seq<int> := [];\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant |newSeq| == i\n        invariant forall k :: 0 <= k < i ==> newSeq[k] == s[k]\n    {\n        newSeq := newSeq + [s[i]];\n    }\n    return newSeq;\n}",
     "note": "Right postcondition.\n\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "308": {
     "id": "308",
@@ -3284,7 +3284,7 @@
     "model": "gpt4",
     "dafny_code": "method Max(a: int, b: int) returns (maxValue: int)\n    ensures maxValue == a || maxValue == b\n    ensures maxValue >= a && maxValue >= b\n{\n    if a >= b {\n        maxValue := a;\n    } else {\n        maxValue := b;\n    }\n}",
     "note": "Right postcondition\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS",
-    "K": "1"
+    "K": 1
   },
   "310": {
     "id": "310",
@@ -3321,7 +3321,7 @@
     "model": "gpt4",
     "dafny_code": "method ToCharArray(s: string) returns (a: array<char>)\n    ensures a.Length == |s|\n    ensures forall i :: 0 <= i < |s| ==> a[i] == s[i]\n{\n    a := new char[|s|];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant a.Length == |s|\n    invariant forall k :: 0 <= k < i ==> a[k] == s[k]\n    {\n        a[i] := s[i];\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "312": {
     "id": "312",
@@ -3358,7 +3358,7 @@
     "model": "gpt4",
     "dafny_code": "method ConeVolume(radius: real, height: real) returns (volume: real)\n    requires radius > 0.0 && height > 0.0\n    ensures volume == (1.0/3.0) * (3.14159265358979323846) * radius * radius * height\n{\n    volume := (1.0/3.0) * (3.14159265358979323846) * radius * radius * height;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS",
-    "K": "1"
+    "K": 1
   },
   "388": {
     "id": "388",
@@ -3543,7 +3543,7 @@
     "model": "gpt4",
     "dafny_code": "method StartAndEndWithSameChar(s: string) returns (result: bool)\n    requires |s| > 0\n    ensures result <==> s[0] == s[|s| - 1]\n{\n    result := s[0] == s[|s| - 1];\n}",
     "note": "Right postconditions\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS",
-    "K": "1"
+    "K": 1
   },
   "397": {
     "id": "397",
@@ -3580,7 +3580,7 @@
     "model": "gpt4",
     "dafny_code": "method MedianOfThree(a: int, b: int, c: int) returns (median: int)\n    ensures median == a || median == b || median == c\n    ensures (median >= a && median <= b) || (median >= b && median <= a) || (median >= a && median <= c) || (median >= c && median <= a) || (median >= b && median <= c) || (median >= c && median <= b)\n{\n    if ((a <= b && b <= c) || (c <= b && b <= a)) {\n        median := b;\n    } else if ((b <= a && a <= c) || (c <= a && a <= b)) {\n        median := a;\n    } else {\n        median := c;\n    }\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS",
-    "K": "3"
+    "K": 3
   },
   "399": {
     "id": "399",
@@ -3617,7 +3617,7 @@
     "model": "gpt4",
     "dafny_code": "method BitwiseXOR(a: seq<bv32>, b: seq<bv32>) returns (result: seq<bv32>)\n    requires |a| == |b|\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == a[i] ^ b[i]\n{\n    result := [];\n    var i := 0;\n    while i < |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] ^ b[k]\n    {\n        result := result + [a[i] ^ b[i]];\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "401": {
     "id": "401",
@@ -3654,7 +3654,7 @@
     "model": "gpt4",
     "dafny_code": "method IndexWiseAddition(a: seq<seq<int>>, b: seq<seq<int>>) returns (result: seq<seq<int>>)\n    requires |a| > 0 && |b| > 0\n    requires |a| == |b|\n    requires forall i :: 0 <= i < |a| ==> |a[i]| == |b[i]|\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> |result[i]| == |a[i]|\n    ensures forall i :: 0 <= i < |result| ==> forall j :: 0 <= j < |result[i]| ==> result[i][j] == a[i][j] + b[i][j]\n{\n    result := [];\n    for i := 0 to |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> |result[k]| == |a[k]|\n        invariant forall k :: 0 <= k < i ==> forall j :: 0 <= j < |result[k]| ==> result[k][j] == a[k][j] + b[k][j]\n    {\n        var subResult := [];\n        for j := 0 to |a[i]|\n            invariant 0 <= j <= |a[i]|\n            invariant |subResult| == j\n            invariant forall k :: 0 <= k < j ==> subResult[k] == a[i][k] + b[i][k]\n        {\n            subResult := subResult + [a[i][j] + b[i][j]];\n        }\n        result := result + [subResult];\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "405": {
     "id": "405",
@@ -3728,7 +3728,7 @@
     "model": "gpt4",
     "dafny_code": "method IsOdd(n: int) returns (result: bool)\n    ensures result <==> n % 2 == 1\n{\n    result := n % 2 == 1;\n}",
     "note": "Right postconditions. Very simple\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS",
-    "K": "1"
+    "K": 1
   },
   "412": {
     "id": "412",
@@ -3765,7 +3765,7 @@
     "model": "gpt4",
     "dafny_code": "/**\n * Remove odd numbers from an array of numbers\n **/\n\npredicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\nmethod RemoveOddNumbers(arr: array<int>) returns (evenList: seq<int>)\n    // All numbers in the output are even and exist in the input \n    ensures forall i :: 0 <= i < |evenList| ==> IsEven(evenList[i]) && evenList[i] in arr[..]\n    // All even numbers in the input are in the output\n    ensures forall i :: 0 <= i < arr.Length && IsEven(arr[i]) ==> arr[i] in evenList\n{\n    evenList := [];\n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant 0 <= |evenList| <= i\n        invariant forall k :: 0 <= k < |evenList| ==> IsEven(evenList[k]) && evenList[k] in arr[..]\n        invariant forall k :: 0 <= k < i && IsEven(arr[k]) ==> arr[k] in evenList\n    {\n        if IsEven(arr[i])\n        {\n            evenList := evenList + [arr[i]];\n        }\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n",
-    "K": "1"
+    "K": 1
   },
   "414": {
     "id": "414",
@@ -3802,7 +3802,7 @@
     "model": "gpt4",
     "dafny_code": "method AnyValueExists(seq1: seq<int>, seq2: seq<int>) returns (result: bool)\n    ensures result <==> (exists i :: 0 <= i < |seq1| && seq1[i] in seq2)\n{\n    result := false;\n    for i := 0 to |seq1|\n        invariant 0 <= i <= |seq1|\n        invariant result <==> (exists k :: 0 <= k < i && seq1[k] in seq2)\n    {\n        if seq1[i] in seq2 {\n            result := true;\n            break;\n        }\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "415": {
     "id": "415",
@@ -3913,7 +3913,7 @@
     "model": "gpt4",
     "dafny_code": "method ExtractRearChars(l: seq<string>) returns (r: seq<char>)\n    requires forall i :: 0 <= i < |l| ==> |l[i]| > 0\n    ensures |r| == |l|\n    ensures forall i :: 0 <= i < |l| ==> r[i] == l[i][|l[i]| - 1]\n{\n    var rearChars: seq<char> := [];\n    for i := 0 to |l|\n        invariant 0 <= i <= |l|\n        invariant |rearChars| == i\n        invariant forall k :: 0 <= k < i ==> rearChars[k] == l[k][|l[k]| - 1]\n    {\n        rearChars := rearChars + [l[i][|l[i]| - 1]];\n    }\n    return rearChars;\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "2"
+    "K": 2
   },
   "426": {
     "id": "426",
@@ -3950,7 +3950,7 @@
     "model": "gpt4",
     "dafny_code": "/**\n * Filter odd numbers from an array of numbers\n **/\n\npredicate IsOdd(n: int)\n{\n    n % 2 != 0\n}\n\nmethod FilterOddNumbers(arr: array<int>) returns (oddList: seq<int>)\n    // All numbers in the output are odd and exist in the input \n    ensures forall i :: 0 <= i < |oddList| ==> IsOdd(oddList[i]) && oddList[i] in arr[..]\n    // All odd numbers in the input are in the output\n    ensures forall i :: 0 <= i < arr.Length && IsOdd(arr[i]) ==> arr[i] in oddList\n{\n    oddList := [];\n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant 0 <= |oddList| <= i\n        invariant forall k :: 0 <= k < |oddList| ==> IsOdd(oddList[k]) && oddList[k] in arr[..]\n        invariant forall k :: 0 <= k < i && IsOdd(arr[k]) ==> arr[k] in oddList\n    {\n        if IsOdd(arr[i])\n        {\n            oddList := oddList + [arr[i]];\n        }\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "428": {
     "id": "428",
@@ -4061,7 +4061,7 @@
     "model": "gpt4",
     "dafny_code": "method ParabolaDirectrix(a: real, h: real, k: real) returns (directrix: real)\n    requires a != 0.0\n    ensures directrix == k - 1.0 / (4.0 * a)\n{\n    directrix := k - 1.0 / (4.0 * a);\n}",
     "note": "MISUNDERSTANDING The right formula is \n(c - ((b * b) + 1) * 4 * a )\n\n[REQUIRED-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "4"
+    "K": 4
   },
   "432": {
     "id": "432",
@@ -4098,7 +4098,7 @@
     "model": "gpt4",
     "dafny_code": "method MedianLength(a: int, b: int) returns (median: int)\n    requires a > 0 && b > 0\n    ensures median == (a + b) / 2\n{\n    median := (a + b) / 2;\n}",
     "note": "MISUNDERSTANDING wrong number of arguments, wrong formula. Should be 0.5*(base1+base2)\n[OPTIONAL-PRE]\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "436": {
     "id": "436",
@@ -4135,7 +4135,7 @@
     "model": "gpt4",
     "dafny_code": "/**\n * Find negative numbers from an array of numbers\n **/\n\npredicate IsNegative(n: int)\n{\n    n < 0\n}\n\nmethod FindNegativeNumbers(arr: array<int>) returns (negativeList: seq<int>)\n    // All numbers in the output are negative and exist in the input \n    ensures forall i :: 0 <= i < |negativeList| ==> IsNegative(negativeList[i]) && negativeList[i] in arr[..]\n    // All negative numbers in the input are in the output\n    ensures forall i :: 0 <= i < arr.Length && IsNegative(arr[i]) ==> arr[i] in negativeList\n{\n    negativeList := [];\n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant 0 <= |negativeList| <= i\n        invariant forall k :: 0 <= k < |negativeList| ==> IsNegative(negativeList[k]) && negativeList[k] in arr[..]\n        invariant forall k :: 0 <= k < i && IsNegative(arr[k]) ==> arr[k] in negativeList\n    {\n        if IsNegative(arr[i])\n        {\n            negativeList := negativeList + [arr[i]];\n        }\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n",
-    "K": "1"
+    "K": 1
   },
   "437": {
     "id": "437",
@@ -4283,7 +4283,7 @@
     "model": "gpt4",
     "dafny_code": "method MultiplyElements(a: seq<int>, b: seq<int>) returns (result: seq<int>)\n    requires |a| == |b|\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == a[i] * b[i]\n{\n    result := [];\n    var i := 0;\n    while i < |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] * b[k]\n    {\n        result := result + [a[i] * b[i]];\n        i := i + 1;\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "448": {
     "id": "448",
@@ -4431,7 +4431,7 @@
     "model": "gpt4",
     "dafny_code": "method CalculateLoss(costPrice: int, sellingPrice: int) returns (loss: int)\n    requires costPrice >= 0 && sellingPrice >= 0\n    ensures (costPrice > sellingPrice ==> loss == costPrice - sellingPrice) && (costPrice <= sellingPrice ==> loss == 0)\n{\n    if (costPrice > sellingPrice) {\n        loss := costPrice - sellingPrice;\n    } else {\n        loss := 0;\n    }\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "455": {
     "id": "455",
@@ -4468,7 +4468,7 @@
     "model": "gpt4",
     "dafny_code": "method MonthHas31Days(month: int) returns (result: bool)\n    requires 1 <= month <= 12\n    ensures result <==> month in {1, 3, 5, 7, 8, 10, 12}\n{\n    result := month in {1, 3, 5, 7, 8, 10, 12};\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "456": {
     "id": "456",
@@ -4542,7 +4542,7 @@
     "model": "gpt4",
     "dafny_code": "method MinLengthSublist(s: seq<seq<int>>) returns (minSublist: seq<int>)\n    requires |s| > 0\n    ensures minSublist in s\n    ensures forall sublist :: sublist in s ==> |minSublist| <= |sublist|\n{\n    minSublist := s[0];\n    for i := 1 to |s|\n        invariant 0 <= i <= |s|\n        invariant minSublist in s[..i]\n        invariant forall sublist :: sublist in s[..i] ==> |minSublist| <= |sublist|\n    {\n        if |s[i]| < |minSublist| {\n            minSublist := s[i];\n        }\n    }\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "458": {
     "id": "458",
@@ -4579,7 +4579,7 @@
     "model": "gpt4",
     "dafny_code": "method RectangleArea(length: int, width: int) returns (area: int)\n    requires length > 0\n    requires width > 0\n    ensures area == length * width\n{\n    area := length * width;\n}",
     "note": "Right postconditions. Very simple\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "460": {
     "id": "460",
@@ -4616,7 +4616,7 @@
     "model": "gpt4",
     "dafny_code": "method GetFirstElements(lst: seq<seq<int>>) returns (result: seq<int>)\n    requires forall i :: 0 <= i < |lst| ==> |lst[i]| > 0\n    ensures |result| == |lst|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == lst[i][0]\n{\n    result := [];\n    for i := 0 to |lst|\n        invariant 0 <= i <= |lst|\n        invariant |result| == i\n        invariant forall j :: 0 <= j < i ==> result[j] == lst[j][0]\n    {\n        result := result + [lst[i][0]];\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]\n",
-    "K": "2"
+    "K": 2
   },
   "461": {
     "id": "461",
@@ -4653,7 +4653,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsUpperCase(c: char)\n{\n    65 <= c as int <= 90\n}\n\nmethod CountUppercase(s: string) returns (count: int)\n    ensures count >= 0\n    ensures count == | set i: int | 0 <= i < |s| && IsUpperCase(s[i])|\n{\n    var uppercase := set i: int | 0 <= i < |s| && IsUpperCase(s[i]);\n    count := |uppercase|;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "470": {
     "id": "470",
@@ -4690,7 +4690,7 @@
     "model": "gpt4",
     "dafny_code": "method PairwiseAddition(a: array<int>) returns (result: array<int>)\n    requires a != null\n    requires a.Length % 2 == 0\n    ensures result != null\n    ensures result.Length == a.Length / 2\n    ensures forall i :: 0 <= i < result.Length ==> result[i] == a[2*i] + a[2*i + 1]\n{\n    result := new int[a.Length / 2];\n    var i := 0;\n    while i < a.Length / 2\n        invariant 0 <= i <= a.Length / 2\n        invariant result.Length == a.Length / 2\n        invariant forall k :: 0 <= k < i ==> result[k] == a[2*k] + a[2*k + 1]\n    {\n        result[i] := a[2*i] + a[2*i + 1];\n        i := i + 1;\n    }\n}",
     "note": "MISUNDERSTANDING wrong postconditions.\n\n//[WRONG]\n//[MISUNDERSTANDING]\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "476": {
     "id": "476",
@@ -4727,7 +4727,7 @@
     "model": "gpt4",
     "dafny_code": "method SumMinMax(a: array<int>) returns (sum: int)\n    requires a.Length > 0\n    ensures sum == Max(a[..]) + Min(a[..])\n{\n    var minVal := a[0];\n    var maxVal := a[0];\n\n    for i := 1 to a.Length\n        invariant 1 <= i <= a.Length\n        invariant minVal <= maxVal\n        invariant forall k :: 0 <= k < i ==> minVal <= a[k] && a[k] <= maxVal\n        invariant minVal == Min(a[..i])\n        invariant maxVal == Max(a[..i])\n    {\n        if a[i] < minVal {\n            minVal := a[i];\n        } else if a[i] > maxVal {\n            maxVal := a[i];\n        }\n        assert a[..i+1][..i] == a[..i];\n    }\n    assert a[..a.Length] == a[..];\n    sum := minVal + maxVal;\n}\n\n// The order of the recursion in these two functions\n// must match the order of the iteration in the algorithm above\nfunction Min(a: seq<int>) : int\n    requires |a| > 0\n{\n    if |a| == 1 then a[0]\n    else\n        var minPrefix := Min(a[..|a|-1]);\n        if a[|a|-1] <= minPrefix then a[|a|-1] else Min(a[..|a|-1])\n}\n\nfunction Max(a: seq<int>) : int\n    requires |a| > 0\n{\n    if |a| == 1 then a[0]\n    else\n        var maxPrefix := Max(a[..|a|-1]);\n        if a[|a|-1] >= maxPrefix then a[|a|-1] else Max(a[..|a|-1])\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "2"
+    "K": 2
   },
   "479": {
     "id": "479",
@@ -4801,7 +4801,7 @@
     "model": "gpt4",
     "dafny_code": "/**\n * Find odd numbers from an array of numbers\n **/\n\npredicate IsOdd(n: int)\n{\n    n % 2 == 1\n}\n\nmethod FindOddNumbers(arr: array<int>) returns (oddList: seq<int>)\n    // All numbers in the output are odd and exist in the input \n    ensures forall i :: 0 <= i < |oddList| ==> IsOdd(oddList[i]) && oddList[i] in arr[..]\n    // All odd numbers in the input are in the output\n    ensures forall i :: 0 <= i < arr.Length && IsOdd(arr[i]) ==> arr[i] in oddList\n{\n    oddList := [];\n    for i := 0 to arr.Length\n        invariant 0 <= i <= arr.Length\n        invariant 0 <= |oddList| <= i\n        invariant forall k :: 0 <= k < |oddList| ==> IsOdd(oddList[k]) && oddList[k] in arr[..]\n        invariant forall k :: 0 <= k < i && IsOdd(arr[k]) ==> arr[k] in oddList\n    {\n        if IsOdd(arr[i])\n        {\n            oddList := oddList + [arr[i]];\n        }\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "555": {
     "id": "555",
@@ -4838,7 +4838,7 @@
     "model": "gpt4",
     "dafny_code": "method DifferenceSumCubesAndSumNumbers(n: int) returns (diff: int)\n    requires n >= 0\n    ensures diff == (n * n * (n + 1) * (n + 1)) / 4 - (n * (n + 1)) / 2\n{\n    var sumCubes := 0;\n    var sumNumbers := 0;\n    for i := 1 to n + 1\n        invariant 0 <= i <= n + 1\n        invariant sumCubes == (i - 1) * (i - 1) * i * i / 4\n        invariant sumNumbers == (i - 1) * i / 2\n    {\n        sumCubes := sumCubes + i * i * i;\n        sumNumbers := sumNumbers + i;\n    }\n    diff := sumCubes - sumNumbers;\n}",
     "note": "Right postconditions.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "2"
+    "K": 2
   },
   "557": {
     "id": "557",
@@ -4875,7 +4875,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsLowerCase(c : char)\n{\n    97 <= c as int <= 122\n}\n\npredicate IsUpperCase(c : char)\n{\n    65 <= c as int <= 90\n}\n\npredicate IsLowerUpperPair(c : char, C : char)\n{\n    (c as int) == (C as int) + 32\n}\n\npredicate IsUpperLowerPair(C : char, c : char)\n{\n    (C as int) == (c as int) - 32\n}\n\nfunction ShiftMinus32(c : char) :  char\n{\n    ((c as int - 32) % 128) as char\n}\n\nfunction Shift32(c : char) :  char\n{\n    ((c as int + 32) % 128) as char\n}\n\nmethod ToggleCase(s: string) returns (v: string)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==>  if IsLowerCase(s[i]) then IsLowerUpperPair(s[i], v[i]) else if IsUpperCase(s[i]) then IsUpperLowerPair(s[i], v[i]) else v[i] == s[i]\n{\n    var s' : string := [];\n    for i := 0 to |s|\n    invariant 0 <= i <= |s|\n    invariant |s'| == i\n    invariant forall k :: 0 <= k < i &&  IsLowerCase(s[k]) ==> IsLowerUpperPair(s[k], s'[k])\n    invariant forall k :: 0 <= k < i &&  IsUpperCase(s[k]) ==> IsUpperLowerPair(s[k], s'[k])\n    invariant forall k :: 0 <= k < i && !IsLowerCase(s[k]) && !IsUpperCase(s[k]) ==> s[k] == s'[k]\n    {\n        if IsLowerCase(s[i])\n        {\n            s' := s' + [ShiftMinus32(s[i])];\n        }\n        else if IsUpperCase(s[i])\n        {\n            s' := s' + [Shift32(s[i])];\n        }\n        else \n        {\n            s' := s' + [s[i]];\n        }\n    }\n    return s';\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "559": {
     "id": "559",
@@ -5023,7 +5023,7 @@
     "model": "gpt4",
     "dafny_code": "method SplitStringIntoChars(s: string) returns (v: seq<char>)\n    ensures |v| == |s|\n    ensures forall i :: 0 <= i < |s| ==> v[i] == s[i]\n{\n    v := [];\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant |v| == i\n        invariant forall k :: 0 <= k < i ==> v[k] == s[k]\n    {\n        v := v + [s[i]];\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "572": {
     "id": "572",
@@ -5060,7 +5060,7 @@
     "model": "gpt4",
     "dafny_code": "method RemoveDuplicates(a: array<int>) returns (result: seq<int>)\n    requires a != null\n    ensures forall x :: x in result <==> exists i :: 0 <= i < a.Length && a[i] == x\n    ensures forall i, j :: 0 <= i < j < |result| ==> result[i] != result[j]\n{\n    var res: seq<int> := [];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant forall x :: x in res <==> exists k :: 0 <= k < i && a[k] == x\n        invariant forall i, j :: 0 <= i < j < |res| ==> res[i] != res[j]\n    {\n        if a[i] !in res\n        {\n            res := res + [a[i]];\n        }\n    }\n    result := res;\n}",
     "note": "Right postconditions.\n//[WRONG]\n//[MISUNDERSTANDING]\nGood example of MISUNDERSTANDING (for us and model)\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "574": {
     "id": "574",
@@ -5097,7 +5097,7 @@
     "model": "gpt4",
     "dafny_code": "method CylinderSurfaceArea(radius: real, height: real) returns (area: real)\n    requires radius > 0.0 && height > 0.0\n    ensures area == 2.0 * 3.14159265358979323846 * radius * (radius + height)\n{\n    area := 2.0 * 3.14159265358979323846 * radius * (radius + height);\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "577": {
     "id": "577",
@@ -5134,7 +5134,7 @@
     "model": "gpt4",
     "dafny_code": "function Factorial(n: int): int\n    requires n >= 0\n    ensures 0 <= Factorial(n)\n    {\n        if n == 0 then 1\n        else n * Factorial(n-1)\n    }\n\n    method FactorialOfLastDigit(n: int) returns (fact: int)\n    requires n >= 0\n    ensures fact == Factorial(n % 10)\n    {\n        var lastDigit := n % 10;\n        fact := Factorial(lastDigit);\n    }",
     "note": "Right postconditions. Good modularization. Nice example\n\n[REQUIRED-PRE]\n\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "4"
+    "K": 4
   },
   "578": {
     "id": "578",
@@ -5171,7 +5171,7 @@
     "model": "gpt4",
     "dafny_code": "method Interleave(s1: seq<int>, s2: seq<int>, s3: seq<int>) returns (r: seq<int>)\n    requires |s1| == |s2| && |s2| == |s3|\n    ensures |r| == 3 * |s1|\n    ensures forall i :: 0 <= i < |s1| ==> r[3*i] == s1[i] && r[3*i + 1] == s2[i] && r[3*i + 2] == s3[i]\n{\n    r := [];\n    for i := 0 to |s1|\n        invariant 0 <= i <= |s1|\n        invariant |r| == 3 * i\n        invariant forall k :: 0 <= k < i ==> r[3*k] == s1[k] && r[3*k + 1] == s2[k] && r[3*k + 2] == s3[k]\n    {\n        r := r + [s1[i], s2[i], s3[i]];\n    }\n}",
     "note": "Right postconditions. Nice example.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "581": {
     "id": "581",
@@ -5208,7 +5208,7 @@
     "model": "gpt4",
     "dafny_code": "method SquarePyramidSurfaceArea(baseEdge: int, height: int) returns (area: int)\n    requires baseEdge > 0\n    requires height > 0\n    ensures area == baseEdge * baseEdge + 2 * baseEdge * height\n{\n    area := baseEdge * baseEdge + 2 * baseEdge * height;\n}",
     "note": "Right postconditions.\n[OPTIONAL-PRE]\n\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "586": {
     "id": "586",
@@ -5245,7 +5245,7 @@
     "model": "gpt4",
     "dafny_code": "method SplitAndAppend(l: seq<int>, n: int) returns (r: seq<int>)\n    requires n >= 0 && n < |l|\n    ensures |r| == |l|\n    ensures forall i :: 0 <= i < |l| ==> r[i] == l[(i + n) % |l|]\n{\n    var firstPart: seq<int> := l[..n];\n    var secondPart: seq<int> := l[n..];\n    r := secondPart + firstPart;\n}",
     "note": "WEAK\nOne of the postconditions is missing. Good example\n[REQUIRED-PRE]\n//[WEAK-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "587": {
     "id": "587",
@@ -5282,7 +5282,7 @@
     "model": "gpt4",
     "dafny_code": "method ArrayToSeq(a: array<int>) returns (s: seq<int>)\n    requires a != null\n    ensures |s| == a.Length\n    ensures forall i :: 0 <= i < a.Length ==> s[i] == a[i]\n{\n    s := [];\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant |s| == i\n        invariant forall j :: 0 <= j < i ==> s[j] == a[j]\n    {\n        s := s + [a[i]];\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "589": {
     "id": "589",
@@ -5356,7 +5356,7 @@
     "model": "gpt4",
     "dafny_code": "method SwapFirstAndLast(a: array<int>)\n    requires a != null && a.Length > 0\n    modifies a\n    ensures a[0] == old(a[a.Length - 1]) && a[a.Length - 1] == old(a[0])\n    ensures forall k :: 1 <= k < a.Length - 1 ==> a[k] == old(a[k])\n{\n    var temp := a[0];\n    a[0] := a[a.Length - 1];\n    a[a.Length - 1] := temp;\n}",
     "note": "Right postconditions\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "598": {
     "id": "598",
@@ -5393,7 +5393,7 @@
     "model": "gpt4",
     "dafny_code": "method IsArmstrong(n: int) returns (result: bool)\n    requires 100 <= n < 1000\n    ensures result <==> (n == ((n / 100) * (n / 100) * (n / 100) + ((n / 10) % 10) * ((n / 10) % 10) * ((n / 10) % 10) + (n % 10) * (n % 10) * (n % 10)))\n{\n    var a := n / 100;\n    var b := (n / 10) % 10;\n    var c := n % 10;\n\n    result := n == (a * a * a + b * b * b + c * c * c);\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "603": {
     "id": "603",
@@ -5430,7 +5430,7 @@
     "model": "gpt4",
     "dafny_code": "method LucidNumbers(n: int) returns (lucid: seq<int>)\n    requires n >= 0\n    ensures forall i :: 0 <= i < |lucid| ==> lucid[i] % 3 == 0\n    ensures forall i :: 0 <= i < |lucid| ==> lucid[i] <= n\n    ensures forall i, j :: 0 <= i < j < |lucid| ==> lucid[i] < lucid[j]\n{\n    lucid := [];\n    var i := 0;\n    while i <= n\n        invariant 0 <= i <= n + 1\n        invariant forall k :: 0 <= k < |lucid| ==> lucid[k] % 3 == 0\n        invariant forall k :: 0 <= k < |lucid| ==> lucid[k] <= i - 1\n        invariant forall k, l :: 0 <= k < l < |lucid| ==> lucid[k] < lucid[l]\n    {\n        if i % 3 == 0 {\n            lucid := lucid + [i];\n        }\n        i := i + 1;\n    }\n}",
     "note": "META it's not \"lucid\", it's \"ludic\" numbers!\nMISUNDERSTANDING and WRONG it used a definition of \"lucid\" = not divisible by 3, but the formal expression is actually the opposite.\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "3"
+    "K": 3
   },
   "604": {
     "id": "604",
@@ -5504,7 +5504,7 @@
     "model": "gpt4",
     "dafny_code": "method DegreesToRadians(degrees: real) returns (radians: real)\n    ensures radians == degrees * 3.14159265358979323846 / 180.0\n{\n    radians := degrees * 3.14159265358979323846 / 180.0;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "618": {
     "id": "618",
@@ -5541,7 +5541,7 @@
     "model": "gpt4",
     "dafny_code": "method ElementWiseDivide(a: seq<int>, b: seq<int>) returns (result: seq<int>)\n    requires |a| == |b|\n    requires forall i :: 0 <= i < |b| ==> b[i] != 0\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == a[i] / b[i]\n{\n    result := [];\n    for i := 0 to |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] / b[k]\n    {\n        result := result + [a[i] / b[i]];\n    }\n}",
     "note": "Right formal precondition, although it differs from the response to prompt 1. Right postconditions.\n\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "619": {
     "id": "619",
@@ -5615,7 +5615,7 @@
     "model": "gpt4",
     "dafny_code": "method FindMedian(a: array<int>, b: array<int>) returns (median: int)\n    requires a != null && b != null\n    requires a.Length == b.Length\n    requires a.Length > 0\n    requires forall i :: 0 <= i < a.Length - 1 ==> a[i] <= a[i + 1]\n    requires forall i :: 0 <= i < b.Length - 1 ==> b[i] <= b[i + 1]\n    ensures median == if (a.Length % 2 == 0) then (a[a.Length / 2 - 1] + b[0]) / 2 else a[a.Length / 2]\n{\n    if (a.Length % 2 == 0) {\n        median := (a[a.Length / 2 - 1] + b[0]) / 2;\n    } else {\n        median := a[a.Length / 2];\n    }\n}",
     "note": "MISUNDERSTANDING it doesn't know how to find the median of two sorted lists. The lists need to be merged first.\nWRONG solution\n[REQUIRED-PRE]\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "5"
+    "K": 5
   },
   "623": {
     "id": "623",
@@ -5652,7 +5652,7 @@
     "model": "gpt4",
     "dafny_code": "method PowerOfListElements(l: seq<int>, n: int) returns (result: seq<int>)\n    requires n >= 0\n    ensures |result| == |l|\n    ensures forall i :: 0 <= i < |l| ==> result[i] == Power(l[i], n)\n{\n    result := [];\n    for i := 0 to |l|\n        invariant 0 <= i <= |l|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == Power(l[k], n)\n    {\n        result := result + [Power(l[i], n)];\n    }\n}\n\nfunction Power(base: int, exponent: int): int\n    requires exponent >= 0\n{\n    if exponent == 0 then 1\n    else base * Power(base, exponent-1)\n}",
     "note": "Right postconditions. Good modularization.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "5"
+    "K": 5
   },
   "626": {
     "id": "626",
@@ -5689,7 +5689,7 @@
     "model": "gpt4",
     "dafny_code": "method AreaOfLargestTriangleInSemicircle(radius: int) returns (area: int)\n    requires radius > 0\n    ensures area == radius * radius\n{\n    area := radius * radius;\n}",
     "note": "Right postconditions\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "3"
+    "K": 3
   },
   "628": {
     "id": "628",
@@ -5763,7 +5763,7 @@
     "model": "gpt4",
     "dafny_code": "method IsBreakEven(costPrice: int, sellingPrice: int) returns (result: bool)\n    requires costPrice >= 0 && sellingPrice >= 0\n    ensures result <==> costPrice == sellingPrice\n{\n    result := costPrice == sellingPrice;\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "639": {
     "id": "639",
@@ -5837,7 +5837,7 @@
     "model": "gpt4",
     "dafny_code": "method NthNonagonalNumber(n: int) returns (number: int)\n    requires n >= 0\n    ensures number == n * (7 * n - 5) / 2\n{\n    number := n * (7 * n - 5) / 2;\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "728": {
     "id": "728",
@@ -5874,7 +5874,7 @@
     "model": "gpt4",
     "dafny_code": "method AddLists(a: seq<int>, b: seq<int>) returns (result: seq<int>)\n    requires |a| == |b|\n    ensures |result| == |a|\n    ensures forall i :: 0 <= i < |result| ==> result[i] == a[i] + b[i]\n{\n    result := [];\n    for i := 0 to |a|\n        invariant 0 <= i <= |a|\n        invariant |result| == i\n        invariant forall k :: 0 <= k < i ==> result[k] == a[k] + b[k]\n    {\n        result := result + [a[i] + b[i]];\n    }\n}",
     "note": "Right postcondition.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   },
   "747": {
     "id": "747",
@@ -5911,7 +5911,7 @@
     "model": "gpt4",
     "dafny_code": "",
     "note": "META empty solution. \nModel confesses that it cannot implement this method in Dafny.",
-    "K": "3"
+    "K": 3
   },
   "748": {
     "id": "748",
@@ -5985,7 +5985,7 @@
     "model": "gpt4",
     "dafny_code": "method AddTupleToList(l: seq<(int, int)>, t: (int, int)) returns (r: seq<(int, int)>)\n    ensures |r| == |l| + 1\n    ensures r[|r| - 1] == t\n    ensures forall i :: 0 <= i < |l| ==> r[i] == l[i]\n{\n    r := l + [t];\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "751": {
     "id": "751",
@@ -6022,7 +6022,7 @@
     "model": "gpt4",
     "dafny_code": "method IsMinHeap(a: array<int>) returns (result: bool)\n    requires a != null\n    ensures result ==> forall i :: 0 <= i < a.Length / 2 ==> a[i] <= a[2*i + 1] && (2*i + 2 == a.Length || a[i] <= a[2*i + 2])\n    ensures !result ==> exists i :: 0 <= i < a.Length / 2 && (a[i] > a[2*i + 1] || (2*i + 2 != a.Length && a[i] > a[2*i + 2]))\n{\n    result := true;\n    for i := 0 to a.Length / 2\n        invariant 0 <= i <= a.Length / 2\n        invariant result ==> forall k :: 0 <= k < i ==> a[k] <= a[2*k + 1] && (2*k + 2 == a.Length || a[k] <= a[2*k + 2])\n    {\n        if a[i] > a[2*i + 1] || (2*i + 2 != a.Length && a[i] > a[2*i + 2]) {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postcondition. This is a naturally complex formal expression! Good example.\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[OPTIONAL-PRE]",
-    "K": "1"
+    "K": 1
   },
   "759": {
     "id": "759",
@@ -6059,7 +6059,7 @@
     "model": "gpt4",
     "dafny_code": "method IsDecimalWithTwoPrecision(s: string) returns (result: bool)\n    ensures result ==> (exists i :: 0 <= i < |s| && s[i] == '.' && |s| - i - 1 == 2)\n    ensures !result ==> !(exists i :: 0 <= i < |s| && s[i] == '.' && |s| - i - 1 == 2)\n{\n    result := false;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant result <==> (exists k :: 0 <= k < i && s[k] == '.' && |s| - k - 1 == 2)\n    {\n        if s[i] == '.' && |s| - i - 1 == 2 {\n            result := true;\n            break;\n        }\n    }\n}",
     "note": "MISUNDERSTANDING incomplete specification. It's missing the fact that the string needs to represent a number. It's just checking for the existence of a . two slots before the final character. Good example.\n\n//[WRONG]\n//[MISUNDERSTANDING]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "2"
+    "K": 2
   },
   "762": {
     "id": "762",
@@ -6096,7 +6096,7 @@
     "model": "gpt4",
     "dafny_code": "method IsMonthWith30Days(month: int) returns (result: bool)\n    requires 1 <= month <= 12\n    ensures result <==> month == 4 || month == 6 || month == 9 || month == 11\n{\n    result := month == 4 || month == 6 || month == 9 || month == 11;\n}",
     "note": "Right postcondition\n[OPTIONAL-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "763": {
     "id": "763",
@@ -6170,7 +6170,7 @@
     "model": "gpt4",
     "dafny_code": "method Difference(a: seq<int>, b: seq<int>) returns (diff: seq<int>)\n    ensures forall x :: x in diff <==> (x in a && x !in b)\n    ensures forall i, j :: 0 <= i < j < |diff| ==> diff[i] != diff[j]\n{\n    diff := [];\n    for i := 0 to |a|\n        invariant 0 <= i <= |a|\n        invariant forall x :: x in diff <==> (x in a[..i] && x !in b)\n        invariant forall i, j :: 0 <= i < j < |diff| ==> diff[i] != diff[j]\n    {\n        if a[i] !in b && a[i] !in diff\n        {\n            diff := diff + [a[i]];\n        }\n    }\n}",
     "note": "Right postconditions.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "772": {
     "id": "772",
@@ -6244,7 +6244,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsVowel(c: char)\n{\n    c in {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}\n}\n\nmethod CountVowelNeighbors(s: string) returns (count: int)\n    ensures count >= 0\n    ensures count == | set i: int | 1 <= i < |s|-1 && IsVowel(s[i-1]) && IsVowel(s[i+1]) |\n{\n    var vowels := set i: int | 1 <= i < |s|-1 && IsVowel(s[i-1]) && IsVowel(s[i+1]);\n    count := |vowels|;\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "777": {
     "id": "777",
@@ -6318,7 +6318,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\nmethod IsEvenAtIndexEven(lst: seq<int>) returns (result: bool)\n    ensures result <==> forall i :: 0 <= i < |lst| ==> (IsEven(i) ==> IsEven(lst[i]))\n{\n    result := true;\n    for i := 0 to |lst|\n        invariant 0 <= i <= |lst|\n        invariant result <==> forall k :: 0 <= k < i ==> (IsEven(k) ==> IsEven(lst[k]))\n    {\n        if IsEven(i) && !IsEven(lst[i])\n        {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "792": {
     "id": "792",
@@ -6355,7 +6355,7 @@
     "model": "gpt4",
     "dafny_code": "method CountLists(lists: seq<seq<int>>) returns (count: int)\n    ensures count >= 0\n    ensures count == |lists|\n{\n    count := |lists|;\n}",
     "note": "Right postcondition. Very simple problem\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "799": {
     "id": "799",
@@ -6392,7 +6392,7 @@
     "model": "gpt4",
     "dafny_code": "method RotateLeftBits(n: bv32, d: int) returns (result: bv32)\n    requires 0 <= d < 32\n    ensures result == ((n << d) | (n >> (32 - d)))\n{\n    result := ((n << d) | (n >> (32 - d)));\n}",
     "note": "Right postconditions\n[REQUIRED-PRE]\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "4"
+    "K": 4
   },
   "801": {
     "id": "801",
@@ -6429,7 +6429,7 @@
     "model": "gpt4",
     "dafny_code": "method CountEqualNumbers(a: int, b: int, c: int) returns (count: int)\n    ensures count >= 0 && count <= 3\n    ensures (count == 3) <==> (a == b && b == c)\n    ensures (count == 2) <==> ((a == b && b != c) || (a != b && b == c) || (a == c && b != c))\n    ensures (count == 1) <==> (a != b && b != c && a != c)\n{\n    count := 1;\n    if (a == b) {\n        count := count + 1;\n    }\n    if (a == c) {\n        count := count + 1;\n    }\n    if (a != b && b == c) {\n        count := count + 1;\n    }\n}",
     "note": "Right postconditions\n//[STRONG-POST]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "804": {
     "id": "804",
@@ -6466,7 +6466,7 @@
     "model": "gpt4",
     "dafny_code": "predicate IsEven(n: int)\n{\n    n % 2 == 0\n}\n\nmethod IsProductEven(a: array<int>) returns (result: bool)\n    ensures result <==> exists i :: 0 <= i < a.Length && IsEven(a[i])\n{\n    result := false;\n    for i := 0 to a.Length\n        invariant 0 <= i <= a.Length\n        invariant result <==> exists k :: 0 <= k < i && IsEven(a[k])\n    {\n        if IsEven(a[i])\n        {\n            result := true;\n            break;\n        }\n    }\n}",
     "note": "Right textual postconditions, but wrong formal expression. MISUNDERSTANDING in the formal code, WRONG postconditions\n\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]",
-    "K": "1"
+    "K": 1
   },
   "806": {
     "id": "806",
@@ -6540,7 +6540,7 @@
     "model": "gpt4",
     "dafny_code": "method ContainsK(s: seq<int>, k: int) returns (result: bool)\n    ensures result <==> k in s\n{\n    result := false;\n    for i := 0 to |s|\n        invariant 0 <= i <= |s|\n        invariant result <==> (exists j :: 0 <= j < i && s[j] == k)\n    {\n        if s[i] == k {\n            result := true;\n            break;\n        }\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n",
-    "K": "2"
+    "K": 2
   },
   "809": {
     "id": "809",
@@ -6577,6 +6577,6 @@
     "model": "gpt4",
     "dafny_code": "method IsSmaller(a: seq<int>, b: seq<int>) returns (result: bool)\n    requires |a| == |b|\n    ensures result <==> forall i :: 0 <= i < |a| ==> a[i] > b[i]\n    ensures !result <==> exists i :: 0 <= i < |a| && a[i] <= b[i]\n{\n    result := true;\n    for i := 0 to |a|\n        invariant 0 <= i <= |a|\n        invariant result <==> forall k :: 0 <= k < i ==> a[k] > b[k]\n        invariant !result <==> exists k :: 0 <= k < i && a[k] <= b[k]\n    {\n        if a[i] <= b[i]\n        {\n            result := false;\n            break;\n        }\n    }\n}",
     "note": "Right postcondition.\n//[STRONG-POST]\n//[STRONG-INV]\n//[CONFIRMED-WITH-TESTS]\n[REQUIRED-PRE]",
-    "K": "1"
+    "K": 1
   }
 }
