@@ -77,14 +77,14 @@ K_run = 5
 # waiting time
 cool_down_time = 3
 # MBPP-SAN-DFY-228 json path (absolute path)
-data_path =/data/test-task.json
+data_path = /dafny-synthesis/Scripts/data/test-task.json
 # base output path (absolute path)
-base_output_path =/output/
+base_output_path = /output/
 
-# Required for dynamic Few Shot RAG Prompting
+# Required for dynamic Few-Shot RAG Prompting
 [FEWSHOT]
 # MBPP-DFY-50 example db json path (absolute path)
-example_db_json_path=/data/mbpp-dfy-50-examples-db.json
+example_db_json_path= /dafny-synthesis/Scripts/data/mbpp-dfy-50-examples-db.json
 # number of spec examples in [Specification Prompt]
 spec_shot_count = 3
 # number of code examples in [Chain of Thought (CoT) Prompt]
